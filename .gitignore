@@ -1,0 +1,5 @@
+#configuration Visual Studio
+.vs
+
+#building files
+BusStation/bin
