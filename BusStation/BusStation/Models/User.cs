@@ -13,6 +13,6 @@ namespace BusStation.Models
         public string password { get; set; }
         public Profile profile { get; set; }
         public DateTime CreateAt { get; set; }
-
     }
 }
+ 
