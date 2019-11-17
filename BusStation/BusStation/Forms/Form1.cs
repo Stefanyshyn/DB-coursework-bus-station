@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusStation.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace BusStation
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void test_Click(object sender, EventArgs e)
+        {
+            UserAccess a = new UserAccess();
+            var b = a.getUsers();
+            text.Text=b[0].ToString();
         }
     }
 }

@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace BusStation.Models
 {
-    class Profile
+    public class Profile
     {
         public string firstName{ get; set; }
         public string lastName { get; set; }
+        public override string ToString()
+        {
+            return this.lastName + " " + this.firstName;
+        }
+
     }
 }
