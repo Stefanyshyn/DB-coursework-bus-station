@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace BusStation
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,7 +22,6 @@ namespace BusStation
         {
             UserAccess a = new UserAccess();
             var b = a.getUsers();
-            text.Text=b[0].ToString();
         }
     }
 }

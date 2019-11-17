@@ -18,7 +18,6 @@ namespace BusStation.DataAccess
                 string query = "select * from [Fulluser]";
                 return connection.Query<User>(query).ToList();
             }
-                return null;
         }
     }
 }
