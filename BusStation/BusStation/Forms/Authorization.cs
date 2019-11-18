@@ -19,7 +19,10 @@ namespace BusStation.Forms
 
         private void SignInButton_Click(object sender, EventArgs e)
         {
-            
+            if( username.Text.Trim() != "" && password.Text.Trim() != "")
+            {
+                MessageBox.Show("Success");
+            } 
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)

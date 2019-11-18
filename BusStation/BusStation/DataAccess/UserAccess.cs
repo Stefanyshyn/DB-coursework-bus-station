@@ -19,5 +19,16 @@ namespace BusStation.DataAccess
                 return connection.Query<User>(query).ToList();
             }
         }
+
+        public List<User> GetAll(Predicate<User> match)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = "select * from [Fulluser]";
+                var users = connection.Query<User>(query).ToList();
+                return users.FindAll(match);
+            }
+        }
+
     }
 }
