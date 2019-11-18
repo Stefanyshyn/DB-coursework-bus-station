@@ -23,5 +23,13 @@ namespace BusStation
             UserAccess a = new UserAccess();
             var b = a.getUsers();
         }
+
+        private void insert_Click(object sender, EventArgs e)
+        {
+            StationAccess db = new StationAccess();
+            string str = db.Insert(textBox1.Text);
+            textBox2.Text = str;
+        }
+
     }
 }

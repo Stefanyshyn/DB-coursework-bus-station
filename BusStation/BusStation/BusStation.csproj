@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\StationAccess.cs" />
     <Compile Include="DataAccess\UserAccess.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -57,6 +58,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Station.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\User.cs" />
