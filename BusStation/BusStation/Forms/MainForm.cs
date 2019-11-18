@@ -1,4 +1,5 @@
 ﻿using BusStation.DataAccess;
+using BusStation.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,8 +27,9 @@ namespace BusStation
 
         private void insert_Click(object sender, EventArgs e)
         {
-            StationAccess db = new StationAccess();
-            string str = db.Insert(textBox1.Text);
+           BusAccess db = new BusAccess();
+            Bus bus = new Bus { Seats = Convert.ToInt32(textBox1.Text) };
+            string str = db.Insert(bus);
             textBox2.Text = str;
         }
 

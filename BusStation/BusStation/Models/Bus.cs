@@ -8,7 +8,20 @@ namespace BusStation.Models
 {
     public class Bus
     {
-        public int id { get; set; }
-        public int seats { get; set; }
+        public int Id { get; set; }
+        public int Seats { get; set; }
+        private TypeBus type;
+        public string Type { 
+            get {
+                return type.type;
+            }
+            set {
+                type.type = value;
+            } 
+        }
+        public Bus()
+        {
+            this.type = new TypeBus();
+        }
     }
 }
