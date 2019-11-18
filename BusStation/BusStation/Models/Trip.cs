@@ -9,6 +9,8 @@ namespace BusStation.Models
     public class Trip
     {
         public int Id { get; set; }
-
+        public Station[] stations { get; set; }
+        public Bus bus { get; set; }
+        
     }
 }

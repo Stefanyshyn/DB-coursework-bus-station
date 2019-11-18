@@ -10,3 +10,4 @@ D:\TNTU\3_course\Курсова\source code\BusStation\BusStation\BusStation\obj
 D:\TNTU\3_course\Курсова\source code\BusStation\BusStation\BusStation\obj\Debug\BusStation.exe
 D:\TNTU\3_course\Курсова\source code\BusStation\BusStation\BusStation\obj\Debug\BusStation.pdb
 D:\TNTU\3_course\Курсова\source code\BusStation\BusStation\BusStation\obj\Debug\BusStation.MainForm.resources
+D:\TNTU\3_course\Курсова\source code\BusStation\BusStation\BusStation\obj\Debug\BusStation.Forms.Authorization.resources

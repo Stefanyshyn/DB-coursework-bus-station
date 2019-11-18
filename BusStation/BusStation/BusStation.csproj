@@ -53,6 +53,12 @@
     <Compile Include="DataAccess\BusAccess.cs" />
     <Compile Include="DataAccess\StationAccess.cs" />
     <Compile Include="DataAccess\UserAccess.cs" />
+    <Compile Include="Forms\Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,13 +66,18 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Bus.cs" />
+    <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\TypeBus.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
