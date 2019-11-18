@@ -21,7 +21,7 @@ namespace BusStation
         private void test_Click(object sender, EventArgs e)
         {
             UserAccess a = new UserAccess();
-            var b = a.getUsers();
+            var b = a.GetAll();
         }
 
         private void insert_Click(object sender, EventArgs e)

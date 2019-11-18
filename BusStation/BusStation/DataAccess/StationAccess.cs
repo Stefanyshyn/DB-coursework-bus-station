@@ -24,7 +24,7 @@ namespace BusStation.DataAccess
                 {
                     return ex.Message;
                 }
-                return "";
+                return "Success";
             }
         }
     }

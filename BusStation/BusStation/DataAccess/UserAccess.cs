@@ -11,7 +11,7 @@ namespace BusStation.DataAccess
 {
     public class UserAccess
     {
-        public List<User> getUsers()
+        public List<User> GetAll()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
