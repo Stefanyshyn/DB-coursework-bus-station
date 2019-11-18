@@ -8,35 +8,35 @@ namespace BusStation.Models
 {
     public class User
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public Profile profile { get; set; }
-        public DateTime createAt { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public Profile Profile { get; set; }
+        public DateTime CreateAt { get; set; }
 
         public User(int id, string username, string password, string lastName, string firstName, DateTime createAt)
         {
-            this.id = id;
-            this.username = username.Trim();
-            this.password = password.Trim();
-            this.profile = new Profile { firstName = firstName.Trim(), lastName = lastName.Trim() };
-            this.createAt = createAt;
+            this.Id = id;
+            this.Username = username.Trim();
+            this.Password = password.Trim();
+            this.Profile = new Profile { FirstName = firstName.Trim(), LastName = lastName.Trim() };
+            this.CreateAt = createAt;
         }
         public User(int id, string username, string password, DateTime createAt)
         {
-            this.id = id;
-            this.username = username.Trim();
-            this.password = password.Trim();
-            this.profile = null;
-            this.createAt = createAt;
+            this.Id = id;
+            this.Username = username.Trim();
+            this.Password = password.Trim();
+            this.Profile = null;
+            this.CreateAt = createAt;
         }
 
         public override string ToString()
         {
-            return this.id + " " + 
-                this.username + " " + 
-                (this.profile != null ? this.profile.ToString() + " " : "") 
-                + this.createAt.ToString();
+            return this.Id + " " + 
+                this.Username + " " + 
+                (this.Profile != null ? this.Profile.ToString() + " " : "") 
+                + this.CreateAt.ToString();
         }
     }
 }

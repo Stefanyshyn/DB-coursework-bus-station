@@ -15,10 +15,10 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = "insert into Bus (seats) values ('" + bus.seats + "')";
+                string query = "insert into Bus (seats) values (" + bus.Seats + ")";
                 try
                 {
-                    var a = connection.Query<string>(query);
+                    var a = connection.Query<string>(query);          
                 }
                 catch (Exception ex)
                 {

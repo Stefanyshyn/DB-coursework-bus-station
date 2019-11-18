@@ -8,11 +8,11 @@ namespace BusStation.Models
 {
     public class Profile
     {
-        public string firstName{ get; set; }
-        public string lastName { get; set; }
+        public string FirstName{ get; set; }
+        public string LastName { get; set; }
         public override string ToString()
         {
-            return this.lastName + " " + this.firstName;
+            return this.LastName + " " + this.FirstName;
         }
 
     }
