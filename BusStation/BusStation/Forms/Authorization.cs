@@ -47,8 +47,10 @@ namespace BusStation.Forms
                 List<User> users = db.GetAll(user => user.Username == _username && user.Password == _password);
                 if (users.Count == 0)
                 {
-                    db.Insert(_username, _password);
-                    MessageBox.Show("Insert");
+                    if(db.Insert(_username, _password))
+                        MessageBox.Show("Insert");
+                    else
+                        MessageBox.Show("Fail");
                 }
                 else
                     MessageBox.Show("Fail");
