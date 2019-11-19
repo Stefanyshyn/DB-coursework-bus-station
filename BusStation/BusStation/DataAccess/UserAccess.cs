@@ -29,6 +29,19 @@ namespace BusStation.DataAccess
                 return users.FindAll(match);
             }
         }
-
+        public bool Insert(string username, string password)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = "insert into [User] (username, password) values ('" + username + "', '" + password + "')";
+                try
+                {
+                    connection.Execute(query);
+                } catch (Exception ex) {
+                    return false;
+                } 
+                return true;
+            }
+        }
     }
 }
