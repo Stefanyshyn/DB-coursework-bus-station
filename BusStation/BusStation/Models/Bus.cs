@@ -10,6 +10,7 @@ namespace BusStation.Models
     {
         public int Id { get; set; }
         public int Seats { get; set; }
+       
         private TypeBus type;
         public string Type { 
             get {

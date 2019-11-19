@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorization));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.SignInPanel = new System.Windows.Forms.Panel();
@@ -37,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.username = new System.Windows.Forms.TextBox();
             this.password = new System.Windows.Forms.TextBox();
+            this.PasswordButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SignInButton = new System.Windows.Forms.Button();
             this.SignUpButton = new System.Windows.Forms.Button();
@@ -91,6 +93,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.PasswordButton, 2, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -162,6 +165,19 @@
             this.password.Size = new System.Drawing.Size(272, 27);
             this.password.TabIndex = 3;
             // 
+            // PasswordButton
+            // 
+            this.PasswordButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PasswordButton.Image = ((System.Drawing.Image)(resources.GetObject("PasswordButton.Image")));
+            this.PasswordButton.Location = new System.Drawing.Point(424, 52);
+            this.PasswordButton.Margin = new System.Windows.Forms.Padding(0);
+            this.PasswordButton.Name = "PasswordButton";
+            this.PasswordButton.Size = new System.Drawing.Size(48, 27);
+            this.PasswordButton.TabIndex = 1;
+            this.PasswordButton.UseVisualStyleBackColor = true;
+            this.PasswordButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasswordButton_MouseDown);
+            this.PasswordButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PasswordButton_MouseUp);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -211,7 +227,7 @@
             this.MaximumSize = new System.Drawing.Size(488, 195);
             this.MinimumSize = new System.Drawing.Size(488, 195);
             this.Name = "Authorization";
-            this.Text = "Authorization";
+            this.Text = "w";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.SignInPanel.ResumeLayout(false);
@@ -237,5 +253,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Button PasswordButton;
     }
 }

@@ -58,5 +58,15 @@ namespace BusStation.Forms
             else
                 MessageBox.Show("Fail");
         }
+
+        private void PasswordButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            password.PasswordChar = '\0';
+        }
+
+        private void PasswordButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            password.PasswordChar = '*';
+        }
     }
 }
