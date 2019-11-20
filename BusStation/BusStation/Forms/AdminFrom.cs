@@ -17,6 +17,7 @@ namespace BusStation.Forms
             InitializeComponent();
         }
         private const int ADD_STATION_HEIGHT = 54;
+        private const int ADD_BUS_HEIGHT = 54;
         private const int ADD_USER_HEIGHT = 89;
         private void StationAddSwitcher_Click(object sender, EventArgs e)
         {
@@ -30,6 +31,15 @@ namespace BusStation.Forms
         private void UserSwitcherButton_Click(object sender, EventArgs e)
         {
             var a = tableLayoutPanel10.RowStyles;
+            if (a[1].Height == 0)
+                a[1].Height = ADD_USER_HEIGHT;
+            else
+                a[1].Height = 0;
+        }
+
+        private void BusSwitcherButton_Click(object sender, EventArgs e)
+        {
+            var a = tableLayoutPanel23.RowStyles;
             if (a[1].Height == 0)
                 a[1].Height = ADD_USER_HEIGHT;
             else
