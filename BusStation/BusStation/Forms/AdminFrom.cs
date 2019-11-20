@@ -16,7 +16,7 @@ namespace BusStation.Forms
         {
             InitializeComponent();
         }
-        private const int ADD_USER_HEIGHT = 100;
+        private const int ADD_USER_HEIGHT = 54;
         private void StationAddSwitcher_Click(object sender, EventArgs e)
         {
             var a = tableLayoutPanel11.RowStyles;
