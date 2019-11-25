@@ -86,36 +86,30 @@ namespace BusStation.Forms
         private void TripSearchButton_Click(object sender, EventArgs e)
         {
             List<Trip> trips = new List<Trip>();
-            List<Station> stations = new List<Station>();
-            stations.Add(new Station { id = 1, name = "Ternopil" });
-            stations.Add(new Station { id = 2, name = "Lviv" });
-            trips.Add(
-                new Trip
-                {
+            trips.Add( new Trip{
                     Id = 1,
-                    Bus = new Bus { Id = 1, Seats = 11 },
+                    Bus = new Bus { Id = 1},
                     DateArrival = DateTime.Now,
                     DateDeparture = DateTime.Now,
-                    Stations = stations
+                    StationFrom = "Ternopil ",
+                    StationTo = "Lviv",
+                    Distance = 30.2f,
                 });
-            stations = new List<Station>();
-            stations.Add(new Station { id = 1, name = "Ternopil" });
-            stations.Add(new Station { id = 2, name = "Lviv" }); stations.Add(new Station { id = 2, name = "Krakov" });
-            trips.Add(
-                new Trip
-                {
-                    Id = 2,
-                    Bus = new Bus { Id = 2, Seats = 22 },
-                    DateArrival = DateTime.Now,
-                    DateDeparture = DateTime.Now,
-                    Stations = stations
-                });
+            trips.Add(new Trip
+            {
+                Id = 2,
+                Bus = new Bus { Id = 2 },
+                DateArrival = DateTime.Now,
+                DateDeparture = DateTime.Now,
+                StationTo = "Lviv",
+                Distance = 13.2f,
+            });
 
             const int h = 100;
             const int widthSecondColumn = 160;
             const int widthIntervalSecondColumn = 140;
             TripSearchPanel.Controls.Clear();
-            
+
             for (int i = 0; i < trips.Count; ++i)
             {
                 Panel TripPanel = this.InitTicketPanel();
@@ -143,7 +137,7 @@ namespace BusStation.Forms
                 labelF.Location = new Point(5, 37);
 
                 Label stationF = new Label();
-                stationF.Text = trips[i].Stations[0].name;
+                stationF.Text = trips[i].StationFrom;
                 stationF.AutoSize = true;
                 stationF.BackColor = Color.Red;
                 stationF.Size = new Size(100, 25);
@@ -157,7 +151,7 @@ namespace BusStation.Forms
                 labelT.Location = new Point(5, TripPanel.Height - 30);
 
                 Label stationT = new Label();
-                stationT.Text = trips[i].Stations[trips[i].Stations.Count-1].name;
+                stationT.Text = trips[i].StationTo;
                 stationT.AutoSize = true;
                 stationT.BackColor = Color.Red;
                 stationT.Size = new Size(100, 25);
@@ -220,7 +214,8 @@ namespace BusStation.Forms
         private void Document_SelectedValueChanged(object sender, EventArgs e)
         {
             ComboBox doc = (ComboBox)selectTicket.Controls[4];
-            if(doc.Text == "Student"){
+            if (doc.Text == "Student")
+            {
                 TextBox t = (TextBox)selectTicket.Controls[6];
                 t.Enabled = true;
             }
@@ -325,7 +320,6 @@ namespace BusStation.Forms
             firstName.BackColor = Color.Red;
             firstName.Size = new Size(130, 25);
             firstName.Location = new Point(110, 230);
-            firstName.Enabled = false;
 
             Label lastNameLabel = new Label();
             lastNameLabel.Text = "LastName";
@@ -339,7 +333,6 @@ namespace BusStation.Forms
             lastName.BackColor = Color.Red;
             lastName.Size = new Size(130, 25);
             lastName.Location = new Point(110, 265);
-            lastName.Enabled = false;
 
             Label costLabel = new Label();
             costLabel.Text = "Cost";
@@ -421,6 +414,98 @@ namespace BusStation.Forms
         private void LogOutButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UserSearchButton_Click(object sender, EventArgs e)
+        {
+            List<User> users = new List<User>();
+            users.Add(new User(1, "ivan", "qwerty", "Stefanyshyn", "Ivan", DateTime.Now));
+            users.Add(new User(2, "vova", "qwerty", "Prostyak", "Vova", DateTime.Now));
+
+            DataGridView grid = UserDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = users;
+            grid.DataSource = bind;
+
+            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[0].Width = 50;
+            for (int i = 1; i < grid.Columns.Count; ++i)
+                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void StationSearchButton_Click(object sender, EventArgs e)
+        {
+            List<Station> stations = new List<Station>();
+            stations.Add(new Station { id = 1, name = "Ternopil" });
+            stations.Add(new Station { id = 2, name = "Lviv" });
+
+            DataGridView grid = StationDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = stations;
+            grid.DataSource = bind;
+
+            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[0].Width = 50;
+            for (int i = 1; i < grid.Columns.Count; ++i)
+                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void BusSearchButton_Click(object sender, EventArgs e)
+        {
+            List<Bus> buses = new List<Bus>();
+            buses.Add(new Bus { Id = 1, Seats = 11, Type = "MiniBus" });
+            buses.Add(new Bus { Id = 2, Seats = 22, Type = "Bus" });
+
+            DataGridView grid = BusDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = buses;
+            grid.DataSource = bind;
+
+            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[0].Width = 50;
+            for (int i = 1; i < grid.Columns.Count; ++i)
+                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void TripSearchEditButton_Click(object sender, EventArgs e)
+        {
+            List<Trip> trips = new List<Trip>();
+
+            trips.Add(new Trip
+            {
+                Id = 1,
+                DateArrival = DateTime.Now,
+                DateDeparture = DateTime.Now,
+                StationFrom = "Ternopil ",
+                StationTo = "Lviv",
+                Distance = 30.2f,
+                Bus = new Bus { Id = 54645131 }
+            });
+
+            trips.Add(new Trip
+            {
+                Id = 2,
+                DateArrival = DateTime.Now,
+                DateDeparture = DateTime.Now,
+                StationFrom = "Ternopil",
+                StationTo = "Kyiv",
+                Distance = 13.2f,
+                Bus = new Bus { Id = 54645131 }
+            });
+
+            DataGridView grid = TripDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = trips;
+            grid.DataSource = bind;
+
+            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[0].Width = 50;
+            for (int i = 1; i < grid.Columns.Count; ++i)
+                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

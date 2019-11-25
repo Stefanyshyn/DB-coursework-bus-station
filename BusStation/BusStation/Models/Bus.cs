@@ -24,5 +24,9 @@ namespace BusStation.Models
         {
             this.type = new TypeBus();
         }
+        public override string ToString()
+        {
+            return this.Id + "";
+        }
     }
 }
