@@ -390,6 +390,36 @@ namespace BusStation.Forms
 
         private void Buy_MouseClick(object sender, EventArgs e)
         {
+            TicketSelecttableLayoutPanel46.Visible = false;
+            tableLayoutPanel42.Visible = true;
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            EditTabControl.Dock = DockStyle.Fill;
+            EditTabControl.Visible = true;
+            Ticketpanel.Visible = false;
+            ProfileAdminTabControl.Visible = false;
+        }
+
+        private void TicketButton_Click(object sender, EventArgs e)
+        {
+            Ticketpanel.Dock = DockStyle.Fill;
+            Ticketpanel.Visible = true;
+            EditTabControl.Visible = false;
+            ProfileAdminTabControl.Visible = false;
+        }
+
+        private void ProfileButton_Click(object sender, EventArgs e)
+        {
+            ProfileAdminTabControl.Dock = DockStyle.Fill;
+            ProfileAdminTabControl.Visible = true;
+            EditTabControl.Visible = false;
+            Ticketpanel.Visible = false;
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
 
         }
     }

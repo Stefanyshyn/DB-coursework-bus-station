@@ -174,7 +174,6 @@
             this.tableLayoutPanel42 = new System.Windows.Forms.TableLayoutPanel();
             this.TicketSelecttableLayoutPanel46 = new System.Windows.Forms.TableLayoutPanel();
             this.selectTicket = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -275,6 +274,7 @@
             this.EditButton.TabIndex = 3;
             this.EditButton.Text = "Edit data";
             this.EditButton.UseVisualStyleBackColor = false;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // TicketButton
             // 
@@ -288,6 +288,7 @@
             this.TicketButton.TabIndex = 2;
             this.TicketButton.Text = "Tickets";
             this.TicketButton.UseVisualStyleBackColor = false;
+            this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
             // 
             // ProfileButton
             // 
@@ -301,6 +302,7 @@
             this.ProfileButton.TabIndex = 1;
             this.ProfileButton.Text = "Profile";
             this.ProfileButton.UseVisualStyleBackColor = false;
+            this.ProfileButton.Click += new System.EventHandler(this.ProfileButton_Click);
             // 
             // LogOutButton
             // 
@@ -314,6 +316,7 @@
             this.LogOutButton.TabIndex = 0;
             this.LogOutButton.Text = "Log out";
             this.LogOutButton.UseVisualStyleBackColor = false;
+            this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -2191,7 +2194,6 @@
             this.tableLayoutPanel42.Controls.Add(this.tableLayoutPanel43, 1, 0);
             this.tableLayoutPanel42.Controls.Add(this.TripSearchButton, 1, 1);
             this.tableLayoutPanel42.Controls.Add(this.TripSearchPanel, 1, 2);
-            this.tableLayoutPanel42.Controls.Add(this.comboBox1, 2, 0);
             this.tableLayoutPanel42.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tableLayoutPanel42.Location = new System.Drawing.Point(0, 0);
@@ -2230,14 +2232,6 @@
             this.selectTicket.Name = "selectTicket";
             this.selectTicket.Size = new System.Drawing.Size(69, 412);
             this.selectTicket.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(568, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(95, 28);
-            this.comboBox1.TabIndex = 4;
             // 
             // AdminFrom
             // 
@@ -2493,6 +2487,5 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button TripSearchButton;
         private System.Windows.Forms.Panel TripSearchPanel;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
