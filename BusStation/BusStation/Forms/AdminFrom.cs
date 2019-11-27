@@ -36,6 +36,7 @@ namespace BusStation.Forms
 
             grid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
             grid.Columns[1].Width = 50;
+            grid.Columns[1].ReadOnly = true;
 
             for (int i = 1; i < grid.Columns.Count; ++i)
                 grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -120,6 +121,7 @@ namespace BusStation.Forms
                 DateArrival = DateTime.Now,
                 DateDeparture = DateTime.Now,
                 StationTo = "Lviv",
+                StationFrom = "Ternopil ",
                 Distance = 13.2f,
             });
 
@@ -131,75 +133,65 @@ namespace BusStation.Forms
             for (int i = 0; i < trips.Count; ++i)
             {
                 Panel TripPanel = this.InitTicketPanel();
-                TripPanel.Location = new Point(5, i == 0 ? 5 : h * i + 5 * (i + 1));
+                TripPanel.Location = new Point(5, i ==  0 ? 5 : h * i + 5 * (i + 1));
 
                 Label idl = new Label();
                 idl.Text = "Id";
                 idl.AutoSize = true;
-                idl.BackColor = Color.Red;
                 idl.Size = new Size(50, 25);
                 idl.Location = new Point(5, 5);
 
                 Label id = new Label();
                 id.Text = Convert.ToString(trips[i].Id);
                 id.AutoSize = true;
-                id.BackColor = Color.Red;
                 id.Size = new Size(100, 25);
                 id.Location = new Point(60, 5);
 
                 Label labelF = new Label();
                 labelF.Text = "From";
                 labelF.AutoSize = true;
-                labelF.BackColor = Color.Red;
                 labelF.Size = new Size(50, 25);
                 labelF.Location = new Point(5, 37);
 
                 Label stationF = new Label();
                 stationF.Text = trips[i].StationFrom;
                 stationF.AutoSize = true;
-                stationF.BackColor = Color.Red;
                 stationF.Size = new Size(100, 25);
                 stationF.Location = new Point(60, 37);
 
                 Label labelT = new Label();
                 labelT.Text = "To";
                 labelT.AutoSize = true;
-                labelT.BackColor = Color.Red;
                 labelT.Size = new Size(50, 25);
                 labelT.Location = new Point(5, TripPanel.Height - 30);
 
                 Label stationT = new Label();
                 stationT.Text = trips[i].StationTo;
                 stationT.AutoSize = true;
-                stationT.BackColor = Color.Red;
                 stationT.Size = new Size(100, 25);
                 stationT.Location = new Point(60, TripPanel.Height - 30);
 
                 Label dateDeparture = new Label();
                 dateDeparture.Text = "Date departure";
                 dateDeparture.AutoSize = true;
-                dateDeparture.BackColor = Color.Red;
                 dateDeparture.Size = new Size(50, 25);
                 dateDeparture.Location = new Point(widthSecondColumn, 5);
 
                 Label date = new Label();
                 date.Text = trips[i].DateDeparture.ToString();
                 date.AutoSize = true;
-                date.BackColor = Color.Red;
                 date.Size = new Size(100, 25);
                 date.Location = new Point(widthSecondColumn + widthIntervalSecondColumn, 5);
 
                 Label seatLabel = new Label();
                 seatLabel.Text = "Seats";
                 seatLabel.AutoSize = true;
-                seatLabel.BackColor = Color.Red;
                 seatLabel.Size = new Size(50, 25);
                 seatLabel.Location = new Point(widthSecondColumn, TripPanel.Height - 30);
 
                 Label seat = new Label();
                 seat.Text = Convert.ToString(trips[i].Bus.Seats);
                 seat.AutoSize = true;
-                seat.BackColor = Color.Red;
                 seat.Size = new Size(100, 25);
                 seat.Location = new Point(widthSecondColumn + widthIntervalSecondColumn, TripPanel.Height - 30);
 
@@ -222,7 +214,7 @@ namespace BusStation.Forms
         private Panel InitTicketPanel()
         {
             Panel panel = new Panel();
-            panel.BackColor = Color.Blue;
+            panel.BackColor = Color.LightGray;
             panel.BorderStyle = BorderStyle.FixedSingle;
             panel.Width = 600;
             panel.Height = 100;
@@ -257,19 +249,22 @@ namespace BusStation.Forms
         {
 
             selectTicket.Dock = DockStyle.Fill;
-            selectTicket.BackColor = Color.Blue;
+            selectTicket.BackColor = Color.LightGray;
+
+            var data = ((Panel)sender).Controls;
+            string id = ((Label)data[1]).Text;
+            string stationFrom = ((Label)data[3]).Text;
+            string stationTo = ((Label)data[5]).Text;
 
             Label titleLabel = new Label();
-            titleLabel.Text = "title";
+            titleLabel.Text = "#" + id + " -|- " + stationFrom + " <===> " + stationTo + " -|- ";
             titleLabel.AutoSize = true;
-            titleLabel.BackColor = Color.Red;
             titleLabel.Height = 25;
             titleLabel.Location = new Point(5, 5);
 
             Label seatLabel = new Label();
             seatLabel.Text = "Seat";
             seatLabel.AutoSize = true;
-            seatLabel.BackColor = Color.Red;
             seatLabel.Size = new Size(50, 25);
             seatLabel.Location = new Point(5, 35);
 
@@ -281,7 +276,6 @@ namespace BusStation.Forms
             Label documentLabel = new Label();
             documentLabel.Text = "Document";
             documentLabel.AutoSize = true;
-            documentLabel.BackColor = Color.Red;
             documentLabel.Size = new Size(50, 25);
             documentLabel.Location = new Point(5, 100);
 
@@ -297,13 +291,11 @@ namespace BusStation.Forms
             Label documentSeriesLabel = new Label();
             documentSeriesLabel.Text = "Series";
             documentSeriesLabel.AutoSize = true;
-            documentSeriesLabel.BackColor = Color.Red;
             documentSeriesLabel.Size = new Size(50, 25);
             documentSeriesLabel.Location = new Point(5, 165);
 
             TextBox series = new TextBox();
             series.AutoSize = true;
-            series.BackColor = Color.Red;
             series.Size = new Size(130, 25);
             series.Location = new Point(5, 195);
             series.Enabled = false;
@@ -311,7 +303,6 @@ namespace BusStation.Forms
             Label documentInvalidLabel = new Label();
             documentInvalidLabel.Text = "Invalid";
             documentInvalidLabel.AutoSize = true;
-            documentInvalidLabel.BackColor = Color.Red;
             documentInvalidLabel.Size = new Size(50, 25);
             documentInvalidLabel.Location = new Point(140, 165);
 
@@ -321,7 +312,6 @@ namespace BusStation.Forms
             invalid.Items.Add("Invalid2");
             invalid.Items.Add("Invalid3");
             invalid.Items.Add("Invalid4");
-            invalid.BackColor = Color.Red;
             invalid.Size = new Size(140, 25);
             invalid.Location = new Point(140, 195);
             invalid.Enabled = false;
@@ -329,50 +319,47 @@ namespace BusStation.Forms
             Label firstNameLabel = new Label();
             firstNameLabel.Text = "FirstName";
             firstNameLabel.AutoSize = true;
-            firstNameLabel.BackColor = Color.Red;
             firstNameLabel.Size = new Size(50, 25);
             firstNameLabel.Location = new Point(5, 230);
 
             TextBox firstName = new TextBox();
             firstName.AutoSize = true;
-            firstName.BackColor = Color.Red;
             firstName.Size = new Size(130, 25);
             firstName.Location = new Point(110, 230);
 
             Label lastNameLabel = new Label();
             lastNameLabel.Text = "LastName";
             lastNameLabel.AutoSize = true;
-            lastNameLabel.BackColor = Color.Red;
             lastNameLabel.Size = new Size(50, 25);
             lastNameLabel.Location = new Point(5, 265);
 
             TextBox lastName = new TextBox();
             lastName.AutoSize = true;
-            lastName.BackColor = Color.Red;
             lastName.Size = new Size(130, 25);
             lastName.Location = new Point(110, 265);
 
             Label costLabel = new Label();
             costLabel.Text = "Cost";
             costLabel.AutoSize = true;
-            costLabel.BackColor = Color.Red;
             costLabel.Size = new Size(50, 25);
             costLabel.Location = new Point(5, 295);
 
             Label cost = new Label();
             cost.Text = "65";
             cost.AutoSize = true;
-            cost.BackColor = Color.Red;
             cost.Size = new Size(50, 25);
             cost.Location = new Point(65, 295);
 
             Button buy = new Button();
             buy.Text = "Buy";
             buy.AutoSize = true;
-            buy.BackColor = Color.Red;
+            buy.BackColor = Color.LightSkyBlue;
             buy.Size = new Size(150, 50);
             buy.Location = new Point(5, 325);
             buy.MouseClick += new MouseEventHandler(this.Buy_MouseClick);
+
+            selectTicket.AutoSize = true;
+            selectTicket.AutoSizeMode = AutoSizeMode.GrowOnly;
 
             selectTicket.Controls.Clear();
             selectTicket.Controls.Add(titleLabel);
@@ -391,11 +378,12 @@ namespace BusStation.Forms
             selectTicket.Controls.Add(costLabel);
             selectTicket.Controls.Add(cost);
             selectTicket.Controls.Add(buy);
+            
+            TicketSelecttableLayoutPanel46.AutoScroll = true;
 
             tableLayoutPanel42.Visible = false;
             TicketSelecttableLayoutPanel46.Dock = DockStyle.Fill;
             TicketSelecttableLayoutPanel46.Visible = true;
-            Ticketpanel.Controls.Add(TicketSelecttableLayoutPanel46);
         }
 
 
@@ -419,6 +407,7 @@ namespace BusStation.Forms
             Ticketpanel.Visible = true;
             EditTabControl.Visible = false;
             ProfileAdminTabControl.Visible = false;
+            tableLayoutPanel42.Dock = DockStyle.Fill;
         }
 
         private void ProfileButton_Click(object sender, EventArgs e)
@@ -431,7 +420,10 @@ namespace BusStation.Forms
 
         private void LogOutButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Authorization form = new Authorization();
+            form.Closed += (s, args) => this.Close();
+            form.Show();
         }
 
         private void UserSearchButton_Click(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = "select * from [Fulluser]";
+                string query = "select * from [User]";
                 return connection.Query<User>(query).ToList();
             }
         }
@@ -23,7 +23,7 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = "select * from [Fulluser]";
+                string query = "select * from [User]";
                 var users = connection.Query<User>(query).ToList();
                 return users.FindAll(match);
             }
