@@ -13,10 +13,13 @@ namespace BusStation.Forms
 {
     public partial class AdminFrom : Form
     {
-        public AdminFrom()
+        public AdminFrom(User user = null)
         {
+            currentUser = user;
             InitializeComponent();
+            accessUser(user);
         }
+        
         private const int ADD_STATION_HEIGHT = 54;
         private const int ADD_BUS_HEIGHT = 54;
         private const int ADD_USER_HEIGHT = 89;
@@ -24,7 +27,27 @@ namespace BusStation.Forms
         private const int COMBOBOX_DOCUMENT_STUDENT_HEIGHT = 106;
 
         private string userSearchEditString;
-        
+        private User currentUser = null;
+
+        private  void accessUser(User user)
+        {
+            isAuthorUser(user);
+            isNotAuthorUser(user);
+        }
+        private void isAuthorUser(User user)
+        {
+            if (user != null && user.Id != 0)
+                this.EditButton.Visible = false;
+        }
+        private void isNotAuthorUser(User user)
+        {
+            if (user == null)
+            {
+                this.EditButton.Visible = false;
+                this.ProfileButton.Visible = false;
+                this.LogOutButton.Text = "Sign in";
+            }
+        }
         private DataGridView EditStyleColumn(DataGridView grid)
         {
             if (grid.Columns.Count > 0 && !(grid.Columns[0] is DataGridViewCheckBoxColumn))
@@ -83,14 +106,12 @@ namespace BusStation.Forms
 
         private void DocumentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (currentDisability != null)
-                currentDisability.Visible = false;
             string s = ((ComboBox)sender).Text;
             if (s == "Student")
             {
                 StudentTableLayoutPanel42.Visible = true;
+                tableLayoutPanel41.Height = 
                 StudentTableLayoutPanel42.Height = 0;
-                currentDisability = StudentTableLayoutPanel42;
             }
             if (s == "Invalid")
             {
@@ -587,5 +608,6 @@ namespace BusStation.Forms
             }
 
         }
+
     }
 }

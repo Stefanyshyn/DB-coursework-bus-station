@@ -27,15 +27,18 @@ namespace BusStation.Forms
             {
 
                 UserAccess db = new UserAccess();
-                List<User> users = db.GetAll(user => user.Username == _username && user.Password == _password);
+                List<User> users = db.GetManyBySelector(user => user.Username == _username && user.Password == _password);
                 if (users.Count != 0)
                 {
-                    MessageBox.Show("Success");
+                    this.Hide();
+                    AdminFrom form = new AdminFrom(users[0]);
+                    form.Closed += (s, args) => this.Close();
+                    form.Show();
                 }
                 else
-                    MessageBox.Show("Fail");
+                    MessageLabel.Text = "Incorrect username or password. Please try typing again";
             }else
-                MessageBox.Show("Fail");
+                MessageLabel.Text = "Please enter username and password";
         }
         private void SignUpButton_Click(object sender, EventArgs e)
         {
@@ -45,12 +48,13 @@ namespace BusStation.Forms
             {
 
                 UserAccess db = new UserAccess();
-                List<User> users = db.GetAll(user => user.Username.Trim() == _username && user.Password.Trim() == _password);
+                List<User> users = db.GetManyBySelector(user => user.Username.Trim() == _username);
                 if (users.Count == 0)
                 {
                     try
                     {
-                        db.Insert(_username, _password);
+                        User user = new User(-1, _username, _password, DateTime.Now);
+                        db.Add(user);
                         MessageLabel.Text = "Successfull sign up";
                     }
                     catch (Exception ex)
