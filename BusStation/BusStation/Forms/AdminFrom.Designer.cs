@@ -1349,7 +1349,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(658, 255);
+            this.tabPage2.Size = new System.Drawing.Size(658, 270);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Station";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1371,7 +1371,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(652, 249);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(652, 264);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -1438,7 +1438,7 @@
             this.StationDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StationDataGridView.Location = new System.Drawing.Point(3, 160);
             this.StationDataGridView.Name = "StationDataGridView";
-            this.StationDataGridView.Size = new System.Drawing.Size(646, 86);
+            this.StationDataGridView.Size = new System.Drawing.Size(646, 101);
             this.StationDataGridView.TabIndex = 1;
             // 
             // tableLayoutPanel9
@@ -1628,7 +1628,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(658, 255);
+            this.tabPage3.Size = new System.Drawing.Size(658, 270);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Bus";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1650,7 +1650,7 @@
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(652, 249);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(652, 264);
             this.tableLayoutPanel19.TabIndex = 2;
             // 
             // tableLayoutPanel20
@@ -1717,7 +1717,7 @@
             this.BusDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BusDataGridView.Location = new System.Drawing.Point(3, 160);
             this.BusDataGridView.Name = "BusDataGridView";
-            this.BusDataGridView.Size = new System.Drawing.Size(646, 86);
+            this.BusDataGridView.Size = new System.Drawing.Size(646, 101);
             this.BusDataGridView.TabIndex = 1;
             // 
             // tableLayoutPanel22
@@ -1906,7 +1906,7 @@
             this.tabPage4.Controls.Add(this.tableLayoutPanel27);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(658, 255);
+            this.tabPage4.Size = new System.Drawing.Size(658, 270);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Trip";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1928,7 +1928,7 @@
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(658, 255);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(658, 270);
             this.tableLayoutPanel27.TabIndex = 3;
             // 
             // tableLayoutPanel28
@@ -2173,7 +2173,7 @@
             this.TripDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TripDataGridView.Location = new System.Drawing.Point(3, 218);
             this.TripDataGridView.Name = "TripDataGridView";
-            this.TripDataGridView.Size = new System.Drawing.Size(652, 34);
+            this.TripDataGridView.Size = new System.Drawing.Size(652, 49);
             this.TripDataGridView.TabIndex = 1;
             // 
             // panel3

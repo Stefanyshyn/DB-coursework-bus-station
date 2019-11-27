@@ -570,7 +570,7 @@ namespace BusStation.Forms
             {
                 BindingSource source = (BindingSource)UserDataGridView.DataSource;
 
-                if (source == null)
+                if ((source != null && source.List.Count == 0) || source == null)
                 {
                     List<User> users = new List<User>();
                     users.Add(new User(1, username, password, "", "", DateTime.Now));
@@ -580,12 +580,13 @@ namespace BusStation.Forms
                     BindingSource bind = new BindingSource();
                     bind.DataSource = users;
                     grid.DataSource = bind;
-                    
+
                     EditStyleColumn(UserDataGridView);
                     return;
                 }
 
-                source.List.Add(new User(1, username, password, DateTime.Now));
+                source.List.Add(new User(1, username, password, "", "", DateTime.Now));
+
 
                 UserDataGridView.DataSource = null;
                 UserDataGridView.DataSource = source;
