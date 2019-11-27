@@ -23,7 +23,25 @@ namespace BusStation.Forms
         private const int ADD_TRIP_HEIGHT = 118;
         private const int COMBOBOX_DOCUMENT_STUDENT_HEIGHT = 106;
 
+        private string userSearchEditString;
+        
+        private DataGridView EditStyleColumn(DataGridView grid)
+        {
+            if (grid.Columns.Count > 0 && !(grid.Columns[0] is DataGridViewCheckBoxColumn))
+                grid.Columns.Insert(0, new DataGridViewCheckBoxColumn());
+            
+            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[0].HeaderText = "Active to edit";
+            grid.Columns[0].Width = 145;
 
+            grid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            grid.Columns[1].Width = 50;
+
+            for (int i = 1; i < grid.Columns.Count; ++i)
+                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            return grid;
+        }
 
         private TableLayoutPanel currentDisability;
         private void StationAddSwitcher_Click(object sender, EventArgs e)
@@ -418,6 +436,8 @@ namespace BusStation.Forms
 
         private void UserSearchButton_Click(object sender, EventArgs e)
         {
+            userSearchEditString = UserSearchTextBox.Text; 
+
             List<User> users = new List<User>();
             users.Add(new User(1, "ivan", "qwerty", "Stefanyshyn", "Ivan", DateTime.Now));
             users.Add(new User(2, "vova", "qwerty", "Prostyak", "Vova", DateTime.Now));
@@ -428,10 +448,7 @@ namespace BusStation.Forms
             bind.DataSource = users;
             grid.DataSource = bind;
 
-            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-            grid.Columns[0].Width = 50;
-            for (int i = 1; i < grid.Columns.Count; ++i)
-                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            EditStyleColumn(grid);
         }
 
         private void StationSearchButton_Click(object sender, EventArgs e)
@@ -446,10 +463,7 @@ namespace BusStation.Forms
             bind.DataSource = stations;
             grid.DataSource = bind;
 
-            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-            grid.Columns[0].Width = 50;
-            for (int i = 1; i < grid.Columns.Count; ++i)
-                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            EditStyleColumn(grid);
         }
 
         private void BusSearchButton_Click(object sender, EventArgs e)
@@ -464,10 +478,7 @@ namespace BusStation.Forms
             bind.DataSource = buses;
             grid.DataSource = bind;
 
-            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-            grid.Columns[0].Width = 50;
-            for (int i = 1; i < grid.Columns.Count; ++i)
-                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            EditStyleColumn(grid);
         }
 
         private void TripSearchEditButton_Click(object sender, EventArgs e)
@@ -502,10 +513,86 @@ namespace BusStation.Forms
             bind.DataSource = trips;
             grid.DataSource = bind;
 
-            grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
-            grid.Columns[0].Width = 50;
-            for (int i = 1; i < grid.Columns.Count; ++i)
-                grid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            EditStyleColumn(grid);
+        }
+
+        private void UserApplyButton_Click(object sender, EventArgs e)
+        {
+            var rows = UserDataGridView.Rows;
+
+            foreach(DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                {
+                    ((DataGridViewTextBoxCell)(row.Cells[2])).Value = a.ToString();
+                }
+            }
+        }
+
+        private void UserDeleteButton_Click(object sender, EventArgs e)
+        {
+            var rows = UserDataGridView.Rows;
+            List<int> indexs = new List<int>();
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                    indexs.Add(row.Index);
+            }
+            for (int i = indexs.Count - 1; i >= 0; --i)
+            {
+                int index = indexs.ElementAt<int>(i);
+                rows.RemoveAt(index);
+            }
+        }
+
+        private void UserRefreshButton_Click(object sender, EventArgs e)
+        {
+            List<User> users = new List<User>();
+            users.Add(new User(1, "ivan", "qwerty", "Stefanyshyn", "Ivan", DateTime.Now));
+            users.Add(new User(2, "vova", "qwerty", "Prostyak", "Vova", DateTime.Now));
+
+            DataGridView grid = UserDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = users;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+        }
+
+        private void UserAddButton_Click(object sender, EventArgs e)
+        {
+            string username = UserUsernameTextBox.Text.Trim();
+            string password = UserPasswordTextBox.Text.Trim();
+            if(username != "" && password != "")
+            {
+                BindingSource source = (BindingSource)UserDataGridView.DataSource;
+
+                if (source == null)
+                {
+                    List<User> users = new List<User>();
+                    users.Add(new User(1, username, password, "", "", DateTime.Now));
+
+                    DataGridView grid = UserDataGridView;
+                    grid.Rows.Clear();
+                    BindingSource bind = new BindingSource();
+                    bind.DataSource = users;
+                    grid.DataSource = bind;
+                    
+                    EditStyleColumn(UserDataGridView);
+                    return;
+                }
+
+                source.List.Add(new User(1, username, password, DateTime.Now));
+
+                UserDataGridView.DataSource = null;
+                UserDataGridView.DataSource = source;
+
+                EditStyleColumn(UserDataGridView);
+            }
+
         }
     }
 }

@@ -92,7 +92,7 @@
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
-            this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.UserUsernameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.UserPasswordTextBox = new System.Windows.Forms.TextBox();
             this.UserAddButton = new System.Windows.Forms.Button();
@@ -106,8 +106,8 @@
             this.UserDataGridView = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.UserCancellButton = new System.Windows.Forms.Button();
-            this.UserApplyButton = new System.Windows.Forms.Button();
+            this.UserDeleteButton = new System.Windows.Forms.Button();
+            this.UserUpdateButton = new System.Windows.Forms.Button();
             this.UserRefreshButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -1022,7 +1022,7 @@
             this.EditTabControl.Name = "EditTabControl";
             this.EditTabControl.Padding = new System.Drawing.Point(12, 3);
             this.EditTabControl.SelectedIndex = 0;
-            this.EditTabControl.Size = new System.Drawing.Size(666, 288);
+            this.EditTabControl.Size = new System.Drawing.Size(666, 303);
             this.EditTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -1031,7 +1031,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(658, 255);
+            this.tabPage1.Size = new System.Drawing.Size(658, 270);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "User";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1054,7 +1054,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 249);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 264);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // tableLayoutPanel10
@@ -1099,7 +1099,7 @@
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel16.Controls.Add(this.UsernameTextBox, 1, 0);
+            this.tableLayoutPanel16.Controls.Add(this.UserUsernameTextBox, 1, 0);
             this.tableLayoutPanel16.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel16.Controls.Add(this.UserPasswordTextBox, 1, 1);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1121,14 +1121,14 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Password";
             // 
-            // UsernameTextBox
+            // UserUsernameTextBox
             // 
-            this.UsernameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UsernameTextBox.Location = new System.Drawing.Point(126, 0);
-            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(327, 27);
-            this.UsernameTextBox.TabIndex = 3;
+            this.UserUsernameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserUsernameTextBox.Location = new System.Drawing.Point(126, 0);
+            this.UserUsernameTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.UserUsernameTextBox.Name = "UserUsernameTextBox";
+            this.UserUsernameTextBox.Size = new System.Drawing.Size(327, 27);
+            this.UserUsernameTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -1160,6 +1160,7 @@
             this.UserAddButton.TabIndex = 8;
             this.UserAddButton.Text = "Add";
             this.UserAddButton.UseVisualStyleBackColor = false;
+            this.UserAddButton.Click += new System.EventHandler(this.UserAddButton_Click);
             // 
             // tableLayoutPanel17
             // 
@@ -1261,11 +1262,13 @@
             // 
             // UserDataGridView
             // 
+            this.UserDataGridView.AllowUserToAddRows = false;
+            this.UserDataGridView.AllowUserToDeleteRows = false;
             this.UserDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UserDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserDataGridView.Location = new System.Drawing.Point(3, 183);
             this.UserDataGridView.Name = "UserDataGridView";
-            this.UserDataGridView.Size = new System.Drawing.Size(646, 63);
+            this.UserDataGridView.Size = new System.Drawing.Size(646, 78);
             this.UserDataGridView.TabIndex = 1;
             // 
             // panel2
@@ -1285,8 +1288,9 @@
             this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Controls.Add(this.UserCancellButton, 0, 0);
-            this.tableLayoutPanel18.Controls.Add(this.UserApplyButton, 0, 0);
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel18.Controls.Add(this.UserDeleteButton, 0, 0);
+            this.tableLayoutPanel18.Controls.Add(this.UserUpdateButton, 0, 0);
             this.tableLayoutPanel18.Controls.Add(this.UserRefreshButton, 1, 0);
             this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel18.Location = new System.Drawing.Point(0, 0);
@@ -1297,31 +1301,33 @@
             this.tableLayoutPanel18.Size = new System.Drawing.Size(652, 28);
             this.tableLayoutPanel18.TabIndex = 6;
             // 
-            // UserCancellButton
+            // UserDeleteButton
             // 
-            this.UserCancellButton.BackColor = System.Drawing.Color.White;
-            this.UserCancellButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserCancellButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserCancellButton.Location = new System.Drawing.Point(120, 0);
-            this.UserCancellButton.Margin = new System.Windows.Forms.Padding(0);
-            this.UserCancellButton.Name = "UserCancellButton";
-            this.UserCancellButton.Size = new System.Drawing.Size(100, 28);
-            this.UserCancellButton.TabIndex = 5;
-            this.UserCancellButton.Text = "Cancell";
-            this.UserCancellButton.UseVisualStyleBackColor = false;
+            this.UserDeleteButton.BackColor = System.Drawing.Color.White;
+            this.UserDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserDeleteButton.Location = new System.Drawing.Point(120, 0);
+            this.UserDeleteButton.Margin = new System.Windows.Forms.Padding(0);
+            this.UserDeleteButton.Name = "UserDeleteButton";
+            this.UserDeleteButton.Size = new System.Drawing.Size(100, 28);
+            this.UserDeleteButton.TabIndex = 5;
+            this.UserDeleteButton.Text = "Delete";
+            this.UserDeleteButton.UseVisualStyleBackColor = false;
+            this.UserDeleteButton.Click += new System.EventHandler(this.UserDeleteButton_Click);
             // 
-            // UserApplyButton
+            // UserUpdateButton
             // 
-            this.UserApplyButton.BackColor = System.Drawing.Color.White;
-            this.UserApplyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserApplyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserApplyButton.Location = new System.Drawing.Point(0, 0);
-            this.UserApplyButton.Margin = new System.Windows.Forms.Padding(0);
-            this.UserApplyButton.Name = "UserApplyButton";
-            this.UserApplyButton.Size = new System.Drawing.Size(120, 28);
-            this.UserApplyButton.TabIndex = 4;
-            this.UserApplyButton.Text = " Apply";
-            this.UserApplyButton.UseVisualStyleBackColor = false;
+            this.UserUpdateButton.BackColor = System.Drawing.Color.White;
+            this.UserUpdateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserUpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserUpdateButton.Location = new System.Drawing.Point(0, 0);
+            this.UserUpdateButton.Margin = new System.Windows.Forms.Padding(0);
+            this.UserUpdateButton.Name = "UserUpdateButton";
+            this.UserUpdateButton.Size = new System.Drawing.Size(120, 28);
+            this.UserUpdateButton.TabIndex = 4;
+            this.UserUpdateButton.Text = "Update";
+            this.UserUpdateButton.UseVisualStyleBackColor = false;
+            this.UserUpdateButton.Click += new System.EventHandler(this.UserApplyButton_Click);
             // 
             // UserRefreshButton
             // 
@@ -1335,6 +1341,7 @@
             this.UserRefreshButton.TabIndex = 3;
             this.UserRefreshButton.Text = "Refresh";
             this.UserRefreshButton.UseVisualStyleBackColor = false;
+            this.UserRefreshButton.Click += new System.EventHandler(this.UserRefreshButton_Click);
             // 
             // tabPage2
             // 
@@ -2388,13 +2395,13 @@
         private System.Windows.Forms.DataGridView UserDataGridView;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
-        private System.Windows.Forms.Button UserCancellButton;
-        private System.Windows.Forms.Button UserApplyButton;
+        private System.Windows.Forms.Button UserDeleteButton;
+        private System.Windows.Forms.Button UserUpdateButton;
         private System.Windows.Forms.Button UserRefreshButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox UsernameTextBox;
+        private System.Windows.Forms.TextBox UserUsernameTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox UserPasswordTextBox;
         private System.Windows.Forms.Button UserAddButton;
