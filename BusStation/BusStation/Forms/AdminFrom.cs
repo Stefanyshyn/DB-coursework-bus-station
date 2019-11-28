@@ -24,12 +24,12 @@ namespace BusStation.Forms
         private const int ADD_BUS_HEIGHT = 54;
         private const int ADD_USER_HEIGHT = 89;
         private const int ADD_TRIP_HEIGHT = 118;
-        private const int COMBOBOX_DOCUMENT_STUDENT_HEIGHT = 106;
 
         private string userSearchEditString;
         private User currentUser = null;
+        private TableLayoutPanel currentDocument;
 
-        private  void accessUser(User user)
+        private void accessUser(User user)
         {
             isAuthorUser(user);
             isNotAuthorUser(user);
@@ -67,7 +67,6 @@ namespace BusStation.Forms
             return grid;
         }
 
-        private TableLayoutPanel currentDisability;
         private void StationAddSwitcher_Click(object sender, EventArgs e)
         {
             var a = tableLayoutPanel11.RowStyles;
@@ -107,20 +106,30 @@ namespace BusStation.Forms
         private void DocumentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string s = ((ComboBox)sender).Text;
+            //is current document
+            TableLayoutPanel temp = null;
+            //hide prev document
+            if (currentDocument != null) currentDocument.Visible = false;
+
             if (s == "Student")
             {
                 StudentTableLayoutPanel42.Visible = true;
-                tableLayoutPanel41.Height = 
-                StudentTableLayoutPanel42.Height = 0;
+                temp = StudentTableLayoutPanel42;
             }
-            if (s == "Invalid")
+            else if (s == "Invalid")
             {
                 InvalidTableLayoutPanel43.Visible = true;
-                currentDisability = InvalidTableLayoutPanel43;
+                temp = InvalidTableLayoutPanel43;
             }
-            tableLayoutPanel41.Refresh();
-            tableLayoutPanel39.Refresh();
+            else if (s == "None")
+            {
+                temp = null;
+            }
 
+            if (temp != null && temp != currentDocument)
+            {
+                currentDocument = temp;
+            }
         }
 
         private void TripSearchButton_Click(object sender, EventArgs e)
