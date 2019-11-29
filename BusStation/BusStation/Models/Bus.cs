@@ -11,19 +11,6 @@ namespace BusStation.Models
         public int Id { get; set; }
         public int Seats { get; set; }
        
-        private TypeBus type;
-        public string Type { 
-            get {
-                return type.type;
-            }
-            set {
-                type.type = value;
-            } 
-        }
-        public Bus()
-        {
-            this.type = new TypeBus();
-        }
         public override string ToString()
         {
             return this.Id + "";

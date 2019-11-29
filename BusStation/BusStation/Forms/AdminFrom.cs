@@ -1,4 +1,5 @@
-﻿using BusStation.Models;
+﻿using BusStation.DataAccess;
+using BusStation.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,16 +17,28 @@ namespace BusStation.Forms
         public AdminFrom(User user = null)
         {
             currentUser = user;
+           if(user == null)
+            {
+                currentUser = new User(0,"1","1","Ivan", "Stefanyshyn", DateTime.Now);
+
+            }
             InitializeComponent();
-            accessUser(user);
+            accessUser(currentUser);
+
+            EditTabControl.Visible = true;
+            EditTabControl.Dock = DockStyle.Fill;
+            Ticketpanel.Visible = false;
+            ProfileAdminTabControl.Visible = false;
         }
-        
+
         private const int ADD_STATION_HEIGHT = 54;
         private const int ADD_BUS_HEIGHT = 54;
         private const int ADD_USER_HEIGHT = 89;
         private const int ADD_TRIP_HEIGHT = 118;
 
         private string userSearchEditString;
+        private string stationSearchString;
+        private string busSearchString;
         private User currentUser = null;
         private TableLayoutPanel currentDocument;
 
@@ -446,8 +459,22 @@ namespace BusStation.Forms
             ProfileAdminTabControl.Visible = true;
             EditTabControl.Visible = false;
             Ticketpanel.Visible = false;
-        }
 
+            fillProfile(currentUser);
+        }
+        private void fillProfile(User user) 
+        {
+            if(user != null)
+            {
+                var profile = user.getProfile();
+                if (profile != null)
+                {
+                    FirstnameTextBox.Text = profile.FirstName;
+                    LastnameTextBox.Text = profile.LastName;
+                }
+                UsernameTextBox.Text = user.Username;
+            }
+        }
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -458,11 +485,16 @@ namespace BusStation.Forms
 
         private void UserSearchButton_Click(object sender, EventArgs e)
         {
-            userSearchEditString = UserSearchTextBox.Text; 
-
-            List<User> users = new List<User>();
-            users.Add(new User(1, "ivan", "qwerty", "Stefanyshyn", "Ivan", DateTime.Now));
-            users.Add(new User(2, "vova", "qwerty", "Prostyak", "Vova", DateTime.Now));
+            userSearchEditString = UserSearchTextBox.Text.Trim();
+            UserAccess db = new UserAccess();
+            var a = "olehhh";
+            var b = a.Contains("leh");
+            List<User> users = userSearchEditString == "" ?
+                db.GetAll() :
+                db.GetManyBySelector(user =>
+                    user.getProfile().FirstName.Contains(userSearchEditString)
+                    || user.getProfile().LastName.Contains(userSearchEditString)
+                    || user.Username.Contains(userSearchEditString));
 
             DataGridView grid = UserDataGridView;
             grid.Rows.Clear();
@@ -470,14 +502,17 @@ namespace BusStation.Forms
             bind.DataSource = users;
             grid.DataSource = bind;
 
-            EditStyleColumn(grid);
+             EditStyleColumn(grid);
         }
 
         private void StationSearchButton_Click(object sender, EventArgs e)
         {
+            stationSearchString = StationSearchTextBox.Text;
+
             List<Station> stations = new List<Station>();
-            stations.Add(new Station { id = 1, name = "Ternopil" });
-            stations.Add(new Station { id = 2, name = "Lviv" });
+            StationAccess db = new StationAccess();
+
+            stations = db.GetManyBySelector(station => station.name.Contains(stationSearchString));
 
             DataGridView grid = StationDataGridView;
             grid.Rows.Clear();
@@ -490,9 +525,9 @@ namespace BusStation.Forms
 
         private void BusSearchButton_Click(object sender, EventArgs e)
         {
+            busSearchString = BusSearchTextBox.Text.Trim();
             List<Bus> buses = new List<Bus>();
-            buses.Add(new Bus { Id = 1, Seats = 11, Type = "MiniBus" });
-            buses.Add(new Bus { Id = 2, Seats = 22, Type = "Bus" });
+           
 
             DataGridView grid = BusDataGridView;
             grid.Rows.Clear();
@@ -547,7 +582,12 @@ namespace BusStation.Forms
                 var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
                 if (a)
                 {
-                    ((DataGridViewTextBoxCell)(row.Cells[2])).Value = a.ToString();
+                    int id = Convert.ToInt32(((DataGridViewTextBoxCell)(row.Cells[1])).Value);
+                    string username = ((DataGridViewTextBoxCell)(row.Cells[2])).Value.ToString();
+                    string password = ((DataGridViewTextBoxCell)(row.Cells[3])).Value.ToString();
+                    User user = new User(id, username, password, DateTime.Now);
+                    UserAccess db = new UserAccess();
+                    db.UpdateUser(user);
                 }
             }
         }
@@ -565,15 +605,22 @@ namespace BusStation.Forms
             for (int i = indexs.Count - 1; i >= 0; --i)
             {
                 int index = indexs.ElementAt<int>(i);
+                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                UserAccess db = new UserAccess();
+                db.DeleteUser(id);
                 rows.RemoveAt(index);
             }
         }
 
         private void UserRefreshButton_Click(object sender, EventArgs e)
         {
-            List<User> users = new List<User>();
-            users.Add(new User(1, "ivan", "qwerty", "Stefanyshyn", "Ivan", DateTime.Now));
-            users.Add(new User(2, "vova", "qwerty", "Prostyak", "Vova", DateTime.Now));
+            if (userSearchEditString == null) return;
+            UserAccess db = new UserAccess();
+            List<User> users = userSearchEditString == "" ?
+                db.GetAll() :
+                db.GetManyBySelector(user =>
+                    user.getProfile().FirstName.Contains(userSearchEditString)
+                    || user.getProfile().LastName.Contains(userSearchEditString));
 
             DataGridView grid = UserDataGridView;
             grid.Rows.Clear();
@@ -590,12 +637,16 @@ namespace BusStation.Forms
             string password = UserPasswordTextBox.Text.Trim();
             if(username != "" && password != "")
             {
+                User user = new User(1, username, password, "", "", DateTime.Now);
+                UserAccess db = new UserAccess();
                 BindingSource source = (BindingSource)UserDataGridView.DataSource;
 
                 if ((source != null && source.List.Count == 0) || source == null)
                 {
                     List<User> users = new List<User>();
-                    users.Add(new User(1, username, password, "", "", DateTime.Now));
+              
+                    db.Add(user);
+                    users.Add(user);
 
                     DataGridView grid = UserDataGridView;
                     grid.Rows.Clear();
@@ -607,8 +658,8 @@ namespace BusStation.Forms
                     return;
                 }
 
-                source.List.Add(new User(1, username, password, "", "", DateTime.Now));
-
+                db.Add(user);
+                source.List.Add(user);
 
                 UserDataGridView.DataSource = null;
                 UserDataGridView.DataSource = source;
@@ -618,5 +669,120 @@ namespace BusStation.Forms
 
         }
 
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            resultResetPassword.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string firstname = FirstnameTextBox.Text;
+            string lastname = LastnameTextBox.Text;
+            firstname = firstname == null ? "" : firstname.Trim();
+            lastname = lastname == null ? "" : lastname.Trim();
+
+            Profile profile = new Profile
+            {
+                Id = currentUser.Id,
+                FirstName = firstname,
+                LastName = lastname
+            };
+
+            currentUser.setProfile(profile);
+        }
+
+        private void StationRefreshButton_Click(object sender, EventArgs e)
+        {
+            if (stationSearchString == null) return;
+
+            List<Station> stations = new List<Station>();
+            StationAccess db = new StationAccess();
+
+            stations = db.GetManyBySelector(station => station.name.Contains(stationSearchString));
+
+            DataGridView grid = StationDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = stations;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+        }
+
+        private void StationAddButton_Click(object sender, EventArgs e)
+        {
+            string name = StationNameTextBox.Text.Trim();
+            if (name != "")
+            {
+                Station station = new Station { id = 1, name = name };
+                StationAccess db = new StationAccess();
+                BindingSource source = (BindingSource)StationDataGridView.DataSource;
+
+                if ((source != null && source.List.Count == 0) || source == null)
+                {
+                    List<Station> stations = new List<Station>();
+
+                    db.Add(station);
+                    stations.Add(station);
+
+                    DataGridView grid = StationDataGridView;
+                    grid.Rows.Clear();
+                    BindingSource bind = new BindingSource();
+                    bind.DataSource = stations;
+                    grid.DataSource = bind;
+
+                    EditStyleColumn(StationDataGridView);
+                    return;
+                }
+
+                db.Add(station);
+                source.List.Add(station);
+
+                StationDataGridView.DataSource = null;
+                StationDataGridView.DataSource = source;
+
+                EditStyleColumn(StationDataGridView);
+            }
+        }
+
+        private void StationDeleteButton_Click(object sender, EventArgs e)
+        {
+            var rows = StationDataGridView.Rows;
+            List<int> indexs = new List<int>();
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                    indexs.Add(row.Index);
+            }
+            for (int i = indexs.Count - 1; i >= 0; --i)
+            {
+                int index = indexs.ElementAt<int>(i);
+                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                StationAccess db = new StationAccess();
+                db.Delete(id);
+                rows.RemoveAt(index);
+            }
+
+        }
+
+        private void StationUpdateButton_Click(object sender, EventArgs e)
+        {
+            var rows = StationDataGridView.Rows;
+
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                {
+                    int id = Convert.ToInt32(((DataGridViewTextBoxCell)(row.Cells[1])).Value);
+                    string name = ((DataGridViewTextBoxCell)(row.Cells[2])).Value.ToString();
+                    Station station = new Station { id = id, name = name };
+                    StationAccess db = new StationAccess();
+                    db.Update(station);
+                }
+            }
+
+        }
     }
 }

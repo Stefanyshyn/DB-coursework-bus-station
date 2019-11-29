@@ -9,6 +9,7 @@ namespace BusStation.Models
     public class Station
     {
         public int id { get; set; }
-        public string name { get; set; }
+        private string Name;
+        public string name { get { return Name; } set{ Name = value.Trim(); } }
     }
 }

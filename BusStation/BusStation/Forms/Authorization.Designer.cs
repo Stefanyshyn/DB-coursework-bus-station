@@ -38,8 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.username = new System.Windows.Forms.TextBox();
             this.password = new System.Windows.Forms.TextBox();
-            this.PasswordButton = new System.Windows.Forms.Button();
             this.MessageLabel = new System.Windows.Forms.Label();
+            this.PasswordButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.SignInButton = new System.Windows.Forms.Button();
             this.SignUpButton = new System.Windows.Forms.Button();
@@ -169,6 +169,16 @@
             this.password.TabIndex = 3;
             this.password.TextChanged += new System.EventHandler(this.password_TextChanged);
             // 
+            // MessageLabel
+            // 
+            this.MessageLabel.AutoSize = true;
+            this.MessageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MessageLabel.Location = new System.Drawing.Point(51, 93);
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Size = new System.Drawing.Size(372, 35);
+            this.MessageLabel.TabIndex = 2;
+            // 
             // PasswordButton
             // 
             this.PasswordButton.Image = ((System.Drawing.Image)(resources.GetObject("PasswordButton.Image")));
@@ -180,16 +190,6 @@
             this.PasswordButton.UseVisualStyleBackColor = true;
             this.PasswordButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasswordButton_MouseDown);
             this.PasswordButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PasswordButton_MouseUp);
-            // 
-            // MessageLabel
-            // 
-            this.MessageLabel.AutoSize = true;
-            this.MessageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MessageLabel.Location = new System.Drawing.Point(51, 93);
-            this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(372, 35);
-            this.MessageLabel.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 

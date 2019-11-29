@@ -13,7 +13,7 @@ namespace BusStation.DAO
         List<User> GetAll();
         List<User> GetManyBySelector(Predicate<User> match);
         void Add(User user);
-//        void UpdateUser(User user);
-//        void DeleteUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(long id);
     }
 }
