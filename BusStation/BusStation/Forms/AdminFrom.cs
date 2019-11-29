@@ -29,6 +29,9 @@ namespace BusStation.Forms
             EditTabControl.Dock = DockStyle.Fill;
             Ticketpanel.Visible = false;
             ProfileAdminTabControl.Visible = false;
+
+            StopDateTimePicker.Format = DateTimePickerFormat.Custom;
+            StopDateTimePicker.CustomFormat = "HH:mm";
         }
 
         private const int ADD_STATION_HEIGHT = 54;
@@ -527,10 +530,17 @@ namespace BusStation.Forms
         {
             busSearchString = BusSearchTextBox.Text.Trim();
             List<Bus> buses = new List<Bus>();
-            int seats = Convert.ToInt32(busSearchString);
-
+            int seats = -1;
+            try
+            {
+                seats = Convert.ToInt32(busSearchString);
+            }
+            catch (Exception ex)
+            {}
             BusAccess db = new BusAccess();
-            buses = db.GetManyBySelector(bus => bus.Seats == seats);
+
+            if (seats < 0) buses = db.GetAll();
+            else buses = db.GetManyBySelector(bus => bus.Seats == seats);
 
             DataGridView grid = BusDataGridView;
             grid.Rows.Clear();
@@ -797,10 +807,17 @@ namespace BusStation.Forms
             if (busSearchString == null) return;
 
             List<Bus> buses = new List<Bus>();
-            int seats = Convert.ToInt32(busSearchString);
-
+            int seats = -1;
+            try
+            {
+                seats = Convert.ToInt32(busSearchString);
+            }
+            catch (Exception ex)
+            { }
             BusAccess db = new BusAccess();
-            buses = db.GetManyBySelector(bus => bus.Seats == seats);
+
+            if (seats < 0) buses = db.GetAll();
+            else buses = db.GetManyBySelector(bus => bus.Seats == seats);
 
             DataGridView grid =BusDataGridView;
             grid.Rows.Clear();
@@ -887,6 +904,26 @@ namespace BusStation.Forms
                 EditStyleColumn(BusDataGridView);
             }
 
+        }
+
+        private void StopStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            StationAccess db = new StationAccess();
+            var stations = db.GetAll();
+            for(int i=0; i < stations.Count; ++i)
+            {
+                this.StopStationComboBox.Items.Add(stations[i].name.ToString());
+            }
+        }
+
+        private void StopBusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BusAccess db = new BusAccess();
+            var buses = db.GetAll();
+            for (int i = 0; i < buses.Count; ++i)
+            {
+                this.StopBusComboBox.Items.Add(buses[i].Id.ToString());
+            }
         }
     }
 }

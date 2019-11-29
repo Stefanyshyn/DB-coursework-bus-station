@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="StationAddSwitcher.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="UserSwitcherButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALBJREFUSEvt
         lcEJwkAQRRebULAELzZgHZbiVRtQxINlqXiwCltQ/4MMLAMhTpyLsA8eGXYn85OwkNLIZCnXndTp3ORb
@@ -127,7 +127,7 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="UserSwitcherButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="StationAddSwitcher.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALBJREFUSEvt
         lcEJwkAQRRebULAELzZgHZbiVRtQxINlqXiwCltQ/4MMLAMhTpyLsA8eGXYn85OwkNLIZCnXndTp3ORb
@@ -146,6 +146,15 @@
 </value>
   </data>
   <data name="TripSwitcherButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALBJREFUSEvt
+        lcEJwkAQRRebULAELzZgHZbiVRtQxINlqXiwCltQ/4MMLAMhTpyLsA8eGXYn85OwkNLIZCnXndTp3ORb
+        vuSVhWzukgCkTscCeIOUgJU8Vz6lBVDXe/SGOUn7JEPSG4abeFpkSH3166MCttIP6gvYyTATOa98SBtI
+        Xe/R+zP/d0w9B3nppG6Uhdx8Kb1hjtKfd7v6dXrD7KUf1BdAb5iptB/MkDPZGEMpH9ejYfFHO9tqAAAA
+        AElFTkSuQmCC
+</value>
+  </data>
+  <data name="button5.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALBJREFUSEvt
         lcEJwkAQRRebULAELzZgHZbiVRtQxINlqXiwCltQ/4MMLAMhTpyLsA8eGXYn85OwkNLIZCnXndTp3ORb
