@@ -527,7 +527,10 @@ namespace BusStation.Forms
         {
             busSearchString = BusSearchTextBox.Text.Trim();
             List<Bus> buses = new List<Bus>();
-           
+            int seats = Convert.ToInt32(busSearchString);
+
+            BusAccess db = new BusAccess();
+            buses = db.GetManyBySelector(bus => bus.Seats == seats);
 
             DataGridView grid = BusDataGridView;
             grid.Rows.Clear();
@@ -718,6 +721,12 @@ namespace BusStation.Forms
                 StationAccess db = new StationAccess();
                 BindingSource source = (BindingSource)StationDataGridView.DataSource;
 
+                if (db.GetManyBySelector(obj => obj.name.Contains(name)).Count > 0)
+                {
+                    MessageBox.Show("The station name is exist");
+                    return;
+                }
+
                 if ((source != null && source.List.Count == 0) || source == null)
                 {
                     List<Station> stations = new List<Station>();
@@ -763,7 +772,6 @@ namespace BusStation.Forms
                 db.Delete(id);
                 rows.RemoveAt(index);
             }
-
         }
 
         private void StationUpdateButton_Click(object sender, EventArgs e)
@@ -781,6 +789,102 @@ namespace BusStation.Forms
                     StationAccess db = new StationAccess();
                     db.Update(station);
                 }
+            }
+        }
+
+        private void BusRefreshButton_Click(object sender, EventArgs e)
+        {
+            if (busSearchString == null) return;
+
+            List<Bus> buses = new List<Bus>();
+            int seats = Convert.ToInt32(busSearchString);
+
+            BusAccess db = new BusAccess();
+            buses = db.GetManyBySelector(bus => bus.Seats == seats);
+
+            DataGridView grid =BusDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = buses;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+        }
+
+        private void BusDeleteButton_Click(object sender, EventArgs e)
+        {
+            var rows = BusDataGridView.Rows;
+            List<int> indexs = new List<int>();
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                    indexs.Add(row.Index);
+            }
+            for (int i = indexs.Count - 1; i >= 0; --i)
+            {
+                int index = indexs.ElementAt<int>(i);
+                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                BusAccess db = new BusAccess();
+                db.Delete(id);
+                rows.RemoveAt(index);
+            }
+
+        }
+
+        private void BusUpdateButton_Click(object sender, EventArgs e)
+        {
+            var rows = BusDataGridView.Rows;
+
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                {
+                    int id = Convert.ToInt32(((DataGridViewTextBoxCell)(row.Cells[1])).Value);
+                    int seats = Convert.ToInt32(((DataGridViewTextBoxCell)(row.Cells[2])).Value);
+                    Bus bus = new Bus { Id = id, Seats = seats };
+                    BusAccess db = new BusAccess();
+                    db.Update(bus);
+                }
+            }
+
+        }
+
+        private void BusAddButton_Click(object sender, EventArgs e)
+        {
+            string seatsStr = BusSeatsTextBox.Text.Trim();
+            if (seatsStr != "")
+            {
+                int seats = Convert.ToInt32(seatsStr);
+                Bus bus = new Bus { Id = 1, Seats = seats };
+                BusAccess db = new BusAccess();
+                BindingSource source = (BindingSource)BusDataGridView.DataSource;
+
+                if ((source != null && source.List.Count == 0) || source == null)
+                {
+                    List<Bus> buses = new List<Bus>();
+
+                    db.Add(bus);
+                    buses.Add(bus);
+
+                    DataGridView grid = BusDataGridView;
+                    grid.Rows.Clear();
+                    BindingSource bind = new BindingSource();
+                    bind.DataSource = buses;
+                    grid.DataSource = bind;
+
+                    EditStyleColumn(BusDataGridView);
+                    return;
+                }
+
+                db.Add(bus);
+                source.List.Add(bus);
+
+                BusDataGridView.DataSource = null;
+                BusDataGridView.DataSource = source;
+
+                EditStyleColumn(BusDataGridView);
             }
 
         }

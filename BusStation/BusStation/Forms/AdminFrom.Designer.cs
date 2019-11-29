@@ -137,8 +137,8 @@
             this.BusSearchTextBox = new System.Windows.Forms.TextBox();
             this.BusDataGridView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
-            this.BusCancellButton = new System.Windows.Forms.Button();
-            this.BusApplyButton = new System.Windows.Forms.Button();
+            this.BusDeleteButton = new System.Windows.Forms.Button();
+            this.BusUpdateButton = new System.Windows.Forms.Button();
             this.BusRefreshButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
@@ -1737,8 +1737,8 @@
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Controls.Add(this.BusCancellButton, 0, 0);
-            this.tableLayoutPanel22.Controls.Add(this.BusApplyButton, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.BusDeleteButton, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.BusUpdateButton, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.BusRefreshButton, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel22.Location = new System.Drawing.Point(0, 122);
@@ -1749,31 +1749,33 @@
             this.tableLayoutPanel22.Size = new System.Drawing.Size(486, 35);
             this.tableLayoutPanel22.TabIndex = 2;
             // 
-            // BusCancellButton
+            // BusDeleteButton
             // 
-            this.BusCancellButton.BackColor = System.Drawing.Color.White;
-            this.BusCancellButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BusCancellButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BusCancellButton.Location = new System.Drawing.Point(120, 0);
-            this.BusCancellButton.Margin = new System.Windows.Forms.Padding(0);
-            this.BusCancellButton.Name = "BusCancellButton";
-            this.BusCancellButton.Size = new System.Drawing.Size(100, 35);
-            this.BusCancellButton.TabIndex = 5;
-            this.BusCancellButton.Text = "Cancell";
-            this.BusCancellButton.UseVisualStyleBackColor = false;
+            this.BusDeleteButton.BackColor = System.Drawing.Color.White;
+            this.BusDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BusDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BusDeleteButton.Location = new System.Drawing.Point(120, 0);
+            this.BusDeleteButton.Margin = new System.Windows.Forms.Padding(0);
+            this.BusDeleteButton.Name = "BusDeleteButton";
+            this.BusDeleteButton.Size = new System.Drawing.Size(100, 35);
+            this.BusDeleteButton.TabIndex = 5;
+            this.BusDeleteButton.Text = "Delete";
+            this.BusDeleteButton.UseVisualStyleBackColor = false;
+            this.BusDeleteButton.Click += new System.EventHandler(this.BusDeleteButton_Click);
             // 
-            // BusApplyButton
+            // BusUpdateButton
             // 
-            this.BusApplyButton.BackColor = System.Drawing.Color.White;
-            this.BusApplyButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BusApplyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BusApplyButton.Location = new System.Drawing.Point(0, 0);
-            this.BusApplyButton.Margin = new System.Windows.Forms.Padding(0);
-            this.BusApplyButton.Name = "BusApplyButton";
-            this.BusApplyButton.Size = new System.Drawing.Size(120, 35);
-            this.BusApplyButton.TabIndex = 4;
-            this.BusApplyButton.Text = " Apply";
-            this.BusApplyButton.UseVisualStyleBackColor = false;
+            this.BusUpdateButton.BackColor = System.Drawing.Color.White;
+            this.BusUpdateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BusUpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BusUpdateButton.Location = new System.Drawing.Point(0, 0);
+            this.BusUpdateButton.Margin = new System.Windows.Forms.Padding(0);
+            this.BusUpdateButton.Name = "BusUpdateButton";
+            this.BusUpdateButton.Size = new System.Drawing.Size(120, 35);
+            this.BusUpdateButton.TabIndex = 4;
+            this.BusUpdateButton.Text = "Update";
+            this.BusUpdateButton.UseVisualStyleBackColor = false;
+            this.BusUpdateButton.Click += new System.EventHandler(this.BusUpdateButton_Click);
             // 
             // BusRefreshButton
             // 
@@ -1787,6 +1789,7 @@
             this.BusRefreshButton.TabIndex = 3;
             this.BusRefreshButton.Text = "Refresh";
             this.BusRefreshButton.UseVisualStyleBackColor = false;
+            this.BusRefreshButton.Click += new System.EventHandler(this.BusRefreshButton_Click);
             // 
             // tableLayoutPanel23
             // 
@@ -1870,6 +1873,7 @@
             this.BusAddButton.TabIndex = 8;
             this.BusAddButton.Text = "Add";
             this.BusAddButton.UseVisualStyleBackColor = false;
+            this.BusAddButton.Click += new System.EventHandler(this.BusAddButton_Click);
             // 
             // tableLayoutPanel26
             // 
@@ -2437,8 +2441,8 @@
         private System.Windows.Forms.TextBox BusSearchTextBox;
         private System.Windows.Forms.DataGridView BusDataGridView;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
-        private System.Windows.Forms.Button BusCancellButton;
-        private System.Windows.Forms.Button BusApplyButton;
+        private System.Windows.Forms.Button BusDeleteButton;
+        private System.Windows.Forms.Button BusUpdateButton;
         private System.Windows.Forms.Button BusRefreshButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel23;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel24;
