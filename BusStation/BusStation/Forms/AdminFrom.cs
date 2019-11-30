@@ -42,6 +42,8 @@ namespace BusStation.Forms
         private string userSearchEditString;
         private string stationSearchString;
         private string busSearchString;
+        private string tripSearchString;
+        private string stopSearchString;
         private User currentUser = null;
         private TableLayoutPanel currentDocument;
 
@@ -555,29 +557,8 @@ namespace BusStation.Forms
         {
             List<Trip> trips = new List<Trip>();
 
-            trips.Add(new Trip
-            {
-                Id = 1,
-                DateArrival = DateTime.Now,
-                DateDeparture = DateTime.Now,
-                StationFrom = "Ternopil ",
-                StationTo = "Lviv",
-                Distance = 30.2f,
-                Bus = new Bus { Id = 54645131 }
-            });
 
-            trips.Add(new Trip
-            {
-                Id = 2,
-                DateArrival = DateTime.Now,
-                DateDeparture = DateTime.Now,
-                StationFrom = "Ternopil",
-                StationTo = "Kyiv",
-                Distance = 13.2f,
-                Bus = new Bus { Id = 54645131 }
-            });
-
-            DataGridView grid = TripDataGridView;
+            DataGridView grid = StopDataGridView;
             grid.Rows.Clear();
             BindingSource bind = new BindingSource();
             bind.DataSource = trips;
@@ -906,24 +887,49 @@ namespace BusStation.Forms
 
         }
 
-        private void StopStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void StopStationComboBox_Click(object sender, EventArgs e)
         {
             StationAccess db = new StationAccess();
             var stations = db.GetAll();
-            for(int i=0; i < stations.Count; ++i)
+            this.StopStationComboBox.Items.Clear();
+            for (int i = 0; i < stations.Count; ++i)
             {
                 this.StopStationComboBox.Items.Add(stations[i].name.ToString());
             }
         }
 
-        private void StopBusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void StopBusComboBox_Click(object sender, EventArgs e)
         {
             BusAccess db = new BusAccess();
             var buses = db.GetAll();
+            this.StopBusComboBox.Items.Clear();
             for (int i = 0; i < buses.Count; ++i)
             {
                 this.StopBusComboBox.Items.Add(buses[i].Id.ToString());
             }
+        }
+
+        private void StopSearchEditButton_Click(object sender, EventArgs e)
+        {
+            stopSearchString = StopSearchTextBox.Text.Trim();
+            List<Stop> stops = new List<Stop>();
+            StopAccess db = new StopAccess();
+
+            if (busSearchString == null) stops = db.GetAll();
+            else stops = db.GetManyBySelector(
+                stop => stop.bus.ToString() == stopSearchString
+                || stop.station.name.Contains(stopSearchString)
+                || stop.distance.ToString().Contains(stopSearchString)
+                );
+
+            DataGridView grid = StopDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = stops;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+
         }
     }
 }

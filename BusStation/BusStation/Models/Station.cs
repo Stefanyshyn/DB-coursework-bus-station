@@ -11,5 +11,10 @@ namespace BusStation.Models
         public int id { get; set; }
         private string Name;
         public string name { get { return Name; } set{ Name = value.Trim(); } }
+        public override string ToString()
+        {
+            return name;
+        }
+
     }
 }

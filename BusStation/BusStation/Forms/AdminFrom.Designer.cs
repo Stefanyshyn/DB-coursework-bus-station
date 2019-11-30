@@ -167,7 +167,7 @@
             this.tableLayoutPanel33 = new System.Windows.Forms.TableLayoutPanel();
             this.StopSearchEditButton = new System.Windows.Forms.Button();
             this.StopSearchTextBox = new System.Windows.Forms.TextBox();
-            this.TripDataGridView = new System.Windows.Forms.DataGridView();
+            this.StopDataGridView = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel34 = new System.Windows.Forms.TableLayoutPanel();
             this.StopDeleteButton = new System.Windows.Forms.Button();
@@ -258,7 +258,7 @@
             this.tableLayoutPanel31.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             this.tableLayoutPanel33.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StopDataGridView)).BeginInit();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel34.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -1964,7 +1964,7 @@
             this.tableLayoutPanel27.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel27.Controls.Add(this.tableLayoutPanel28, 0, 1);
             this.tableLayoutPanel27.Controls.Add(this.tableLayoutPanel32, 0, 0);
-            this.tableLayoutPanel27.Controls.Add(this.TripDataGridView, 0, 3);
+            this.tableLayoutPanel27.Controls.Add(this.StopDataGridView, 0, 3);
             this.tableLayoutPanel27.Controls.Add(this.panel3, 0, 2);
             this.tableLayoutPanel27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel27.Location = new System.Drawing.Point(0, 0);
@@ -2046,7 +2046,7 @@
             this.StopBusComboBox.Name = "StopBusComboBox";
             this.StopBusComboBox.Size = new System.Drawing.Size(215, 28);
             this.StopBusComboBox.TabIndex = 9;
-            this.StopBusComboBox.SelectedIndexChanged += new System.EventHandler(this.StopBusComboBox_SelectedIndexChanged);
+            this.StopBusComboBox.Click += new System.EventHandler(this.StopBusComboBox_Click);
             // 
             // label11
             // 
@@ -2087,7 +2087,7 @@
             this.StopStationComboBox.Name = "StopStationComboBox";
             this.StopStationComboBox.Size = new System.Drawing.Size(215, 28);
             this.StopStationComboBox.TabIndex = 8;
-            this.StopStationComboBox.SelectedIndexChanged += new System.EventHandler(this.StopStationComboBox_SelectedIndexChanged);
+            this.StopStationComboBox.Click += new System.EventHandler(this.StopStationComboBox_Click);
             // 
             // StopAddButton
             // 
@@ -2189,7 +2189,7 @@
             this.StopSearchEditButton.TabIndex = 2;
             this.StopSearchEditButton.Text = "Search";
             this.StopSearchEditButton.UseVisualStyleBackColor = false;
-            this.StopSearchEditButton.Click += new System.EventHandler(this.TripSearchEditButton_Click);
+            this.StopSearchEditButton.Click += new System.EventHandler(this.StopSearchEditButton_Click);
             // 
             // StopSearchTextBox
             // 
@@ -2200,14 +2200,14 @@
             this.StopSearchTextBox.Size = new System.Drawing.Size(251, 27);
             this.StopSearchTextBox.TabIndex = 3;
             // 
-            // TripDataGridView
+            // StopDataGridView
             // 
-            this.TripDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TripDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TripDataGridView.Location = new System.Drawing.Point(3, 218);
-            this.TripDataGridView.Name = "TripDataGridView";
-            this.TripDataGridView.Size = new System.Drawing.Size(486, 95);
-            this.TripDataGridView.TabIndex = 1;
+            this.StopDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StopDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StopDataGridView.Location = new System.Drawing.Point(3, 218);
+            this.StopDataGridView.Name = "StopDataGridView";
+            this.StopDataGridView.Size = new System.Drawing.Size(486, 95);
+            this.StopDataGridView.TabIndex = 1;
             // 
             // panel3
             // 
@@ -2689,7 +2689,7 @@
             this.tableLayoutPanel32.ResumeLayout(false);
             this.tableLayoutPanel33.ResumeLayout(false);
             this.tableLayoutPanel33.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StopDataGridView)).EndInit();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel34.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
@@ -2801,7 +2801,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel33;
         private System.Windows.Forms.Button StopSearchEditButton;
         private System.Windows.Forms.TextBox StopSearchTextBox;
-        private System.Windows.Forms.DataGridView TripDataGridView;
+        private System.Windows.Forms.DataGridView StopDataGridView;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel34;
         private System.Windows.Forms.Button StopDeleteButton;

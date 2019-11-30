@@ -54,8 +54,10 @@
     <Compile Include="DAO\DAOBus.cs" />
     <Compile Include="DAO\DAOProfile.cs" />
     <Compile Include="DAO\DAOStation.cs" />
+    <Compile Include="DAO\DAOStop.cs" />
     <Compile Include="DAO\DAOUser.cs" />
     <Compile Include="DataAccess\BusAccess.cs" />
+    <Compile Include="DataAccess\StopAccess.cs" />
     <Compile Include="DataAccess\ProfileAccess.cs" />
     <Compile Include="DataAccess\StationAccess.cs" />
     <Compile Include="DataAccess\UserAccess.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Stop.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Utils\Helper.cs" />
