@@ -2080,7 +2080,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 5;
-            this.label8.Text = "Bus";
+            this.label8.Text = "Trip";
             // 
             // label9
             // 

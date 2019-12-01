@@ -54,5 +54,15 @@ namespace BusStation.DataAccess
                 return trips.FindAll(match);
             }
         }
+
+        public Trip GetOne(long id)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select * from Trip where id = {id}";
+                List<Trip> trips = connection.Query<Trip>(query).ToList();
+                return trips[0];
+            }
+        }
     }
 }

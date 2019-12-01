@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace BusStation.DAO
 {
    public interface DAOTrip
-    {
+    { 
+        Trip GetOne(long id);
         List<Trip> GetAll();
         List<Trip> GetManyBySelector(Predicate<Trip> match);
         void Add(Trip trip);

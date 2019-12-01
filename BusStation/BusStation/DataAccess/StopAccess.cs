@@ -17,7 +17,7 @@ namespace BusStation.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
                 string query = $"insert into Stop " +
-                    $"(id_bus, id_station,timestop,distance) " +
+                    $"(id_trip, id_station,timestop,distance) " +
                     $"values " +
                     $"({stop.trip.Id}, " +
                     $"{stop.station.id}, " +
@@ -27,11 +27,11 @@ namespace BusStation.DataAccess
             }
         }
 
-        public void Delete(long id)
+        public void Delete(long id_trip, long id_station)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = "delete from Stop where id = " + id;
+                string query = $"delete from Fullstop where id_trip = {id_trip} AND id_station = {id_station}";
                 connection.Execute(query);
             }
         }
@@ -53,6 +53,16 @@ namespace BusStation.DataAccess
                 string query = $"select * from Fullstop order by timestop";
                 var stops = connection.Query<Stop>(query).ToList();
                 return stops.FindAll(match);
+            }
+        }
+
+        public Stop GetOne(long id_trip, long id_station)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select * from Fullstop where id_trip = {id_trip} AND id_station = {id_station}";
+                var stops = connection.Query<Stop>(query).ToList();
+                return stops[0];
             }
         }
     }

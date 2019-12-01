@@ -947,7 +947,7 @@ namespace BusStation.Forms
                 }
                 catch (Exception ex) { return; }
 
-                Stop stop = new Stop(busId, -1, -1, stationName, timestart, 20f);
+                Stop stop = new Stop(busId, -1, stationName, timestart, 20f);
                 StopAccess db = new StopAccess();
                 BindingSource source = (BindingSource)StopDataGridView.DataSource;
 
