@@ -10,19 +10,18 @@ using System.Threading.Tasks;
 
 namespace BusStation.DataAccess
 {
-    public class StopAccess : DAOStop
+    public class TripAccess : DAOTrip
     {
-        public void Add(Stop stop)
+        public void Add(Trip trip)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"insert into Stop " +
-                    $"(id_bus, id_station,timestop,distance) " +
+                string query = $"insert into Trip " +
+                    $"(id, id_bus, datestart) " +
                     $"values " +
-                    $"({stop.trip.Id}, " +
-                    $"{stop.station.id}, " +
-                    $"CONVERT(time, '{stop.timestop}',120), " +
-                    $"12.1)";
+                    $"({trip.Id}, " +
+                    $"{trip.Bus.Id}, " +
+                    $"CONVERT(datetime, '{trip.DateArrival}',120) )";
                 connection.Execute(query);
             }
         }
@@ -31,28 +30,28 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = "delete from Stop where id = " + id;
+                string query = $"delete from Trip where id = {id}";
                 connection.Execute(query);
             }
         }
 
-        public List<Stop> GetAll()
+        public List<Trip> GetAll()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"select * from Fullstop";
-                var stops = connection.Query<Stop>(query).ToList();
-                return stops;
+                string query = $"select * from Trip";
+                List<Trip> trips = connection.Query<Trip>(query).ToList();
+                return trips;
             }
         }
 
-        public List<Stop> GetManyBySelector(Predicate<Stop> match)
+        public List<Trip> GetManyBySelector(Predicate<Trip> match)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"select * from Fullstop order by timestop";
-                var stops = connection.Query<Stop>(query).ToList();
-                return stops.FindAll(match);
+                string query = $"select * from Trip";
+                List<Trip> trips = connection.Query<Trip>(query).ToList();
+                return trips.FindAll(match);
             }
         }
     }

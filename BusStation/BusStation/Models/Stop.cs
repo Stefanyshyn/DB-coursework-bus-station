@@ -8,13 +8,14 @@ namespace BusStation.Models
 {
     public class Stop
     {
-        public Bus bus { get; set; }
+        public Trip trip { get; set; }
         public Station station { get; set; }
         public TimeSpan timestop { get; set; }
         public double distance { get; set; }
-        public Stop(int id_bus, int seats, int id_station, string name_station, TimeSpan timestop, double distance)
+        public Stop(int id_trip, int id_station, string name_station, TimeSpan timestop, double distance)
         {
-            this.bus = new Bus { Id = id_bus, Seats = seats };
+            TripAccess db = new TripAccess();
+            this.trip = new Trip ();
             this.station = new Station { id = id_station, name = name_station.Trim() };
             this.timestop = timestop;
             this.distance = distance;

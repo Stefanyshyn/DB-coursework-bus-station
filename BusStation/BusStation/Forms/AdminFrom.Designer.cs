@@ -118,6 +118,7 @@
             this.StationSearchTextBox = new System.Windows.Forms.TextBox();
             this.StationDataGridView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.StationDeleteButton = new System.Windows.Forms.Button();
             this.StationUpdateButton = new System.Windows.Forms.Button();
             this.StationRefreshButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
@@ -159,6 +160,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.StopStationComboBox = new System.Windows.Forms.ComboBox();
+            this.StopDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StopAddButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
             this.TripSwitcherButton = new System.Windows.Forms.Button();
@@ -172,8 +174,6 @@
             this.tableLayoutPanel34 = new System.Windows.Forms.TableLayoutPanel();
             this.StopDeleteButton = new System.Windows.Forms.Button();
             this.StopRefreshButton = new System.Windows.Forms.Button();
-            this.StationDeleteButton = new System.Windows.Forms.Button();
-            this.StopDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel46 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
@@ -182,6 +182,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.TripNametextBox = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.TripDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.TripAddButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
@@ -195,7 +196,6 @@
             this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
             this.TripDeleteButton = new System.Windows.Forms.Button();
             this.TripRefreshButton = new System.Windows.Forms.Button();
-            this.TripDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -570,7 +570,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(408, 76);
+            this.tabPage5.Size = new System.Drawing.Size(66, 76);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Personal";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -591,7 +591,7 @@
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel35.Size = new System.Drawing.Size(402, 70);
+            this.tableLayoutPanel35.Size = new System.Drawing.Size(60, 70);
             this.tableLayoutPanel35.TabIndex = 0;
             // 
             // tableLayoutPanel36
@@ -607,13 +607,13 @@
             this.tableLayoutPanel36.Controls.Add(this.LastnameTextBox, 1, 1);
             this.tableLayoutPanel36.Cursor = System.Windows.Forms.Cursors.Default;
             this.tableLayoutPanel36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel36.Location = new System.Drawing.Point(65, 5);
+            this.tableLayoutPanel36.Location = new System.Drawing.Point(14, 5);
             this.tableLayoutPanel36.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel36.Name = "tableLayoutPanel36";
             this.tableLayoutPanel36.RowCount = 2;
             this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel36.Size = new System.Drawing.Size(271, 80);
+            this.tableLayoutPanel36.Size = new System.Drawing.Size(32, 80);
             this.tableLayoutPanel36.TabIndex = 3;
             // 
             // label12
@@ -632,7 +632,7 @@
             this.FirstnameTextBox.Location = new System.Drawing.Point(156, 7);
             this.FirstnameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.FirstnameTextBox.Name = "FirstnameTextBox";
-            this.FirstnameTextBox.Size = new System.Drawing.Size(108, 27);
+            this.FirstnameTextBox.Size = new System.Drawing.Size(1, 27);
             this.FirstnameTextBox.TabIndex = 3;
             // 
             // label13
@@ -651,7 +651,7 @@
             this.LastnameTextBox.Location = new System.Drawing.Point(156, 46);
             this.LastnameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.LastnameTextBox.Name = "LastnameTextBox";
-            this.LastnameTextBox.Size = new System.Drawing.Size(108, 27);
+            this.LastnameTextBox.Size = new System.Drawing.Size(1, 27);
             this.LastnameTextBox.TabIndex = 6;
             // 
             // button1
@@ -659,10 +659,10 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Dock = System.Windows.Forms.DockStyle.Right;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(238, 95);
+            this.button1.Location = new System.Drawing.Point(14, 95);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 41);
+            this.button1.Size = new System.Drawing.Size(32, 41);
             this.button1.TabIndex = 2;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = false;
@@ -674,7 +674,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 29);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(658, 139);
+            this.tabPage6.Size = new System.Drawing.Size(66, 76);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Security";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -697,7 +697,7 @@
             this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel37.Size = new System.Drawing.Size(652, 133);
+            this.tableLayoutPanel37.Size = new System.Drawing.Size(60, 70);
             this.tableLayoutPanel37.TabIndex = 1;
             // 
             // tableLayoutPanel38
@@ -715,14 +715,14 @@
             this.tableLayoutPanel38.Controls.Add(this.PasswordOldTextBox, 1, 1);
             this.tableLayoutPanel38.Cursor = System.Windows.Forms.Cursors.Default;
             this.tableLayoutPanel38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel38.Location = new System.Drawing.Point(102, 5);
+            this.tableLayoutPanel38.Location = new System.Drawing.Point(14, 5);
             this.tableLayoutPanel38.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel38.Name = "tableLayoutPanel38";
             this.tableLayoutPanel38.RowCount = 3;
             this.tableLayoutPanel38.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel38.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel38.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel38.Size = new System.Drawing.Size(446, 119);
+            this.tableLayoutPanel38.Size = new System.Drawing.Size(32, 119);
             this.tableLayoutPanel38.TabIndex = 3;
             // 
             // label15
@@ -741,7 +741,7 @@
             this.PasswordNewTextBox.Location = new System.Drawing.Point(156, 85);
             this.PasswordNewTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.PasswordNewTextBox.Name = "PasswordNewTextBox";
-            this.PasswordNewTextBox.Size = new System.Drawing.Size(283, 27);
+            this.PasswordNewTextBox.Size = new System.Drawing.Size(1, 27);
             this.PasswordNewTextBox.TabIndex = 7;
             // 
             // label16
@@ -760,7 +760,7 @@
             this.UsernameTextBox.Location = new System.Drawing.Point(156, 7);
             this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(283, 27);
+            this.UsernameTextBox.Size = new System.Drawing.Size(1, 27);
             this.UsernameTextBox.TabIndex = 3;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             // 
@@ -780,7 +780,7 @@
             this.PasswordOldTextBox.Location = new System.Drawing.Point(156, 46);
             this.PasswordOldTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.PasswordOldTextBox.Name = "PasswordOldTextBox";
-            this.PasswordOldTextBox.Size = new System.Drawing.Size(283, 27);
+            this.PasswordOldTextBox.Size = new System.Drawing.Size(1, 27);
             this.PasswordOldTextBox.TabIndex = 6;
             // 
             // button2
@@ -788,10 +788,10 @@
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Dock = System.Windows.Forms.DockStyle.Right;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(450, 150);
+            this.button2.Location = new System.Drawing.Point(14, 150);
             this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 36);
+            this.button2.Size = new System.Drawing.Size(32, 36);
             this.button2.TabIndex = 2;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = false;
@@ -801,9 +801,9 @@
             this.resultResetPassword.AutoSize = true;
             this.resultResetPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resultResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.resultResetPassword.Location = new System.Drawing.Point(100, 129);
+            this.resultResetPassword.Location = new System.Drawing.Point(12, 129);
             this.resultResetPassword.Name = "resultResetPassword";
-            this.resultResetPassword.Size = new System.Drawing.Size(450, 16);
+            this.resultResetPassword.Size = new System.Drawing.Size(36, 16);
             this.resultResetPassword.TabIndex = 4;
             this.resultResetPassword.Visible = false;
             // 
@@ -1513,6 +1513,20 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(486, 35);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
+            // StationDeleteButton
+            // 
+            this.StationDeleteButton.BackColor = System.Drawing.Color.White;
+            this.StationDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StationDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StationDeleteButton.Location = new System.Drawing.Point(120, 0);
+            this.StationDeleteButton.Margin = new System.Windows.Forms.Padding(0);
+            this.StationDeleteButton.Name = "StationDeleteButton";
+            this.StationDeleteButton.Size = new System.Drawing.Size(100, 35);
+            this.StationDeleteButton.TabIndex = 5;
+            this.StationDeleteButton.Text = "Delete";
+            this.StationDeleteButton.UseVisualStyleBackColor = false;
+            this.StationDeleteButton.Click += new System.EventHandler(this.StationDeleteButton_Click);
+            // 
             // StationUpdateButton
             // 
             this.StationUpdateButton.BackColor = System.Drawing.Color.White;
@@ -2089,6 +2103,19 @@
             this.StopStationComboBox.TabIndex = 8;
             this.StopStationComboBox.Click += new System.EventHandler(this.StopStationComboBox_Click);
             // 
+            // StopDateTimePicker
+            // 
+            this.StopDateTimePicker.CustomFormat = "HH:m";
+            this.StopDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StopDateTimePicker.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.StopDateTimePicker.Location = new System.Drawing.Point(126, 58);
+            this.StopDateTimePicker.Margin = new System.Windows.Forms.Padding(0);
+            this.StopDateTimePicker.MaxDate = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
+            this.StopDateTimePicker.Name = "StopDateTimePicker";
+            this.StopDateTimePicker.Size = new System.Drawing.Size(215, 27);
+            this.StopDateTimePicker.TabIndex = 10;
+            this.StopDateTimePicker.Value = new System.DateTime(2019, 11, 21, 0, 0, 0, 0);
+            // 
             // StopAddButton
             // 
             this.StopAddButton.BackColor = System.Drawing.Color.White;
@@ -2101,6 +2128,7 @@
             this.StopAddButton.TabIndex = 8;
             this.StopAddButton.Text = "Add";
             this.StopAddButton.UseVisualStyleBackColor = false;
+            this.StopAddButton.Click += new System.EventHandler(this.StopAddButton_Click);
             // 
             // tableLayoutPanel31
             // 
@@ -2249,6 +2277,7 @@
             this.StopDeleteButton.TabIndex = 5;
             this.StopDeleteButton.Text = "Delete";
             this.StopDeleteButton.UseVisualStyleBackColor = false;
+            this.StopDeleteButton.Click += new System.EventHandler(this.StopDeleteButton_Click);
             // 
             // StopRefreshButton
             // 
@@ -2262,33 +2291,7 @@
             this.StopRefreshButton.TabIndex = 3;
             this.StopRefreshButton.Text = "Refresh";
             this.StopRefreshButton.UseVisualStyleBackColor = false;
-            // 
-            // StationDeleteButton
-            // 
-            this.StationDeleteButton.BackColor = System.Drawing.Color.White;
-            this.StationDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StationDeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StationDeleteButton.Location = new System.Drawing.Point(120, 0);
-            this.StationDeleteButton.Margin = new System.Windows.Forms.Padding(0);
-            this.StationDeleteButton.Name = "StationDeleteButton";
-            this.StationDeleteButton.Size = new System.Drawing.Size(100, 35);
-            this.StationDeleteButton.TabIndex = 5;
-            this.StationDeleteButton.Text = "Delete";
-            this.StationDeleteButton.UseVisualStyleBackColor = false;
-            this.StationDeleteButton.Click += new System.EventHandler(this.StationDeleteButton_Click);
-            // 
-            // StopDateTimePicker
-            // 
-            this.StopDateTimePicker.CustomFormat = "HH:m";
-            this.StopDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StopDateTimePicker.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.StopDateTimePicker.Location = new System.Drawing.Point(126, 58);
-            this.StopDateTimePicker.Margin = new System.Windows.Forms.Padding(0);
-            this.StopDateTimePicker.MaxDate = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
-            this.StopDateTimePicker.Name = "StopDateTimePicker";
-            this.StopDateTimePicker.Size = new System.Drawing.Size(215, 27);
-            this.StopDateTimePicker.TabIndex = 10;
-            this.StopDateTimePicker.Value = new System.DateTime(2019, 11, 21, 0, 0, 0, 0);
+            this.StopRefreshButton.Click += new System.EventHandler(this.StopRefreshButton_Click);
             // 
             // tabPage8
             // 
@@ -2402,6 +2405,15 @@
             this.label25.Size = new System.Drawing.Size(57, 20);
             this.label25.TabIndex = 4;
             this.label25.Text = "Name";
+            // 
+            // TripDateTimePicker
+            // 
+            this.TripDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripDateTimePicker.Location = new System.Drawing.Point(129, 32);
+            this.TripDateTimePicker.Name = "TripDateTimePicker";
+            this.TripDateTimePicker.Size = new System.Drawing.Size(209, 27);
+            this.TripDateTimePicker.TabIndex = 6;
+            this.TripDateTimePicker.Value = new System.DateTime(2019, 11, 30, 0, 0, 0, 0);
             // 
             // TripAddButton
             // 
@@ -2577,15 +2589,6 @@
             this.TripRefreshButton.TabIndex = 3;
             this.TripRefreshButton.Text = "Refresh";
             this.TripRefreshButton.UseVisualStyleBackColor = false;
-            // 
-            // TripDateTimePicker
-            // 
-            this.TripDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TripDateTimePicker.Location = new System.Drawing.Point(129, 32);
-            this.TripDateTimePicker.Name = "TripDateTimePicker";
-            this.TripDateTimePicker.Size = new System.Drawing.Size(209, 27);
-            this.TripDateTimePicker.TabIndex = 6;
-            this.TripDateTimePicker.Value = new System.DateTime(2019, 11, 30, 0, 0, 0, 0);
             // 
             // AdminFrom
             // 

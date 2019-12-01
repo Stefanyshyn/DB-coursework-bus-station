@@ -915,7 +915,78 @@ namespace BusStation.Forms
             List<Stop> stops = new List<Stop>();
             StopAccess db = new StopAccess();
 
-            if (busSearchString == null) stops = db.GetAll();
+            if (stopSearchString == null) stops = db.GetAll();
+            else stops = db.GetManyBySelector(
+                stop => stop.bus.ToString() == stopSearchString
+                || stop.station.name.Contains(stopSearchString)
+                || stop.distance.ToString().Contains(stopSearchString)
+                );
+
+            DataGridView grid = StopDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = stops;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+        }
+
+        private void StopAddButton_Click(object sender, EventArgs e)
+        {
+            string stationName = StopStationComboBox.Text.Trim();
+            string busStr = StopBusComboBox.Text.Trim();
+            TimeSpan timestart = new TimeSpan(
+                StopDateTimePicker.Value.Hour,
+                StopDateTimePicker.Value.Minute, 0);
+            if(stationName != "" && busStr != "")
+            {
+                int busId = -1;
+                try
+                {
+                    busId = Convert.ToInt32(busStr);
+                }
+                catch (Exception ex) { return; }
+
+                Stop stop = new Stop(busId, -1, -1, stationName, timestart, 20f);
+                StopAccess db = new StopAccess();
+                BindingSource source = (BindingSource)StopDataGridView.DataSource;
+
+                if ((source != null && source.List.Count == 0) || source == null)
+                {
+                    List<Stop> stops = new List<Stop>();
+
+                    db.Add(stop);
+                    stops.Add(stop);
+
+                    DataGridView grid = StopDataGridView;
+                    grid.Rows.Clear();
+                    BindingSource bind = new BindingSource();
+                    bind.DataSource = stops;
+                    grid.DataSource = bind;
+
+                    EditStyleColumn(StopDataGridView);
+                    return;
+                }
+
+                db.Add(stop);
+                source.List.Add(stop);
+
+                StopDataGridView.DataSource = null;
+                StopDataGridView.DataSource = source;
+
+                EditStyleColumn(StopDataGridView);
+
+            }
+        }
+
+        private void StopRefreshButton_Click(object sender, EventArgs e)
+        {
+            if (stopSearchString == null) return;
+
+            List<Stop> stops = new List<Stop>();
+            StopAccess db = new StopAccess();
+
+            if (stopSearchString == null) stops = db.GetAll();
             else stops = db.GetManyBySelector(
                 stop => stop.bus.ToString() == stopSearchString
                 || stop.station.name.Contains(stopSearchString)
@@ -930,6 +1001,26 @@ namespace BusStation.Forms
 
             EditStyleColumn(grid);
 
+        }
+
+        private void StopDeleteButton_Click(object sender, EventArgs e)
+        {
+            var rows = StopDataGridView.Rows;
+            List<int> indexs = new List<int>();
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                    indexs.Add(row.Index);
+            }
+            for (int i = indexs.Count - 1; i >= 0; --i)
+            {
+                int index = indexs.ElementAt<int>(i);
+                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                StopAccess db = new StopAccess();
+                db.Delete(id);
+                rows.RemoveAt(index);
+            }
         }
     }
 }
