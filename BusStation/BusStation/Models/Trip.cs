@@ -11,15 +11,25 @@ namespace BusStation.Models
     {
         public int Id { get; set; }
         public Bus Bus { get; set; }
+        private List<Station> stations = new List<Station>(); 
         public DateTime DateArrival { get; set; }
-        public Trip(int id, int id_bus, DateTime date_arrival)
+        public Trip(int id, int id_bus, DateTime datestart)
         {
             this.Id = id;
-            
+            this.stations = this.fillStation(this.Id);
             BusAccess db = new BusAccess();
             this.Bus = db.GetOne(id_bus);
 
-            this.DateArrival = date_arrival;
+            this.DateArrival = datestart;
+        }
+        public List<Station> getStation() {
+            return this.stations;
+        }
+        private List<Station> fillStation(long id)
+        {
+            TripAccess db = new TripAccess();
+            var stations = db.GetTripStations(id);
+            return stations;
         }
     }
 }

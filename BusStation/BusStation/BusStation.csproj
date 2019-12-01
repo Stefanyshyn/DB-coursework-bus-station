@@ -55,11 +55,13 @@
     <Compile Include="DAO\DAOProfile.cs" />
     <Compile Include="DAO\DAOStation.cs" />
     <Compile Include="DAO\DAOStop.cs" />
+    <Compile Include="DAO\DAOTrip.cs" />
     <Compile Include="DAO\DAOUser.cs" />
     <Compile Include="DataAccess\BusAccess.cs" />
     <Compile Include="DataAccess\StopAccess.cs" />
     <Compile Include="DataAccess\ProfileAccess.cs" />
     <Compile Include="DataAccess\StationAccess.cs" />
+    <Compile Include="DataAccess\TripAccess.cs" />
     <Compile Include="DataAccess\UserAccess.cs" />
     <Compile Include="Forms\AdminFrom.cs">
       <SubType>Form</SubType>

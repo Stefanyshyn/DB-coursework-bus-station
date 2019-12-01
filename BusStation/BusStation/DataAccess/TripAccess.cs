@@ -64,5 +64,15 @@ namespace BusStation.DataAccess
                 return trips[0];
             }
         }
+
+        public List<Station> GetTripStations(long id)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select id_station, name from GetStations where id_trip = {id}";
+                List<Station> stations = connection.Query<Station>(query).ToList();
+                return stations;
+            }
+        }
     }
 }

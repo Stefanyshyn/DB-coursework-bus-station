@@ -191,7 +191,7 @@
             this.tableLayoutPanel52 = new System.Windows.Forms.TableLayoutPanel();
             this.TripEditSearchButton = new System.Windows.Forms.Button();
             this.TripEditSearchTextBox = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TripDataGridView = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
             this.TripDeleteButton = new System.Windows.Forms.Button();
@@ -269,7 +269,7 @@
             this.tableLayoutPanel50.SuspendLayout();
             this.tableLayoutPanel51.SuspendLayout();
             this.tableLayoutPanel52.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).BeginInit();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel53.SuspendLayout();
             this.SuspendLayout();
@@ -2309,7 +2309,7 @@
             this.tableLayoutPanel46.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel46.Controls.Add(this.tableLayoutPanel47, 0, 1);
             this.tableLayoutPanel46.Controls.Add(this.tableLayoutPanel51, 0, 0);
-            this.tableLayoutPanel46.Controls.Add(this.dataGridView1, 0, 3);
+            this.tableLayoutPanel46.Controls.Add(this.TripDataGridView, 0, 3);
             this.tableLayoutPanel46.Controls.Add(this.panel4, 0, 2);
             this.tableLayoutPanel46.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel46.Location = new System.Drawing.Point(0, 0);
@@ -2514,6 +2514,7 @@
             this.TripEditSearchButton.TabIndex = 2;
             this.TripEditSearchButton.Text = "Search";
             this.TripEditSearchButton.UseVisualStyleBackColor = false;
+            this.TripEditSearchButton.Click += new System.EventHandler(this.TripEditSearchButton_Click);
             // 
             // TripEditSearchTextBox
             // 
@@ -2524,16 +2525,16 @@
             this.TripEditSearchTextBox.Size = new System.Drawing.Size(251, 27);
             this.TripEditSearchTextBox.TabIndex = 3;
             // 
-            // dataGridView1
+            // TripDataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 183);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(486, 130);
-            this.dataGridView1.TabIndex = 1;
+            this.TripDataGridView.AllowUserToAddRows = false;
+            this.TripDataGridView.AllowUserToDeleteRows = false;
+            this.TripDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TripDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripDataGridView.Location = new System.Drawing.Point(3, 183);
+            this.TripDataGridView.Name = "TripDataGridView";
+            this.TripDataGridView.Size = new System.Drawing.Size(486, 130);
+            this.TripDataGridView.TabIndex = 1;
             // 
             // panel4
             // 
@@ -2707,7 +2708,7 @@
             this.tableLayoutPanel51.ResumeLayout(false);
             this.tableLayoutPanel52.ResumeLayout(false);
             this.tableLayoutPanel52.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel53.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2878,7 +2879,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel52;
         private System.Windows.Forms.Button TripEditSearchButton;
         private System.Windows.Forms.TextBox TripEditSearchTextBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView TripDataGridView;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel53;
         private System.Windows.Forms.Button TripDeleteButton;

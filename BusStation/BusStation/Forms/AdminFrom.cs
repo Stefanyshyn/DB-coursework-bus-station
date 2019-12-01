@@ -152,26 +152,14 @@ namespace BusStation.Forms
 
         private void TripSearchButton_Click(object sender, EventArgs e)
         {
+            tripSearchString = TripEditSearchTextBox.Text;
             List<Trip> trips = new List<Trip>();
-            trips.Add( new Trip{
-                    Id = 1,
-                    Bus = new Bus { Id = 1},
-                    DateArrival = DateTime.Now,
-                    DateDeparture = DateTime.Now,
-                    StationFrom = "Ternopil ",
-                    StationTo = "Lviv",
-                    Distance = 30.2f,
-                });
-            trips.Add(new Trip
-            {
-                Id = 2,
-                Bus = new Bus { Id = 2 },
-                DateArrival = DateTime.Now,
-                DateDeparture = DateTime.Now,
-                StationTo = "Lviv",
-                StationFrom = "Ternopil ",
-                Distance = 13.2f,
-            });
+            TripAccess db = new TripAccess();
+
+            trips = db.GetManyBySelector(trip =>
+                trip.DateArrival.ToString().Contains(tripSearchString)
+                || trip.Id.ToString().Contains(tripSearchString)
+                || trip.Bus.Seats.ToString().Contains(tripSearchString));
 
             const int h = 100;
             const int widthSecondColumn = 160;
@@ -202,7 +190,7 @@ namespace BusStation.Forms
                 labelF.Location = new Point(5, 37);
 
                 Label stationF = new Label();
-                stationF.Text = trips[i].StationFrom;
+                stationF.Text = trips[i].getStation()[0].name;
                 stationF.AutoSize = true;
                 stationF.Size = new Size(100, 25);
                 stationF.Location = new Point(60, 37);
@@ -214,7 +202,7 @@ namespace BusStation.Forms
                 labelT.Location = new Point(5, TripPanel.Height - 30);
 
                 Label stationT = new Label();
-                stationT.Text = trips[i].StationTo;
+                stationT.Text = trips[i].getStation()[trips[i].getStation().Count-1].name;
                 stationT.AutoSize = true;
                 stationT.Size = new Size(100, 25);
                 stationT.Location = new Point(60, TripPanel.Height - 30);
@@ -226,7 +214,7 @@ namespace BusStation.Forms
                 dateDeparture.Location = new Point(widthSecondColumn, 5);
 
                 Label date = new Label();
-                date.Text = trips[i].DateDeparture.ToString();
+                date.Text = trips[i].DateArrival.ToString();
                 date.AutoSize = true;
                 date.Size = new Size(100, 25);
                 date.Location = new Point(widthSecondColumn + widthIntervalSecondColumn, 5);
@@ -917,7 +905,7 @@ namespace BusStation.Forms
 
             if (stopSearchString == null) stops = db.GetAll();
             else stops = db.GetManyBySelector(
-                stop => stop.bus.ToString() == stopSearchString
+                stop => stop.trip.Bus.ToString() == stopSearchString
                 || stop.station.name.Contains(stopSearchString)
                 || stop.distance.ToString().Contains(stopSearchString)
                 );
@@ -988,7 +976,7 @@ namespace BusStation.Forms
 
             if (stopSearchString == null) stops = db.GetAll();
             else stops = db.GetManyBySelector(
-                stop => stop.bus.ToString() == stopSearchString
+                stop => stop.trip.Bus.ToString().Contains(stopSearchString)
                 || stop.station.name.Contains(stopSearchString)
                 || stop.distance.ToString().Contains(stopSearchString)
                 );
@@ -1018,9 +1006,35 @@ namespace BusStation.Forms
                 int index = indexs.ElementAt<int>(i);
                 long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
                 StopAccess db = new StopAccess();
-                db.Delete(id);
+//db.Delete(id);
                 rows.RemoveAt(index);
             }
+        }
+
+        private void TripEditSearchButton_Click(object sender, EventArgs e)
+        {
+            tripSearchString = TripEditSearchTextBox.Text.Trim();
+            List<Trip> trips = new List<Trip>();
+
+            TripAccess db = new TripAccess();
+
+            if (tripSearchString == "") trips = db.GetAll();
+            else trips = db.GetManyBySelector(
+                trip => 
+                trip.Id.ToString().Contains(tripSearchString)
+                || trip.DateArrival.ToString().Contains(tripSearchString)
+                || trip.Bus.Id.ToString().Contains(tripSearchString)
+                || trip.Bus.Seats.ToString().Contains(tripSearchString)
+                );
+
+            DataGridView grid = TripDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = trips;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+
         }
     }
 }
