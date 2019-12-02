@@ -14,5 +14,6 @@ namespace BusStation.DAO
         List<Stop> GetManyBySelector(Predicate<Stop> match);
         void Add(Stop stop);
         void Delete(long id_trip, long id_station);
+        KeyValuePair<string, string> checkAddTime(TimeSpan time);
     }
 }

@@ -11,9 +11,10 @@ namespace BusStation.Models
     {
         public int Id { get; set; }
         public Bus Bus { get; set; }
-        private List<Station> stations = new List<Station>(); 
+        private List<Station> stations = new List<Station>();
         public DateTime DateArrival { get; set; }
-        public Trip(int id, int id_bus, DateTime datestart)
+        public DateTime DateDeparture { get; set; }
+        public Trip(int id, int id_bus, DateTime datestart, DateTime dateend)
         {
             this.Id = id;
             this.stations = this.fillStation(this.Id);
@@ -21,6 +22,7 @@ namespace BusStation.Models
             this.Bus = db.GetOne(id_bus);
 
             this.DateArrival = datestart;
+            this.DateDeparture = dateend;
         }
         public List<Station> getStation() {
             return this.stations;
@@ -30,6 +32,20 @@ namespace BusStation.Models
             TripAccess db = new TripAccess();
             var stations = db.GetTripStations(id);
             return stations;
+        }
+        public void Refresh()
+        {
+            this.stations = this.fillStation(this.Id);
+        }
+        public override string ToString()
+        {
+            return this.Id + "";
+        }
+        public bool CheckDateBeforeAdd(Trip trip) {
+            trip.Refresh();
+            var stations = trip.getStation();
+ //           var time = DateTime.stations[stations.Count-1] - stations[0];
+            return true;
         }
     }
 }

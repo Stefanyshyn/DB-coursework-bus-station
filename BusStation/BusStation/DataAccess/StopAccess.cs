@@ -17,13 +17,35 @@ namespace BusStation.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
                 string query = $"insert into Stop " +
-                    $"(id_trip, id_station,timestop,distance) " +
+                    $"(id_trip, id_station,timestart,distance) " +
                     $"values " +
                     $"({stop.trip.Id}, " +
                     $"{stop.station.id}, " +
                     $"CONVERT(time, '{stop.timestop}',120), " +
-                    $"12.1)";
+                    $"{stop.distance})";
                 connection.Execute(query);
+            }
+        }
+
+        public KeyValuePair<string, string> checkAddTime(TimeSpan time)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+
+                string query = $"select " +
+                $"date_min.m, date_max.m " +
+                  $"from Stop, " +
+                    $"(select " +
+                      $"  max(timestart) m " +
+                        $"from Stop " +
+                        $"where timestart <= CONVERT(time, '{time.ToString()}', 120) ) date_max, " +
+                   $" (select " +
+                        $"min(timestart) m " +
+                        $"from Stop " +
+                        $"where timestart >= CONVERT(time, '{time.ToString()}', 120)) date_min " +
+                        $"where id_trip = 1002; ";
+                var date = connection.Query<KeyValuePair<string, string>>(query).ToList();
+                return date[0];
             }
         }
 
@@ -31,7 +53,7 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"delete from Fullstop where id_trip = {id_trip} AND id_station = {id_station}";
+                string query = $"delete from Stop where id_trip = {id_trip} AND id_station = {id_station}";
                 connection.Execute(query);
             }
         }

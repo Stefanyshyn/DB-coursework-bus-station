@@ -32,6 +32,12 @@ namespace BusStation.Forms
 
             StopDateTimePicker.Format = DateTimePickerFormat.Custom;
             StopDateTimePicker.CustomFormat = "HH:mm";
+
+            TripDateStartEditTimePicker.Format = DateTimePickerFormat.Custom;
+            TripDateStartEditTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
+
+            TripDateEndEditDateTimePicker.Format = DateTimePickerFormat.Custom;
+            TripDateEndEditDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
         }
 
         private const int ADD_STATION_HEIGHT = 54;
@@ -39,11 +45,11 @@ namespace BusStation.Forms
         private const int ADD_USER_HEIGHT = 89;
         private const int ADD_TRIP_HEIGHT = 118;
 
-        private string userSearchEditString;
-        private string stationSearchString;
-        private string busSearchString;
-        private string tripSearchString;
-        private string stopSearchString;
+        private string userSearchEditString = "";
+        private string stationSearchString = "";
+        private string busSearchString = "";
+        private string tripSearchString = "";
+        private string stopSearchString = "";
         private User currentUser = null;
         private TableLayoutPanel currentDocument;
 
@@ -815,7 +821,6 @@ namespace BusStation.Forms
                 db.Delete(id);
                 rows.RemoveAt(index);
             }
-
         }
 
         private void BusUpdateButton_Click(object sender, EventArgs e)
@@ -886,17 +891,6 @@ namespace BusStation.Forms
             }
         }
 
-        private void StopBusComboBox_Click(object sender, EventArgs e)
-        {
-            BusAccess db = new BusAccess();
-            var buses = db.GetAll();
-            this.StopBusComboBox.Items.Clear();
-            for (int i = 0; i < buses.Count; ++i)
-            {
-                this.StopBusComboBox.Items.Add(buses[i].Id.ToString());
-            }
-        }
-
         private void StopSearchEditButton_Click(object sender, EventArgs e)
         {
             stopSearchString = StopSearchTextBox.Text.Trim();
@@ -923,44 +917,61 @@ namespace BusStation.Forms
         {
             string stationName = StopStationComboBox.Text.Trim();
             string busStr = StopBusComboBox.Text.Trim();
+            string distanceStr = StopDistanceTextBox.Text;
             TimeSpan timestart = new TimeSpan(
                 StopDateTimePicker.Value.Hour,
                 StopDateTimePicker.Value.Minute, 0);
-            if(stationName != "" && busStr != "")
+            if (stationName != "" && busStr != "" && distanceStr != "")
             {
                 int busId = -1;
+                double distance = -1;
                 try
                 {
                     busId = Convert.ToInt32(busStr);
+                    distance = Convert.ToInt32(busStr);
                 }
                 catch (Exception ex) { return; }
+                StationAccess dbS = new StationAccess();
+                int stationId = dbS.GetManyBySelector(station => station.name == stationName)[0].id;
 
-                Stop stop = new Stop(busId, -1, stationName, timestart, 20f);
+                Stop stop = new Stop(busId, stationId, stationName, timestart, distance);
                 StopAccess db = new StopAccess();
                 BindingSource source = (BindingSource)StopDataGridView.DataSource;
 
                 if ((source != null && source.List.Count == 0) || source == null)
                 {
                     List<Stop> stops = new List<Stop>();
+                    try
+                    {
+                        db.Add(stop);
+                        stops.Add(stop);
 
-                    db.Add(stop);
-                    stops.Add(stop);
-
-                    DataGridView grid = StopDataGridView;
-                    grid.Rows.Clear();
-                    BindingSource bind = new BindingSource();
-                    bind.DataSource = stops;
-                    grid.DataSource = bind;
+                        DataGridView grid = StopDataGridView;
+                        grid.Rows.Clear();
+                        BindingSource bind = new BindingSource();
+                        bind.DataSource = stops;
+                        grid.DataSource = bind;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"The Trip is exist    {ex.GetType().FullName}");
+                    }
 
                     EditStyleColumn(StopDataGridView);
                     return;
                 }
+                try
+                {
+                    db.Add(stop);
+                    source.List.Add(stop);
 
-                db.Add(stop);
-                source.List.Add(stop);
-
-                StopDataGridView.DataSource = null;
-                StopDataGridView.DataSource = source;
+                    StopDataGridView.DataSource = null;
+                    StopDataGridView.DataSource = source;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"The Trip is exist    {ex.GetType().FullName}");
+                }
 
                 EditStyleColumn(StopDataGridView);
 
@@ -1004,9 +1015,10 @@ namespace BusStation.Forms
             for (int i = indexs.Count - 1; i >= 0; --i)
             {
                 int index = indexs.ElementAt<int>(i);
-                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                long id_trip= Convert.ToInt64(((Trip)(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value)).Id);
+                long id_station = Convert.ToInt64(((Station)(((DataGridViewTextBoxCell)(rows[index].Cells[2])).Value)).id);
                 StopAccess db = new StopAccess();
-//db.Delete(id);
+                db.Delete(id_trip, id_station);
                 rows.RemoveAt(index);
             }
         }
@@ -1034,7 +1046,100 @@ namespace BusStation.Forms
             grid.DataSource = bind;
 
             EditStyleColumn(grid);
+        }
+
+        private void TripAddButton_Click(object sender, EventArgs e)
+        {
+            DateTime datestart = TripDateStartEditTimePicker.Value;
+            DateTime dateend = TripDateEndEditDateTimePicker.Value;
+            int id_bus = -1;
+            try
+            {
+                id_bus = Convert.ToInt32(TripBusComboBox.Text);
+            }
+            catch (Exception ex) { return; }
+            if (datestart != null && dateend != null && id_bus > 0)
+            {
+                if (datestart.ToString("yyyy-MM-dd HH:mm") == dateend.ToString("yyyy-MM-dd HH:mm")) return;
+                Trip trip = new Trip(-1, id_bus, datestart, dateend);
+                TripAccess db = new TripAccess();
+                try
+                {
+                    db.Add(trip);
+                    TripRefreshButton_Click(null, null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"The Trip is exist\n{ex.Message}");
+                }
+            }
 
         }
+
+        private void TripRefreshButton_Click(object sender, EventArgs e)
+        {
+            List<Trip> trips = new List<Trip>();
+
+            TripAccess db = new TripAccess();
+
+            if (tripSearchString == "") trips = db.GetAll();
+            else trips = db.GetManyBySelector(
+                trip =>
+                trip.Id.ToString().Contains(tripSearchString)
+                || trip.DateArrival.ToString().Contains(tripSearchString)
+                || trip.Bus.Id.ToString().Contains(tripSearchString)
+                || trip.Bus.Seats.ToString().Contains(tripSearchString)
+                );
+
+            DataGridView grid = TripDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = trips;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+        }
+
+        private void TripDeleteButton_Click(object sender, EventArgs e)
+        {
+            var rows = TripDataGridView.Rows;
+            List<int> indexs = new List<int>();
+            foreach (DataGridViewRow row in rows)
+            {
+                var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
+                if (a)
+                    indexs.Add(row.Index);
+            }
+            for (int i = indexs.Count - 1; i >= 0; --i)
+            {
+                int index = indexs.ElementAt<int>(i);
+                long id = Convert.ToInt64(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value);
+                TripAccess db = new TripAccess();
+                db.Delete(id);
+                rows.RemoveAt(index);
+            }
+        }
+
+        private void TripBusComboBox_Click(object sender, EventArgs e)
+        {
+            BusAccess db = new BusAccess();
+            var buses = db.GetAll();
+            ((ComboBox)sender).Items.Clear();
+            for (int i = 0; i < buses.Count; ++i)
+            {
+                ((ComboBox)sender).Items.Add(buses[i].Id);
+            }
+        }
+        private void StopTripComboBox_Click(object sender, EventArgs e)
+        {
+            TripAccess db = new TripAccess();
+            var trips = db.GetAll();
+            ((ComboBox)sender).Items.Clear();
+            for (int i = 0; i < trips.Count; ++i)
+            {
+                ((ComboBox)sender).Items.Add(trips[i].Id.ToString());
+            }
+        }
+
     }
 }

@@ -16,16 +16,35 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"insert into Trip " +
-                    $"(id, id_bus, datestart) " +
-                    $"values " +
-                    $"({trip.Id}, " +
-                    $"{trip.Bus.Id}, " +
-                    $"CONVERT(datetime, '{trip.DateArrival}',120) )";
-                connection.Execute(query);
+                if (this.checkAddTrip(trip)){
+                    string query = $"insert into Trip " +
+                       $"(id_bus, datestart, dateend) " +
+                       $"values " +
+                       $"({trip.Bus.Id}, " +
+                       $"CONVERT(datetime, '{trip.DateArrival.ToString("yyyy - MM - dd HH: mm")}',120), " +
+                       $"CONVERT(datetime, '{trip.DateDeparture.ToString("yyyy - MM - dd HH: mm")}',120) )";
+                    connection.Execute(query);
+                }
             }
         }
-
+        private bool checkAddTrip(Trip trip)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select * from  Trip t where id_bus = 1 " +
+                    $"and( " +
+                        $"(convert(datetime,'{trip.DateArrival.ToString("yyyy-MM-dd HH:mm")}',120) < t.datestart and convert(datetime,'{trip.DateArrival.ToString("yyyy-MM-dd HH:mm")}',120) < t.datestart) " +
+                        $"or " +
+                        $"(convert(datetime,'{trip.DateDeparture.ToString("yyyy-MM-dd HH:mm")}',120) > t.dateend and convert(datetime,'{trip.DateDeparture.ToString("yyyy-MM-dd HH:mm")}',120) > t.dateend) " +
+                    $") ";
+                
+                int all = this.GetAll().Count;
+                int selectDate = connection.Query<int>(query).ToList().Count;
+                
+                if (all == selectDate) return true;
+                return false;
+            }
+        }
         public void Delete(long id)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))

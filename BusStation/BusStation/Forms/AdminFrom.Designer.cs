@@ -34,6 +34,7 @@
             this.TicketButton = new System.Windows.Forms.Button();
             this.ProfileButton = new System.Windows.Forms.Button();
             this.LogOutButton = new System.Windows.Forms.Button();
+            this.BootButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Ticketpanel = new System.Windows.Forms.Panel();
@@ -161,7 +162,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.StopStationComboBox = new System.Windows.Forms.ComboBox();
             this.StopDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
             this.StopAddButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel54 = new System.Windows.Forms.TableLayoutPanel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.StopDistanceTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
             this.TripSwitcherButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -179,11 +184,10 @@
             this.tableLayoutPanel47 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel48 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel49 = new System.Windows.Forms.TableLayoutPanel();
+            this.TripBusComboBox = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.TripNametextBox = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.TripDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.TripAddButton = new System.Windows.Forms.Button();
+            this.TripDateStartEditTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel50 = new System.Windows.Forms.TableLayoutPanel();
             this.button5 = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -196,6 +200,11 @@
             this.tableLayoutPanel53 = new System.Windows.Forms.TableLayoutPanel();
             this.TripDeleteButton = new System.Windows.Forms.Button();
             this.TripRefreshButton = new System.Windows.Forms.Button();
+            this.TripAddButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel57 = new System.Windows.Forms.TableLayoutPanel();
+            this.TripDateEndEditDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label27 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel56 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -255,6 +264,8 @@
             this.tableLayoutPanel28.SuspendLayout();
             this.tableLayoutPanel29.SuspendLayout();
             this.tableLayoutPanel30.SuspendLayout();
+            this.tableLayoutPanel55.SuspendLayout();
+            this.tableLayoutPanel54.SuspendLayout();
             this.tableLayoutPanel31.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             this.tableLayoutPanel33.SuspendLayout();
@@ -272,20 +283,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).BeginInit();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel53.SuspendLayout();
+            this.tableLayoutPanel57.SuspendLayout();
+            this.tableLayoutPanel56.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnCount = 6;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel2.Controls.Add(this.EditButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TicketButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.ProfileButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.LogOutButton, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.LogOutButton, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BootButton, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -350,6 +365,19 @@
             this.LogOutButton.Text = "Log out";
             this.LogOutButton.UseVisualStyleBackColor = false;
             this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
+            // 
+            // BootButton
+            // 
+            this.BootButton.BackColor = System.Drawing.Color.White;
+            this.BootButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BootButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BootButton.Location = new System.Drawing.Point(303, 0);
+            this.BootButton.Margin = new System.Windows.Forms.Padding(0);
+            this.BootButton.Name = "BootButton";
+            this.BootButton.Size = new System.Drawing.Size(117, 47);
+            this.BootButton.TabIndex = 4;
+            this.BootButton.Text = "Edit data";
+            this.BootButton.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -1068,12 +1096,12 @@
             this.EditTabControl.Controls.Add(this.tabPage4);
             this.EditTabControl.Controls.Add(this.tabPage8);
             this.EditTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EditTabControl.Location = new System.Drawing.Point(145, 63);
+            this.EditTabControl.Location = new System.Drawing.Point(115, 63);
             this.EditTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.EditTabControl.Name = "EditTabControl";
             this.EditTabControl.Padding = new System.Drawing.Point(12, 3);
             this.EditTabControl.SelectedIndex = 0;
-            this.EditTabControl.Size = new System.Drawing.Size(500, 349);
+            this.EditTabControl.Size = new System.Drawing.Size(530, 349);
             this.EditTabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -2017,7 +2045,7 @@
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel29.Controls.Add(this.tableLayoutPanel30, 1, 0);
-            this.tableLayoutPanel29.Controls.Add(this.StopAddButton, 1, 1);
+            this.tableLayoutPanel29.Controls.Add(this.tableLayoutPanel55, 1, 1);
             this.tableLayoutPanel29.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel29.Location = new System.Drawing.Point(2, 27);
             this.tableLayoutPanel29.Margin = new System.Windows.Forms.Padding(0);
@@ -2060,7 +2088,7 @@
             this.StopBusComboBox.Name = "StopBusComboBox";
             this.StopBusComboBox.Size = new System.Drawing.Size(215, 28);
             this.StopBusComboBox.TabIndex = 9;
-            this.StopBusComboBox.Click += new System.EventHandler(this.StopBusComboBox_Click);
+            this.StopBusComboBox.Click += new System.EventHandler(this.StopTripComboBox_Click);
             // 
             // label11
             // 
@@ -2116,19 +2144,68 @@
             this.StopDateTimePicker.TabIndex = 10;
             this.StopDateTimePicker.Value = new System.DateTime(2019, 11, 21, 0, 0, 0, 0);
             // 
+            // tableLayoutPanel55
+            // 
+            this.tableLayoutPanel55.ColumnCount = 2;
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel55.Controls.Add(this.StopAddButton, 1, 0);
+            this.tableLayoutPanel55.Controls.Add(this.tableLayoutPanel54, 0, 0);
+            this.tableLayoutPanel55.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel55.Location = new System.Drawing.Point(73, 89);
+            this.tableLayoutPanel55.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel55.Name = "tableLayoutPanel55";
+            this.tableLayoutPanel55.RowCount = 1;
+            this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel55.Size = new System.Drawing.Size(341, 29);
+            this.tableLayoutPanel55.TabIndex = 10;
+            // 
             // StopAddButton
             // 
             this.StopAddButton.BackColor = System.Drawing.Color.White;
-            this.StopAddButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.StopAddButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StopAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StopAddButton.Location = new System.Drawing.Point(337, 89);
-            this.StopAddButton.Margin = new System.Windows.Forms.Padding(0);
+            this.StopAddButton.Location = new System.Drawing.Point(240, 0);
+            this.StopAddButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.StopAddButton.Name = "StopAddButton";
-            this.StopAddButton.Size = new System.Drawing.Size(77, 29);
+            this.StopAddButton.Size = new System.Drawing.Size(101, 29);
             this.StopAddButton.TabIndex = 8;
             this.StopAddButton.Text = "Add";
             this.StopAddButton.UseVisualStyleBackColor = false;
             this.StopAddButton.Click += new System.EventHandler(this.StopAddButton_Click);
+            // 
+            // tableLayoutPanel54
+            // 
+            this.tableLayoutPanel54.ColumnCount = 2;
+            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel54.Controls.Add(this.label29, 0, 0);
+            this.tableLayoutPanel54.Controls.Add(this.StopDistanceTextBox, 1, 0);
+            this.tableLayoutPanel54.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel54.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel54.Name = "tableLayoutPanel54";
+            this.tableLayoutPanel54.RowCount = 1;
+            this.tableLayoutPanel54.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel54.Size = new System.Drawing.Size(235, 29);
+            this.tableLayoutPanel54.TabIndex = 9;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(3, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 20);
+            this.label29.TabIndex = 4;
+            this.label29.Text = "Distance";
+            // 
+            // StopDistanceTextBox
+            // 
+            this.StopDistanceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StopDistanceTextBox.Location = new System.Drawing.Point(126, 0);
+            this.StopDistanceTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.StopDistanceTextBox.Name = "StopDistanceTextBox";
+            this.StopDistanceTextBox.Size = new System.Drawing.Size(109, 27);
+            this.StopDistanceTextBox.TabIndex = 5;
             // 
             // tableLayoutPanel31
             // 
@@ -2298,7 +2375,7 @@
             this.tabPage8.Controls.Add(this.tableLayoutPanel46);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(492, 316);
+            this.tabPage8.Size = new System.Drawing.Size(522, 316);
             this.tabPage8.TabIndex = 4;
             this.tabPage8.Text = "Trip";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -2321,7 +2398,7 @@
             this.tableLayoutPanel46.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel46.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel46.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel46.Size = new System.Drawing.Size(492, 316);
+            this.tableLayoutPanel46.Size = new System.Drawing.Size(522, 316);
             this.tableLayoutPanel46.TabIndex = 3;
             // 
             // tableLayoutPanel47
@@ -2339,7 +2416,7 @@
             this.tableLayoutPanel47.RowCount = 2;
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel47.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel47.Size = new System.Drawing.Size(492, 118);
+            this.tableLayoutPanel47.Size = new System.Drawing.Size(522, 118);
             this.tableLayoutPanel47.TabIndex = 5;
             // 
             // tableLayoutPanel48
@@ -2348,8 +2425,8 @@
             this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel48.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel48.Controls.Add(this.tableLayoutPanel56, 1, 1);
             this.tableLayoutPanel48.Controls.Add(this.tableLayoutPanel49, 1, 0);
-            this.tableLayoutPanel48.Controls.Add(this.TripAddButton, 1, 1);
             this.tableLayoutPanel48.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel48.Location = new System.Drawing.Point(2, 29);
             this.tableLayoutPanel48.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
@@ -2357,7 +2434,7 @@
             this.tableLayoutPanel48.RowCount = 2;
             this.tableLayoutPanel48.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel48.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11F));
-            this.tableLayoutPanel48.Size = new System.Drawing.Size(488, 87);
+            this.tableLayoutPanel48.Size = new System.Drawing.Size(518, 87);
             this.tableLayoutPanel48.TabIndex = 7;
             // 
             // tableLayoutPanel49
@@ -2365,19 +2442,32 @@
             this.tableLayoutPanel49.ColumnCount = 2;
             this.tableLayoutPanel49.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel49.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel49.Controls.Add(this.TripBusComboBox, 1, 0);
             this.tableLayoutPanel49.Controls.Add(this.label24, 0, 1);
-            this.tableLayoutPanel49.Controls.Add(this.TripNametextBox, 1, 0);
             this.tableLayoutPanel49.Controls.Add(this.label25, 0, 0);
-            this.tableLayoutPanel49.Controls.Add(this.TripDateTimePicker, 1, 1);
+            this.tableLayoutPanel49.Controls.Add(this.TripDateStartEditTimePicker, 1, 1);
             this.tableLayoutPanel49.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel49.Location = new System.Drawing.Point(73, 0);
+            this.tableLayoutPanel49.Location = new System.Drawing.Point(77, 0);
             this.tableLayoutPanel49.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel49.Name = "tableLayoutPanel49";
             this.tableLayoutPanel49.RowCount = 2;
             this.tableLayoutPanel49.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel49.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel49.Size = new System.Drawing.Size(341, 59);
+            this.tableLayoutPanel49.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel49.Size = new System.Drawing.Size(362, 59);
             this.tableLayoutPanel49.TabIndex = 1;
+            // 
+            // TripBusComboBox
+            // 
+            this.TripBusComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripBusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TripBusComboBox.FormattingEnabled = true;
+            this.TripBusComboBox.Location = new System.Drawing.Point(126, 0);
+            this.TripBusComboBox.Margin = new System.Windows.Forms.Padding(0);
+            this.TripBusComboBox.Name = "TripBusComboBox";
+            this.TripBusComboBox.Size = new System.Drawing.Size(236, 28);
+            this.TripBusComboBox.TabIndex = 9;
+            this.TripBusComboBox.Click += new System.EventHandler(this.TripBusComboBox_Click);
             // 
             // label24
             // 
@@ -2388,45 +2478,23 @@
             this.label24.TabIndex = 5;
             this.label24.Text = "Date Start";
             // 
-            // TripNametextBox
-            // 
-            this.TripNametextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TripNametextBox.Location = new System.Drawing.Point(126, 0);
-            this.TripNametextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.TripNametextBox.Name = "TripNametextBox";
-            this.TripNametextBox.Size = new System.Drawing.Size(215, 27);
-            this.TripNametextBox.TabIndex = 3;
-            // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(3, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(57, 20);
+            this.label25.Size = new System.Drawing.Size(42, 20);
             this.label25.TabIndex = 4;
-            this.label25.Text = "Name";
+            this.label25.Text = "Bus";
             // 
-            // TripDateTimePicker
+            // TripDateStartEditTimePicker
             // 
-            this.TripDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TripDateTimePicker.Location = new System.Drawing.Point(129, 32);
-            this.TripDateTimePicker.Name = "TripDateTimePicker";
-            this.TripDateTimePicker.Size = new System.Drawing.Size(209, 27);
-            this.TripDateTimePicker.TabIndex = 6;
-            this.TripDateTimePicker.Value = new System.DateTime(2019, 11, 30, 0, 0, 0, 0);
-            // 
-            // TripAddButton
-            // 
-            this.TripAddButton.BackColor = System.Drawing.Color.White;
-            this.TripAddButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TripAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TripAddButton.Location = new System.Drawing.Point(337, 59);
-            this.TripAddButton.Margin = new System.Windows.Forms.Padding(0);
-            this.TripAddButton.Name = "TripAddButton";
-            this.TripAddButton.Size = new System.Drawing.Size(77, 28);
-            this.TripAddButton.TabIndex = 8;
-            this.TripAddButton.Text = "Add";
-            this.TripAddButton.UseVisualStyleBackColor = false;
+            this.TripDateStartEditTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripDateStartEditTimePicker.Location = new System.Drawing.Point(129, 32);
+            this.TripDateStartEditTimePicker.Name = "TripDateStartEditTimePicker";
+            this.TripDateStartEditTimePicker.Size = new System.Drawing.Size(230, 27);
+            this.TripDateStartEditTimePicker.TabIndex = 6;
+            this.TripDateStartEditTimePicker.Value = new System.DateTime(2019, 11, 30, 0, 0, 0, 0);
             // 
             // tableLayoutPanel50
             // 
@@ -2441,14 +2509,14 @@
             this.tableLayoutPanel50.Name = "tableLayoutPanel50";
             this.tableLayoutPanel50.RowCount = 1;
             this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel50.Size = new System.Drawing.Size(488, 23);
+            this.tableLayoutPanel50.Size = new System.Drawing.Size(518, 23);
             this.tableLayoutPanel50.TabIndex = 0;
             // 
             // button5
             // 
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button5.Location = new System.Drawing.Point(464, 0);
+            this.button5.Location = new System.Drawing.Point(494, 0);
             this.button5.Margin = new System.Windows.Forms.Padding(0);
             this.button5.MaximumSize = new System.Drawing.Size(24, 24);
             this.button5.MinimumSize = new System.Drawing.Size(24, 24);
@@ -2480,7 +2548,7 @@
             this.tableLayoutPanel51.Name = "tableLayoutPanel51";
             this.tableLayoutPanel51.RowCount = 1;
             this.tableLayoutPanel51.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.28358F));
-            this.tableLayoutPanel51.Size = new System.Drawing.Size(492, 29);
+            this.tableLayoutPanel51.Size = new System.Drawing.Size(522, 29);
             this.tableLayoutPanel51.TabIndex = 0;
             // 
             // tableLayoutPanel52
@@ -2493,13 +2561,13 @@
             this.tableLayoutPanel52.Controls.Add(this.TripEditSearchButton, 1, 0);
             this.tableLayoutPanel52.Controls.Add(this.TripEditSearchTextBox, 0, 0);
             this.tableLayoutPanel52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel52.Location = new System.Drawing.Point(73, 0);
+            this.tableLayoutPanel52.Location = new System.Drawing.Point(78, 0);
             this.tableLayoutPanel52.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel52.Name = "tableLayoutPanel52";
             this.tableLayoutPanel52.RowCount = 1;
             this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel52.Size = new System.Drawing.Size(344, 29);
+            this.tableLayoutPanel52.Size = new System.Drawing.Size(365, 29);
             this.tableLayoutPanel52.TabIndex = 1;
             // 
             // TripEditSearchButton
@@ -2507,7 +2575,7 @@
             this.TripEditSearchButton.BackColor = System.Drawing.Color.White;
             this.TripEditSearchButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TripEditSearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TripEditSearchButton.Location = new System.Drawing.Point(263, 0);
+            this.TripEditSearchButton.Location = new System.Drawing.Point(284, 0);
             this.TripEditSearchButton.Margin = new System.Windows.Forms.Padding(0);
             this.TripEditSearchButton.Name = "TripEditSearchButton";
             this.TripEditSearchButton.Size = new System.Drawing.Size(81, 29);
@@ -2522,7 +2590,7 @@
             this.TripEditSearchTextBox.Location = new System.Drawing.Point(0, 0);
             this.TripEditSearchTextBox.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
             this.TripEditSearchTextBox.Name = "TripEditSearchTextBox";
-            this.TripEditSearchTextBox.Size = new System.Drawing.Size(251, 27);
+            this.TripEditSearchTextBox.Size = new System.Drawing.Size(272, 27);
             this.TripEditSearchTextBox.TabIndex = 3;
             // 
             // TripDataGridView
@@ -2533,7 +2601,7 @@
             this.TripDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TripDataGridView.Location = new System.Drawing.Point(3, 183);
             this.TripDataGridView.Name = "TripDataGridView";
-            this.TripDataGridView.Size = new System.Drawing.Size(486, 130);
+            this.TripDataGridView.Size = new System.Drawing.Size(516, 130);
             this.TripDataGridView.TabIndex = 1;
             // 
             // panel4
@@ -2543,7 +2611,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 152);
             this.panel4.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(492, 28);
+            this.panel4.Size = new System.Drawing.Size(522, 28);
             this.panel4.TabIndex = 6;
             // 
             // tableLayoutPanel53
@@ -2562,7 +2630,7 @@
             this.tableLayoutPanel53.Name = "tableLayoutPanel53";
             this.tableLayoutPanel53.RowCount = 1;
             this.tableLayoutPanel53.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel53.Size = new System.Drawing.Size(492, 28);
+            this.tableLayoutPanel53.Size = new System.Drawing.Size(522, 28);
             this.tableLayoutPanel53.TabIndex = 6;
             // 
             // TripDeleteButton
@@ -2577,6 +2645,7 @@
             this.TripDeleteButton.TabIndex = 5;
             this.TripDeleteButton.Text = "Delete";
             this.TripDeleteButton.UseVisualStyleBackColor = false;
+            this.TripDeleteButton.Click += new System.EventHandler(this.TripDeleteButton_Click);
             // 
             // TripRefreshButton
             // 
@@ -2590,6 +2659,71 @@
             this.TripRefreshButton.TabIndex = 3;
             this.TripRefreshButton.Text = "Refresh";
             this.TripRefreshButton.UseVisualStyleBackColor = false;
+            this.TripRefreshButton.Click += new System.EventHandler(this.TripRefreshButton_Click);
+            // 
+            // TripAddButton
+            // 
+            this.TripAddButton.BackColor = System.Drawing.Color.White;
+            this.TripAddButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TripAddButton.Location = new System.Drawing.Point(286, 0);
+            this.TripAddButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.TripAddButton.Name = "TripAddButton";
+            this.TripAddButton.Size = new System.Drawing.Size(76, 28);
+            this.TripAddButton.TabIndex = 8;
+            this.TripAddButton.Text = "Add";
+            this.TripAddButton.UseVisualStyleBackColor = false;
+            this.TripAddButton.Click += new System.EventHandler(this.TripAddButton_Click);
+            // 
+            // tableLayoutPanel57
+            // 
+            this.tableLayoutPanel57.ColumnCount = 2;
+            this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.tableLayoutPanel57.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel57.Controls.Add(this.label27, 0, 0);
+            this.tableLayoutPanel57.Controls.Add(this.TripDateEndEditDateTimePicker, 1, 0);
+            this.tableLayoutPanel57.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel57.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel57.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel57.Name = "tableLayoutPanel57";
+            this.tableLayoutPanel57.RowCount = 1;
+            this.tableLayoutPanel57.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel57.Size = new System.Drawing.Size(281, 28);
+            this.tableLayoutPanel57.TabIndex = 12;
+            // 
+            // TripDateEndEditDateTimePicker
+            // 
+            this.TripDateEndEditDateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TripDateEndEditDateTimePicker.Location = new System.Drawing.Point(130, 3);
+            this.TripDateEndEditDateTimePicker.Name = "TripDateEndEditDateTimePicker";
+            this.TripDateEndEditDateTimePicker.Size = new System.Drawing.Size(148, 27);
+            this.TripDateEndEditDateTimePicker.TabIndex = 7;
+            this.TripDateEndEditDateTimePicker.Value = new System.DateTime(2019, 11, 30, 0, 0, 0, 0);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(3, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(87, 20);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "Date End";
+            // 
+            // tableLayoutPanel56
+            // 
+            this.tableLayoutPanel56.ColumnCount = 2;
+            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel56.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel56.Controls.Add(this.tableLayoutPanel57, 0, 0);
+            this.tableLayoutPanel56.Controls.Add(this.TripAddButton, 1, 0);
+            this.tableLayoutPanel56.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel56.Location = new System.Drawing.Point(77, 59);
+            this.tableLayoutPanel56.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel56.Name = "tableLayoutPanel56";
+            this.tableLayoutPanel56.RowCount = 1;
+            this.tableLayoutPanel56.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel56.Size = new System.Drawing.Size(362, 28);
+            this.tableLayoutPanel56.TabIndex = 11;
             // 
             // AdminFrom
             // 
@@ -2688,6 +2822,9 @@
             this.tableLayoutPanel29.ResumeLayout(false);
             this.tableLayoutPanel30.ResumeLayout(false);
             this.tableLayoutPanel30.PerformLayout();
+            this.tableLayoutPanel55.ResumeLayout(false);
+            this.tableLayoutPanel54.ResumeLayout(false);
+            this.tableLayoutPanel54.PerformLayout();
             this.tableLayoutPanel31.ResumeLayout(false);
             this.tableLayoutPanel31.PerformLayout();
             this.tableLayoutPanel32.ResumeLayout(false);
@@ -2711,6 +2848,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.TripDataGridView)).EndInit();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel53.ResumeLayout(false);
+            this.tableLayoutPanel57.ResumeLayout(false);
+            this.tableLayoutPanel57.PerformLayout();
+            this.tableLayoutPanel56.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2868,10 +3008,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel48;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel49;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox TripNametextBox;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.DateTimePicker TripDateTimePicker;
-        private System.Windows.Forms.Button TripAddButton;
+        private System.Windows.Forms.DateTimePicker TripDateStartEditTimePicker;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel50;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label26;
@@ -2884,5 +3022,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel53;
         private System.Windows.Forms.Button TripDeleteButton;
         private System.Windows.Forms.Button TripRefreshButton;
+        private System.Windows.Forms.ComboBox TripBusComboBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel55;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel54;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox StopDistanceTextBox;
+        private System.Windows.Forms.Button BootButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel56;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel57;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DateTimePicker TripDateEndEditDateTimePicker;
+        private System.Windows.Forms.Button TripAddButton;
     }
 }
