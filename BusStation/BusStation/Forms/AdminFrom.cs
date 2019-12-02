@@ -31,7 +31,7 @@ namespace BusStation.Forms
             ProfileAdminTabControl.Visible = false;
 
             StopDateTimePicker.Format = DateTimePickerFormat.Custom;
-            StopDateTimePicker.CustomFormat = "HH:mm";
+            StopDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
 
             TripDateStartEditTimePicker.Format = DateTimePickerFormat.Custom;
             TripDateStartEditTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
@@ -1060,6 +1060,11 @@ namespace BusStation.Forms
             catch (Exception ex) { return; }
             if (datestart != null && dateend != null && id_bus > 0)
             {
+                if (DateTime.Now < datestart && DateTime.Now < dateend && datestart < dateend)
+                {
+                    MessageBox.Show("Incorrected datetime values");
+                    return;
+                }
                 if (datestart.ToString("yyyy-MM-dd HH:mm") == dateend.ToString("yyyy-MM-dd HH:mm")) return;
                 Trip trip = new Trip(-1, id_bus, datestart, dateend);
                 TripAccess db = new TripAccess();

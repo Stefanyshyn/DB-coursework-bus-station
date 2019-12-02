@@ -162,11 +162,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.StopStationComboBox = new System.Windows.Forms.ComboBox();
             this.StopDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
-            this.StopAddButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel54 = new System.Windows.Forms.TableLayoutPanel();
-            this.label29 = new System.Windows.Forms.Label();
-            this.StopDistanceTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
             this.TripSwitcherButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -205,6 +200,11 @@
             this.TripDateEndEditDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label27 = new System.Windows.Forms.Label();
             this.tableLayoutPanel56 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel54 = new System.Windows.Forms.TableLayoutPanel();
+            this.StopDistanceTextBox = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.StopAddButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel55 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -264,8 +264,6 @@
             this.tableLayoutPanel28.SuspendLayout();
             this.tableLayoutPanel29.SuspendLayout();
             this.tableLayoutPanel30.SuspendLayout();
-            this.tableLayoutPanel55.SuspendLayout();
-            this.tableLayoutPanel54.SuspendLayout();
             this.tableLayoutPanel31.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             this.tableLayoutPanel33.SuspendLayout();
@@ -285,6 +283,8 @@
             this.tableLayoutPanel53.SuspendLayout();
             this.tableLayoutPanel57.SuspendLayout();
             this.tableLayoutPanel56.SuspendLayout();
+            this.tableLayoutPanel54.SuspendLayout();
+            this.tableLayoutPanel55.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -584,7 +584,7 @@
             this.ProfileAdminTabControl.Controls.Add(this.tabPage6);
             this.ProfileAdminTabControl.Controls.Add(this.tabPage7);
             this.ProfileAdminTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProfileAdminTabControl.Location = new System.Drawing.Point(57, 124);
+            this.ProfileAdminTabControl.Location = new System.Drawing.Point(9, 79);
             this.ProfileAdminTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.ProfileAdminTabControl.Name = "ProfileAdminTabControl";
             this.ProfileAdminTabControl.Padding = new System.Drawing.Point(12, 3);
@@ -1995,7 +1995,7 @@
             this.tabPage4.Controls.Add(this.tableLayoutPanel27);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(492, 316);
+            this.tabPage4.Size = new System.Drawing.Size(522, 316);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stop";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2017,7 +2017,7 @@
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(492, 316);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(522, 316);
             this.tableLayoutPanel27.TabIndex = 3;
             // 
             // tableLayoutPanel28
@@ -2035,7 +2035,7 @@
             this.tableLayoutPanel28.RowCount = 2;
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel28.Size = new System.Drawing.Size(492, 149);
+            this.tableLayoutPanel28.Size = new System.Drawing.Size(522, 149);
             this.tableLayoutPanel28.TabIndex = 5;
             // 
             // tableLayoutPanel29
@@ -2053,7 +2053,7 @@
             this.tableLayoutPanel29.RowCount = 2;
             this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel29.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel29.Size = new System.Drawing.Size(488, 118);
+            this.tableLayoutPanel29.Size = new System.Drawing.Size(518, 118);
             this.tableLayoutPanel29.TabIndex = 7;
             // 
             // tableLayoutPanel30
@@ -2068,14 +2068,14 @@
             this.tableLayoutPanel30.Controls.Add(this.StopStationComboBox, 1, 0);
             this.tableLayoutPanel30.Controls.Add(this.StopDateTimePicker, 1, 2);
             this.tableLayoutPanel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel30.Location = new System.Drawing.Point(73, 0);
+            this.tableLayoutPanel30.Location = new System.Drawing.Point(77, 0);
             this.tableLayoutPanel30.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel30.Name = "tableLayoutPanel30";
             this.tableLayoutPanel30.RowCount = 3;
             this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel30.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel30.Size = new System.Drawing.Size(341, 89);
+            this.tableLayoutPanel30.Size = new System.Drawing.Size(362, 89);
             this.tableLayoutPanel30.TabIndex = 1;
             // 
             // StopBusComboBox
@@ -2086,7 +2086,7 @@
             this.StopBusComboBox.Location = new System.Drawing.Point(126, 29);
             this.StopBusComboBox.Margin = new System.Windows.Forms.Padding(0);
             this.StopBusComboBox.Name = "StopBusComboBox";
-            this.StopBusComboBox.Size = new System.Drawing.Size(215, 28);
+            this.StopBusComboBox.Size = new System.Drawing.Size(236, 28);
             this.StopBusComboBox.TabIndex = 9;
             this.StopBusComboBox.Click += new System.EventHandler(this.StopTripComboBox_Click);
             // 
@@ -2127,7 +2127,7 @@
             this.StopStationComboBox.Location = new System.Drawing.Point(126, 0);
             this.StopStationComboBox.Margin = new System.Windows.Forms.Padding(0);
             this.StopStationComboBox.Name = "StopStationComboBox";
-            this.StopStationComboBox.Size = new System.Drawing.Size(215, 28);
+            this.StopStationComboBox.Size = new System.Drawing.Size(236, 28);
             this.StopStationComboBox.TabIndex = 8;
             this.StopStationComboBox.Click += new System.EventHandler(this.StopStationComboBox_Click);
             // 
@@ -2140,72 +2140,9 @@
             this.StopDateTimePicker.Margin = new System.Windows.Forms.Padding(0);
             this.StopDateTimePicker.MaxDate = new System.DateTime(2021, 7, 10, 0, 0, 0, 0);
             this.StopDateTimePicker.Name = "StopDateTimePicker";
-            this.StopDateTimePicker.Size = new System.Drawing.Size(215, 27);
+            this.StopDateTimePicker.Size = new System.Drawing.Size(236, 27);
             this.StopDateTimePicker.TabIndex = 10;
             this.StopDateTimePicker.Value = new System.DateTime(2019, 11, 21, 0, 0, 0, 0);
-            // 
-            // tableLayoutPanel55
-            // 
-            this.tableLayoutPanel55.ColumnCount = 2;
-            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel55.Controls.Add(this.StopAddButton, 1, 0);
-            this.tableLayoutPanel55.Controls.Add(this.tableLayoutPanel54, 0, 0);
-            this.tableLayoutPanel55.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel55.Location = new System.Drawing.Point(73, 89);
-            this.tableLayoutPanel55.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel55.Name = "tableLayoutPanel55";
-            this.tableLayoutPanel55.RowCount = 1;
-            this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel55.Size = new System.Drawing.Size(341, 29);
-            this.tableLayoutPanel55.TabIndex = 10;
-            // 
-            // StopAddButton
-            // 
-            this.StopAddButton.BackColor = System.Drawing.Color.White;
-            this.StopAddButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StopAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StopAddButton.Location = new System.Drawing.Point(240, 0);
-            this.StopAddButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.StopAddButton.Name = "StopAddButton";
-            this.StopAddButton.Size = new System.Drawing.Size(101, 29);
-            this.StopAddButton.TabIndex = 8;
-            this.StopAddButton.Text = "Add";
-            this.StopAddButton.UseVisualStyleBackColor = false;
-            this.StopAddButton.Click += new System.EventHandler(this.StopAddButton_Click);
-            // 
-            // tableLayoutPanel54
-            // 
-            this.tableLayoutPanel54.ColumnCount = 2;
-            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
-            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel54.Controls.Add(this.label29, 0, 0);
-            this.tableLayoutPanel54.Controls.Add(this.StopDistanceTextBox, 1, 0);
-            this.tableLayoutPanel54.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel54.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel54.Name = "tableLayoutPanel54";
-            this.tableLayoutPanel54.RowCount = 1;
-            this.tableLayoutPanel54.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel54.Size = new System.Drawing.Size(235, 29);
-            this.tableLayoutPanel54.TabIndex = 9;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(3, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(84, 20);
-            this.label29.TabIndex = 4;
-            this.label29.Text = "Distance";
-            // 
-            // StopDistanceTextBox
-            // 
-            this.StopDistanceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StopDistanceTextBox.Location = new System.Drawing.Point(126, 0);
-            this.StopDistanceTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.StopDistanceTextBox.Name = "StopDistanceTextBox";
-            this.StopDistanceTextBox.Size = new System.Drawing.Size(109, 27);
-            this.StopDistanceTextBox.TabIndex = 5;
             // 
             // tableLayoutPanel31
             // 
@@ -2220,14 +2157,14 @@
             this.tableLayoutPanel31.Name = "tableLayoutPanel31";
             this.tableLayoutPanel31.RowCount = 1;
             this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel31.Size = new System.Drawing.Size(488, 23);
+            this.tableLayoutPanel31.Size = new System.Drawing.Size(518, 23);
             this.tableLayoutPanel31.TabIndex = 0;
             // 
             // TripSwitcherButton
             // 
             this.TripSwitcherButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TripSwitcherButton.BackgroundImage")));
             this.TripSwitcherButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TripSwitcherButton.Location = new System.Drawing.Point(464, 0);
+            this.TripSwitcherButton.Location = new System.Drawing.Point(494, 0);
             this.TripSwitcherButton.Margin = new System.Windows.Forms.Padding(0);
             this.TripSwitcherButton.MaximumSize = new System.Drawing.Size(24, 24);
             this.TripSwitcherButton.MinimumSize = new System.Drawing.Size(24, 24);
@@ -2260,7 +2197,7 @@
             this.tableLayoutPanel32.Name = "tableLayoutPanel32";
             this.tableLayoutPanel32.RowCount = 1;
             this.tableLayoutPanel32.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.28358F));
-            this.tableLayoutPanel32.Size = new System.Drawing.Size(492, 29);
+            this.tableLayoutPanel32.Size = new System.Drawing.Size(522, 29);
             this.tableLayoutPanel32.TabIndex = 0;
             // 
             // tableLayoutPanel33
@@ -2273,13 +2210,13 @@
             this.tableLayoutPanel33.Controls.Add(this.StopSearchEditButton, 1, 0);
             this.tableLayoutPanel33.Controls.Add(this.StopSearchTextBox, 0, 0);
             this.tableLayoutPanel33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel33.Location = new System.Drawing.Point(73, 0);
+            this.tableLayoutPanel33.Location = new System.Drawing.Point(78, 0);
             this.tableLayoutPanel33.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel33.Name = "tableLayoutPanel33";
             this.tableLayoutPanel33.RowCount = 1;
             this.tableLayoutPanel33.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel33.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel33.Size = new System.Drawing.Size(344, 29);
+            this.tableLayoutPanel33.Size = new System.Drawing.Size(365, 29);
             this.tableLayoutPanel33.TabIndex = 1;
             // 
             // StopSearchEditButton
@@ -2287,7 +2224,7 @@
             this.StopSearchEditButton.BackColor = System.Drawing.Color.White;
             this.StopSearchEditButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StopSearchEditButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.StopSearchEditButton.Location = new System.Drawing.Point(263, 0);
+            this.StopSearchEditButton.Location = new System.Drawing.Point(284, 0);
             this.StopSearchEditButton.Margin = new System.Windows.Forms.Padding(0);
             this.StopSearchEditButton.Name = "StopSearchEditButton";
             this.StopSearchEditButton.Size = new System.Drawing.Size(81, 29);
@@ -2302,7 +2239,7 @@
             this.StopSearchTextBox.Location = new System.Drawing.Point(0, 0);
             this.StopSearchTextBox.Margin = new System.Windows.Forms.Padding(0, 0, 12, 0);
             this.StopSearchTextBox.Name = "StopSearchTextBox";
-            this.StopSearchTextBox.Size = new System.Drawing.Size(251, 27);
+            this.StopSearchTextBox.Size = new System.Drawing.Size(272, 27);
             this.StopSearchTextBox.TabIndex = 3;
             // 
             // StopDataGridView
@@ -2311,7 +2248,7 @@
             this.StopDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StopDataGridView.Location = new System.Drawing.Point(3, 218);
             this.StopDataGridView.Name = "StopDataGridView";
-            this.StopDataGridView.Size = new System.Drawing.Size(486, 95);
+            this.StopDataGridView.Size = new System.Drawing.Size(516, 95);
             this.StopDataGridView.TabIndex = 1;
             // 
             // panel3
@@ -2321,7 +2258,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 183);
             this.panel3.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(492, 32);
+            this.panel3.Size = new System.Drawing.Size(522, 32);
             this.panel3.TabIndex = 6;
             // 
             // tableLayoutPanel34
@@ -2339,7 +2276,7 @@
             this.tableLayoutPanel34.Name = "tableLayoutPanel34";
             this.tableLayoutPanel34.RowCount = 1;
             this.tableLayoutPanel34.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel34.Size = new System.Drawing.Size(492, 32);
+            this.tableLayoutPanel34.Size = new System.Drawing.Size(522, 32);
             this.tableLayoutPanel34.TabIndex = 6;
             // 
             // StopDeleteButton
@@ -2725,6 +2662,70 @@
             this.tableLayoutPanel56.Size = new System.Drawing.Size(362, 28);
             this.tableLayoutPanel56.TabIndex = 11;
             // 
+            // tableLayoutPanel54
+            // 
+            this.tableLayoutPanel54.ColumnCount = 2;
+            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel54.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel54.Controls.Add(this.label29, 0, 0);
+            this.tableLayoutPanel54.Controls.Add(this.StopDistanceTextBox, 1, 0);
+            this.tableLayoutPanel54.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel54.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel54.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel54.Name = "tableLayoutPanel54";
+            this.tableLayoutPanel54.RowCount = 1;
+            this.tableLayoutPanel54.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel54.Size = new System.Drawing.Size(256, 29);
+            this.tableLayoutPanel54.TabIndex = 9;
+            // 
+            // StopDistanceTextBox
+            // 
+            this.StopDistanceTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StopDistanceTextBox.Location = new System.Drawing.Point(126, 0);
+            this.StopDistanceTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.StopDistanceTextBox.Name = "StopDistanceTextBox";
+            this.StopDistanceTextBox.Size = new System.Drawing.Size(130, 27);
+            this.StopDistanceTextBox.TabIndex = 5;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(3, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 20);
+            this.label29.TabIndex = 4;
+            this.label29.Text = "Distance";
+            // 
+            // StopAddButton
+            // 
+            this.StopAddButton.BackColor = System.Drawing.Color.White;
+            this.StopAddButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StopAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.StopAddButton.Location = new System.Drawing.Point(261, 0);
+            this.StopAddButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.StopAddButton.Name = "StopAddButton";
+            this.StopAddButton.Size = new System.Drawing.Size(101, 29);
+            this.StopAddButton.TabIndex = 8;
+            this.StopAddButton.Text = "Add";
+            this.StopAddButton.UseVisualStyleBackColor = false;
+            this.StopAddButton.Click += new System.EventHandler(this.StopAddButton_Click);
+            // 
+            // tableLayoutPanel55
+            // 
+            this.tableLayoutPanel55.ColumnCount = 2;
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel55.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel55.Controls.Add(this.StopAddButton, 1, 0);
+            this.tableLayoutPanel55.Controls.Add(this.tableLayoutPanel54, 0, 0);
+            this.tableLayoutPanel55.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel55.Location = new System.Drawing.Point(77, 89);
+            this.tableLayoutPanel55.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel55.Name = "tableLayoutPanel55";
+            this.tableLayoutPanel55.RowCount = 1;
+            this.tableLayoutPanel55.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel55.Size = new System.Drawing.Size(362, 29);
+            this.tableLayoutPanel55.TabIndex = 10;
+            // 
             // AdminFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2822,9 +2823,6 @@
             this.tableLayoutPanel29.ResumeLayout(false);
             this.tableLayoutPanel30.ResumeLayout(false);
             this.tableLayoutPanel30.PerformLayout();
-            this.tableLayoutPanel55.ResumeLayout(false);
-            this.tableLayoutPanel54.ResumeLayout(false);
-            this.tableLayoutPanel54.PerformLayout();
             this.tableLayoutPanel31.ResumeLayout(false);
             this.tableLayoutPanel31.PerformLayout();
             this.tableLayoutPanel32.ResumeLayout(false);
@@ -2851,6 +2849,9 @@
             this.tableLayoutPanel57.ResumeLayout(false);
             this.tableLayoutPanel57.PerformLayout();
             this.tableLayoutPanel56.ResumeLayout(false);
+            this.tableLayoutPanel54.ResumeLayout(false);
+            this.tableLayoutPanel54.PerformLayout();
+            this.tableLayoutPanel55.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2937,7 +2938,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox StopStationComboBox;
-        private System.Windows.Forms.Button StopAddButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel31;
         private System.Windows.Forms.Button TripSwitcherButton;
         private System.Windows.Forms.Label label10;
@@ -3023,15 +3023,16 @@
         private System.Windows.Forms.Button TripDeleteButton;
         private System.Windows.Forms.Button TripRefreshButton;
         private System.Windows.Forms.ComboBox TripBusComboBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel55;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel54;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox StopDistanceTextBox;
         private System.Windows.Forms.Button BootButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel56;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel57;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DateTimePicker TripDateEndEditDateTimePicker;
         private System.Windows.Forms.Button TripAddButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel55;
+        private System.Windows.Forms.Button StopAddButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel54;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox StopDistanceTextBox;
     }
 }
