@@ -10,9 +10,9 @@ namespace BusStation.Models
     {
         public Trip trip { get; set; }
         public Station station { get; set; }
-        public TimeSpan timestop { get; set; }
+        public DateTime timestop { get; set; }
         public double distance { get; set; }
-        public Stop(int id_trip, int id_station, string name_station, TimeSpan timestop, double distance)
+        public Stop(int id_trip, int id_station, string name_station, DateTime timestop, double distance)
         {
             TripAccess db = new TripAccess();
             this.trip = db.GetOne(id_trip);

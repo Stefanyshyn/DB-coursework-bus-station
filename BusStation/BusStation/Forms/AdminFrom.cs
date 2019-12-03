@@ -899,8 +899,8 @@ namespace BusStation.Forms
 
             if (stopSearchString == null) stops = db.GetAll();
             else stops = db.GetManyBySelector(
-                stop => stop.trip.Bus.ToString() == stopSearchString
-                || stop.station.name.Contains(stopSearchString)
+                stop => stop.trip.Bus.ToString().Contains(stopSearchString)
+                || stop.station.name.ToString().Contains(stopSearchString)
                 || stop.distance.ToString().Contains(stopSearchString)
                 );
 
@@ -916,25 +916,24 @@ namespace BusStation.Forms
         private void StopAddButton_Click(object sender, EventArgs e)
         {
             string stationName = StopStationComboBox.Text.Trim();
-            string busStr = StopBusComboBox.Text.Trim();
+            string tripStr = StopBusComboBox.Text.Trim();
             string distanceStr = StopDistanceTextBox.Text;
-            TimeSpan timestart = new TimeSpan(
-                StopDateTimePicker.Value.Hour,
-                StopDateTimePicker.Value.Minute, 0);
-            if (stationName != "" && busStr != "" && distanceStr != "")
+            DateTime timestart = StopDateTimePicker.Value;
+            if (stationName != "" && tripStr != "" && distanceStr != "")
             {
-                int busId = -1;
+                int tripId = -1;
                 double distance = -1;
                 try
                 {
-                    busId = Convert.ToInt32(busStr);
-                    distance = Convert.ToInt32(busStr);
+                    tripId = Convert.ToInt32(tripStr);
+                    distance = Convert.ToDouble(distanceStr);
                 }
                 catch (Exception ex) { return; }
+                
                 StationAccess dbS = new StationAccess();
                 int stationId = dbS.GetManyBySelector(station => station.name == stationName)[0].id;
 
-                Stop stop = new Stop(busId, stationId, stationName, timestart, distance);
+                Stop stop = new Stop(tripId, stationId, stationName, timestart, distance);
                 StopAccess db = new StopAccess();
                 BindingSource source = (BindingSource)StopDataGridView.DataSource;
 
@@ -970,7 +969,7 @@ namespace BusStation.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"The Trip is exist    {ex.GetType().FullName}");
+                    MessageBox.Show($"{ex.Message}");
                 }
 
                 EditStyleColumn(StopDataGridView);

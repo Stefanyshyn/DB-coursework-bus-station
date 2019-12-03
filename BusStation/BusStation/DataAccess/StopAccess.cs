@@ -14,38 +14,49 @@ namespace BusStation.DataAccess
     {
         public void Add(Stop stop)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"insert into Stop " +
-                    $"(id_trip, id_station,timestart,distance) " +
-                    $"values " +
-                    $"({stop.trip.Id}, " +
-                    $"{stop.station.id}, " +
-                    $"CONVERT(time, '{stop.timestop}',120), " +
-                    $"{stop.distance})";
-                connection.Execute(query);
+                if (checkAddStop(stop.trip, stop.timestop))
+                {
+                    string query = $"insert into Stop " +
+                        $"(id_trip, id_station,timestart,distance) " +
+                        $"values " +
+                        $"({stop.trip.Id}, " +
+                        $"{stop.station.id}, " +
+                        $"CONVERT(datetime, '{stop.timestop.ToString("yyyy-MM-dd HH:mm")}',120), " +
+                        $"{stop.distance})";
+                    connection.Execute(query);
+                }
+                else throw new Exception("Incorrect datetime stop");
             }
         }
 
-        public KeyValuePair<string, string> checkAddTime(TimeSpan time)
+        public bool checkAddStop(Trip trip, DateTime time)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
+                string query = $"select * from Stop s," +
+                    $"(select min(t.datestart) dstart, max(t.dateend) dend from Trip t " +
+                        $"where t.id = 3006 " +
+                    $") datetrip " +
+                    $"where s.id_trip = {trip.Id} " +
+                    $"and ( " +
+                        $"convert(datetime, '{time.ToString("yyyy-MM-dd HH:mm")}',120) not in " +
+                        $"(select s.timestart from Stop s where s.id_trip = {trip.Id}))" +
+                    $"and " +
+                    $"(datetrip.dstart " +
+                    $"<= " +
+                    $"convert(datetime, '{time.ToString( "yyyy-MM-dd HH:mm") }', 120) " +
+                    $"and " +
+                    $"convert(datetime, '{time.ToString("yyyy-MM-dd HH:mm")}', 120) " +
+                    $"<= " +
+                    $"datetrip.dend " +
+                    $")";
+                int all = this.GetAll().Count;
+                int selectDate = connection.Query<int>(query).ToList().Count;
 
-                string query = $"select " +
-                $"date_min.m, date_max.m " +
-                  $"from Stop, " +
-                    $"(select " +
-                      $"  max(timestart) m " +
-                        $"from Stop " +
-                        $"where timestart <= CONVERT(time, '{time.ToString()}', 120) ) date_max, " +
-                   $" (select " +
-                        $"min(timestart) m " +
-                        $"from Stop " +
-                        $"where timestart >= CONVERT(time, '{time.ToString()}', 120)) date_min " +
-                        $"where id_trip = 1002; ";
-                var date = connection.Query<KeyValuePair<string, string>>(query).ToList();
-                return date[0];
+                if (all == selectDate) return true;
+                return false;
             }
         }
 
