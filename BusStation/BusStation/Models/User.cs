@@ -15,7 +15,7 @@ namespace BusStation.Models
         public DateTime CreateAt { get; set; }
 
         private Profile profile = null;
-
+        public Document Document { get; set; }
         public User(int id, string username, string password, string firstName, string lastName, DateTime createAt)
         {
             this.Id = id;
@@ -23,6 +23,7 @@ namespace BusStation.Models
             this.Password = password.Trim();
             this.profile = createProfile(firstName == null? "":firstName.Trim(), lastName == null ? "" : lastName.Trim());
             this.CreateAt = createAt;
+            this.Document = getDocument(id);
         }
         public User(int id, string username, string password, DateTime createAt)
         {
@@ -31,6 +32,7 @@ namespace BusStation.Models
             this.Password = password.Trim();
             this.profile = null;
             this.CreateAt = createAt;
+            this.Document = getDocument(id);
         }
         private Profile createProfile(string firstname, string lastname)
         {
@@ -39,6 +41,20 @@ namespace BusStation.Models
 
             return profile;
         }
+        private Document getDocument(int id)
+        {
+            try
+            {
+                DocumentAccess db = new DocumentAccess();
+                Document document = db.GetOne(id);
+                return document;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public Profile getProfile()
         {
             return this.profile;

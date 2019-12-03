@@ -17,9 +17,9 @@ namespace BusStation.Forms
         public AdminFrom(User user = null)
         {
             currentUser = user;
-           if(user == null)
+            if (user == null)
             {
-                currentUser = new User(0,"1","1","Ivan", "Stefanyshyn", DateTime.Now);
+                currentUser = new User(0, "1", "1", "Ivan", "Stefanyshyn", DateTime.Now);
 
             }
             InitializeComponent();
@@ -76,7 +76,7 @@ namespace BusStation.Forms
         {
             if (grid.Columns.Count > 0 && !(grid.Columns[0] is DataGridViewCheckBoxColumn))
                 grid.Columns.Insert(0, new DataGridViewCheckBoxColumn());
-            
+
             grid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
             grid.Columns[0].HeaderText = "Active to edit";
             grid.Columns[0].Width = 145;
@@ -129,7 +129,7 @@ namespace BusStation.Forms
 
         private void DocumentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string s = ((ComboBox)sender).Text;
+            string s = DocumentComboBox.Text;
             //is current document
             TableLayoutPanel temp = null;
             //hide prev document
@@ -175,7 +175,7 @@ namespace BusStation.Forms
             for (int i = 0; i < trips.Count; ++i)
             {
                 Panel TripPanel = this.InitTicketPanel();
-                TripPanel.Location = new Point(5, i ==  0 ? 5 : h * i + 5 * (i + 1));
+                TripPanel.Location = new Point(5, i == 0 ? 5 : h * i + 5 * (i + 1));
 
                 Label idl = new Label();
                 idl.Text = "Id";
@@ -208,7 +208,7 @@ namespace BusStation.Forms
                 labelT.Location = new Point(5, TripPanel.Height - 30);
 
                 Label stationT = new Label();
-                stationT.Text = trips[i].getStation()[trips[i].getStation().Count-1].name;
+                stationT.Text = trips[i].getStation()[trips[i].getStation().Count - 1].name;
                 stationT.AutoSize = true;
                 stationT.Size = new Size(100, 25);
                 stationT.Location = new Point(60, TripPanel.Height - 30);
@@ -420,7 +420,7 @@ namespace BusStation.Forms
             selectTicket.Controls.Add(costLabel);
             selectTicket.Controls.Add(cost);
             selectTicket.Controls.Add(buy);
-            
+
             TicketSelecttableLayoutPanel46.AutoScroll = true;
 
             tableLayoutPanel42.Visible = false;
@@ -461,9 +461,9 @@ namespace BusStation.Forms
 
             fillProfile(currentUser);
         }
-        private void fillProfile(User user) 
+        private void fillProfile(User user)
         {
-            if(user != null)
+            if (user != null)
             {
                 var profile = user.getProfile();
                 if (profile != null)
@@ -472,6 +472,20 @@ namespace BusStation.Forms
                     LastnameTextBox.Text = profile.LastName;
                 }
                 UsernameTextBox.Text = user.Username;
+                var document = user.Document;
+                if(document != null)
+                {
+                    DocumentComboBox.Text = document.Type;
+                    if(document.Type == "Student")
+                    {
+                        textBox7.Text = document.Number;
+                    }else if(document.Type == "Invalid")
+                    {
+                        textBox3.Text = document.Number;
+                        DisabilityComboBox.Text = document.Degree;
+                    }
+                    DocumentComboBox_SelectedIndexChanged(null, null);
+                }
             }
         }
         private void LogOutButton_Click(object sender, EventArgs e)
@@ -501,7 +515,7 @@ namespace BusStation.Forms
             bind.DataSource = users;
             grid.DataSource = bind;
 
-             EditStyleColumn(grid);
+            EditStyleColumn(grid);
         }
 
         private void StationSearchButton_Click(object sender, EventArgs e)
@@ -532,7 +546,7 @@ namespace BusStation.Forms
                 seats = Convert.ToInt32(busSearchString);
             }
             catch (Exception ex)
-            {}
+            { }
             BusAccess db = new BusAccess();
 
             if (seats < 0) buses = db.GetAll();
@@ -565,7 +579,7 @@ namespace BusStation.Forms
         {
             var rows = UserDataGridView.Rows;
 
-            foreach(DataGridViewRow row in rows)
+            foreach (DataGridViewRow row in rows)
             {
                 var a = Convert.ToBoolean(((DataGridViewCheckBoxCell)(row.Cells[0])).Value);
                 if (a)
@@ -623,7 +637,7 @@ namespace BusStation.Forms
         {
             string username = UserUsernameTextBox.Text.Trim();
             string password = UserPasswordTextBox.Text.Trim();
-            if(username != "" && password != "")
+            if (username != "" && password != "")
             {
                 User user = new User(1, username, password, "", "", DateTime.Now);
                 UserAccess db = new UserAccess();
@@ -632,7 +646,7 @@ namespace BusStation.Forms
                 if ((source != null && source.List.Count == 0) || source == null)
                 {
                     List<User> users = new List<User>();
-              
+
                     db.Add(user);
                     users.Add(user);
 
@@ -794,7 +808,7 @@ namespace BusStation.Forms
             if (seats < 0) buses = db.GetAll();
             else buses = db.GetManyBySelector(bus => bus.Seats == seats);
 
-            DataGridView grid =BusDataGridView;
+            DataGridView grid = BusDataGridView;
             grid.Rows.Clear();
             BindingSource bind = new BindingSource();
             bind.DataSource = buses;
@@ -929,7 +943,7 @@ namespace BusStation.Forms
                     distance = Convert.ToDouble(distanceStr);
                 }
                 catch (Exception ex) { return; }
-                
+
                 StationAccess dbS = new StationAccess();
                 int stationId = dbS.GetManyBySelector(station => station.name == stationName)[0].id;
 
@@ -1014,7 +1028,7 @@ namespace BusStation.Forms
             for (int i = indexs.Count - 1; i >= 0; --i)
             {
                 int index = indexs.ElementAt<int>(i);
-                long id_trip= Convert.ToInt64(((Trip)(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value)).Id);
+                long id_trip = Convert.ToInt64(((Trip)(((DataGridViewTextBoxCell)(rows[index].Cells[1])).Value)).Id);
                 long id_station = Convert.ToInt64(((Station)(((DataGridViewTextBoxCell)(rows[index].Cells[2])).Value)).id);
                 StopAccess db = new StopAccess();
                 db.Delete(id_trip, id_station);
@@ -1031,7 +1045,7 @@ namespace BusStation.Forms
 
             if (tripSearchString == "") trips = db.GetAll();
             else trips = db.GetManyBySelector(
-                trip => 
+                trip =>
                 trip.Id.ToString().Contains(tripSearchString)
                 || trip.DateArrival.ToString().Contains(tripSearchString)
                 || trip.Bus.Id.ToString().Contains(tripSearchString)
@@ -1145,5 +1159,62 @@ namespace BusStation.Forms
             }
         }
 
+        private void DocumentComboBox_Click(object sender, EventArgs e)
+        {
+            DocumentComboBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string type = DocumentComboBox.Text.Trim();
+            string numberStr = "";
+            string degreeStr = "Student";
+            Document document = null;
+
+            if (type == "Student")
+            {
+                numberStr = textBox7.Text.Trim();
+                if (numberStr.Trim().Length < 8)
+                {
+                    MessageBox.Show("Number must be more equal then 8 symbols");
+                    return;
+                }
+                document = new Document { Id = currentUser.Id, Type = type, Number = numberStr, Degree = "Student" };
+                DocumentAccess db = new DocumentAccess();
+                try
+                {
+                    if (db.GetOne(document.Id) != null)
+                        db.Update(document);
+                }
+                catch (Exception ex)
+                {
+                    db.Add(document);
+                }
+            }
+            else if (type == "Invalid")
+            {
+                numberStr = textBox3.Text.Trim();
+                if (numberStr.Trim().Length < 8)
+                {
+                    MessageBox.Show("Number must be more equal then 8 symbols");
+                    return;
+                }
+                degreeStr = DisabilityComboBox.Text;
+                if (degreeStr.Trim() == "")
+                {
+                    MessageBox.Show("Please check disability");
+                    return;
+                }
+                document = new Document { Id = currentUser.Id, Type = type, Number = numberStr, Degree = degreeStr };
+
+            }
+            else
+            {
+                document = null;
+                DocumentComboBox.Text = "None";
+            }
+            currentUser.Document = document;
+            DocumentComboBox_SelectedIndexChanged(null, null);
+        }
     }
 }

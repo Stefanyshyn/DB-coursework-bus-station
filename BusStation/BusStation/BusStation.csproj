@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DAODocument.cs" />
     <Compile Include="DAO\DAOBus.cs" />
     <Compile Include="DAO\DAOProfile.cs" />
     <Compile Include="DAO\DAOStation.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="DAO\DAOTrip.cs" />
     <Compile Include="DAO\DAOUser.cs" />
     <Compile Include="DataAccess\BusAccess.cs" />
+    <Compile Include="DataAccess\DocumentAccess.cs" />
     <Compile Include="DataAccess\StopAccess.cs" />
     <Compile Include="DataAccess\ProfileAccess.cs" />
     <Compile Include="DataAccess\StationAccess.cs" />
