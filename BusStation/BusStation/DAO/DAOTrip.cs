@@ -15,6 +15,7 @@ namespace BusStation.DAO
         List<Trip> GetManyBySelector(Predicate<Trip> match);
         void Add(Trip trip);
         void Delete(long id);
+        List<Trip> SearchByStation(string from, string to, DateTime date);
   //      KeyValuePair<string, string> dateMaxMin(Trip trip);
     }
 }

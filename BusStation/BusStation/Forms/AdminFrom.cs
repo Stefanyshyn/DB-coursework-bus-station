@@ -161,12 +161,17 @@ namespace BusStation.Forms
             tripSearchString = TripEditSearchTextBox.Text;
             List<Trip> trips = new List<Trip>();
             TripAccess db = new TripAccess();
-
-            trips = db.GetManyBySelector(trip =>
-                trip.DateArrival.ToString().Contains(tripSearchString)
-                || trip.Id.ToString().Contains(tripSearchString)
-                || trip.Bus.Seats.ToString().Contains(tripSearchString));
-
+            string from = FromTripTextBox.Text.Trim();
+            string to = ToTripTextBox.Text.Trim();
+            DateTime dateSearch = dateTimePicker1.Value;
+            try
+            {
+                trips = db.SearchByStation(from, to, dateSearch);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             const int h = 100;
             const int widthSecondColumn = 160;
             const int widthIntervalSecondColumn = 140;
@@ -220,10 +225,22 @@ namespace BusStation.Forms
                 dateDeparture.Location = new Point(widthSecondColumn, 5);
 
                 Label date = new Label();
-                date.Text = trips[i].DateArrival.ToString();
+                date.Text = trips[i].DateDeparture.ToString();
                 date.AutoSize = true;
                 date.Size = new Size(100, 25);
                 date.Location = new Point(widthSecondColumn + widthIntervalSecondColumn, 5);
+
+                Label dateArrivalLabel = new Label();
+                dateArrivalLabel.Text = "Date arrival";
+                dateArrivalLabel.AutoSize = true;
+                dateArrivalLabel.Size = new Size(50, 25);
+                dateArrivalLabel.Location = new Point(widthSecondColumn, 37);
+
+                Label dateArrival = new Label();
+                dateArrival.Text = trips[i].DateArrival.ToString();
+                dateArrival.AutoSize = true;
+                dateArrival.Size = new Size(100, 25);
+                dateArrival.Location = new Point(widthSecondColumn + widthIntervalSecondColumn, 37);
 
                 Label seatLabel = new Label();
                 seatLabel.Text = "Seats";
@@ -245,8 +262,11 @@ namespace BusStation.Forms
                 TripPanel.Controls.Add(stationT);
                 TripPanel.Controls.Add(dateDeparture);
                 TripPanel.Controls.Add(date);
+                TripPanel.Controls.Add(dateArrivalLabel);
+                TripPanel.Controls.Add(dateArrival);
                 TripPanel.Controls.Add(seatLabel);
                 TripPanel.Controls.Add(seat);
+                
 
                 TripPanel.MouseClick += new MouseEventHandler(this.Trip_Click);
 

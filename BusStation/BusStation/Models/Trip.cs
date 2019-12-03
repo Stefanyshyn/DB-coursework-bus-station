@@ -21,8 +21,8 @@ namespace BusStation.Models
             BusAccess db = new BusAccess();
             this.Bus = db.GetOne(id_bus);
 
-            this.DateArrival = datestart;
-            this.DateDeparture = dateend;
+            this.DateArrival = dateend;
+            this.DateDeparture = datestart;
         }
         public List<Station> getStation() {
             return this.stations;
