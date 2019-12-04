@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BusStation.DAO
 {
-    public interface DAODocument
+    public interface DAOBook
     {
-        Document GetOne(int id);
-        Document GetOne(string series);
-        void Add(Document document);
-        void Update(Document document);
+        List<Book> GetAll();
+        void Add(Book book);
+        List<Book> GetByUserId(int id_user);
+
     }
 }

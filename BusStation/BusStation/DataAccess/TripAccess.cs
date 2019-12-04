@@ -93,8 +93,44 @@ namespace BusStation.DataAccess
                 return stations;
             }
         }
+        //Kostil
+        class namedistanse
+        {
+            public string name { get; set; }
+            public double distance { get; set; }
+        }
+        public double SearchDistance(Trip trip, string from, string to)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select name, distance " +
+                    $"from Station s inner join Stop stop " +
+                    $"on s.id = stop.id_station " +
+                    $"where stop.id_trip = {trip.Id} " +
+                    $"order by stop.timestart";
+                List<namedistanse> pairs = connection.Query<namedistanse>(query).ToList();
+                double distance = 0;
+                bool inRange = false;
+                for(int i =0; i < pairs.Count; ++i)
+                {
+                    if(pairs[i].name.Trim() == from)
+                    {
+                        inRange = true;
+                        continue;
+                    }
+                    if (inRange)
+                    {
+                        distance += pairs[i].distance;
+                        
+                        if (pairs[i].name.Trim() == to) 
+                            break;
+                    }
+                }
+                return distance;
+            }
+        }
 
-        public List<Trip> SearchByStation(string from, string to, DateTime date)
+            public List<Trip> SearchByStation(string from, string to, DateTime date)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
@@ -115,7 +151,7 @@ namespace BusStation.DataAccess
                         $"convert(date, stop.timestart, 120) = convert(date, '{date.ToString("yyyy-MM-dd")}', 120) " +
                         $"group by t.id";
                 List<Trip> trips = connection.Query<Trip>(query).ToList();
-                return trips;
+                return this.FromTo(trips, from, to);
             }
         }
         private List<Trip> FromTo(List<Trip> trips, string from, string to)
@@ -130,6 +166,12 @@ namespace BusStation.DataAccess
                     {
                         trips.Remove(trips[i]);
                         --i;
+                    }
+                    else
+                    {
+                        query = $"select id, name from Stop s inner join Station st on s.id_station = st.id where s.id_trip = {trips[i].Id} order by s.timestart";
+                        var stationsOrder = connection.Query<Station>(query).ToList();
+                        trips[i].setStation(stationsOrder);
                     }
                 }
                 return trips;

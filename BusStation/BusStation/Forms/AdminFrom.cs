@@ -20,13 +20,13 @@ namespace BusStation.Forms
             if (user == null)
             {
                 currentUser = new User(0, "1", "1", "Ivan", "Stefanyshyn", DateTime.Now);
-
             }
             InitializeComponent();
             accessUser(currentUser);
 
             EditTabControl.Visible = true;
             EditTabControl.Dock = DockStyle.Fill;
+            BookPanel.Visible = false;
             Ticketpanel.Visible = false;
             ProfileAdminTabControl.Visible = false;
 
@@ -285,31 +285,38 @@ namespace BusStation.Forms
         }
         private void Document_SelectedValueChanged(object sender, EventArgs e)
         {
-            ComboBox doc = (ComboBox)selectTicket.Controls[4];
+            ComboBox doc = null;
+            try
+            {
+                doc = (ComboBox)selectTicket.Controls[5];
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
             if (doc.Text == "Student")
             {
-                TextBox t = (TextBox)selectTicket.Controls[6];
+                TextBox t = (TextBox)selectTicket.Controls[7];
                 t.Enabled = true;
             }
             else if (doc.Text == "Invalid")
             {
-                ComboBox c = (ComboBox)selectTicket.Controls[8];
+                ComboBox c = (ComboBox)selectTicket.Controls[9];
                 c.Enabled = true;
-                TextBox t = (TextBox)selectTicket.Controls[6];
+                TextBox t = (TextBox)selectTicket.Controls[7];
                 t.Enabled = true;
             }
             else
             {
-                ComboBox c = (ComboBox)selectTicket.Controls[8];
+                ComboBox c = (ComboBox)selectTicket.Controls[9];
                 c.Enabled = false;
-                TextBox t = (TextBox)selectTicket.Controls[6];
+                TextBox t = (TextBox)selectTicket.Controls[7];
                 t.Enabled = false;
             }
             return;
         }
         private void Trip_Click(object sender, EventArgs e)
         {
-
             selectTicket.Dock = DockStyle.Fill;
             selectTicket.BackColor = Color.LightGray;
 
@@ -317,6 +324,13 @@ namespace BusStation.Forms
             string id = ((Label)data[1]).Text;
             string stationFrom = ((Label)data[3]).Text;
             string stationTo = ((Label)data[5]).Text;
+
+            TripAccess dbTrip = new TripAccess();
+            var trip = dbTrip.GetOne(Convert.ToInt32((id)));
+
+            Label id_trip = new Label();
+            id_trip.Text = id;
+            id_trip.Visible = false;
 
             Label titleLabel = new Label();
             titleLabel.Text = "#" + id + " -|- " + stationFrom + " <===> " + stationTo + " -|- ";
@@ -334,6 +348,8 @@ namespace BusStation.Forms
             seats.DropDownStyle = ComboBoxStyle.DropDownList;
             seats.Size = new Size(150, 25);
             seats.Location = new Point(5, 65);
+            seats.Click += new EventHandler(this.SeatCombox_Click);
+
 
             Label documentLabel = new Label();
             documentLabel.Text = "Document";
@@ -349,7 +365,7 @@ namespace BusStation.Forms
             document.Size = new Size(150, 25);
             document.Location = new Point(5, 130);
             document.SelectedValueChanged += new EventHandler(this.Document_SelectedValueChanged);
-
+            
             Label documentSeriesLabel = new Label();
             documentSeriesLabel.Text = "Series";
             documentSeriesLabel.AutoSize = true;
@@ -377,6 +393,29 @@ namespace BusStation.Forms
             invalid.Size = new Size(140, 25);
             invalid.Location = new Point(140, 195);
             invalid.Enabled = false;
+
+            if (currentUser != null && currentUser.Document != null)
+            {
+                document.Text = currentUser.Document.Type;
+                if (document.Text == "Student")
+                {
+                    series.Enabled = true;
+                    invalid.Enabled = false;
+                    series.Text = currentUser.Document.Number;
+                }
+                else if (document.Text == "Invalid")
+                {
+                    series.Enabled = true;
+                    invalid.Enabled = true;
+                    series.Text = currentUser.Document.Number;
+                    invalid.Text = currentUser.Document.Degree;
+                }
+                else
+                {
+                    series.Enabled = false;
+                    invalid.Enabled = false;
+                }
+            }
 
             Label firstNameLabel = new Label();
             firstNameLabel.Text = "FirstName";
@@ -406,8 +445,12 @@ namespace BusStation.Forms
             costLabel.Size = new Size(50, 25);
             costLabel.Location = new Point(5, 295);
 
+            TripAccess db = new TripAccess();
+
+            var costValue = db.SearchDistance(trip, FromTripTextBox.Text.Trim(), ToTripTextBox.Text.Trim()) * 2;
+
             Label cost = new Label();
-            cost.Text = "65";
+            cost.Text = Convert.ToString(costValue*2);
             cost.AutoSize = true;
             cost.Size = new Size(50, 25);
             cost.Location = new Point(65, 295);
@@ -420,10 +463,19 @@ namespace BusStation.Forms
             buy.Location = new Point(5, 325);
             buy.MouseClick += new MouseEventHandler(this.Buy_MouseClick);
 
+            Button cancell = new Button();
+            cancell.Text = "Cancell";
+            cancell.AutoSize = true;
+            cancell.BackColor = Color.LightSkyBlue;
+            cancell.Size = new Size(75, 50);
+            cancell.Location = new Point(175, 325);
+            cancell.MouseClick += new MouseEventHandler(this.Cancell_MouseClick);
+
             selectTicket.AutoSize = true;
             selectTicket.AutoSizeMode = AutoSizeMode.GrowOnly;
 
             selectTicket.Controls.Clear();
+            selectTicket.Controls.Add(id_trip);
             selectTicket.Controls.Add(titleLabel);
             selectTicket.Controls.Add(seatLabel);
             selectTicket.Controls.Add(seats);
@@ -440,6 +492,7 @@ namespace BusStation.Forms
             selectTicket.Controls.Add(costLabel);
             selectTicket.Controls.Add(cost);
             selectTicket.Controls.Add(buy);
+            selectTicket.Controls.Add(cancell);
 
             TicketSelecttableLayoutPanel46.AutoScroll = true;
 
@@ -448,11 +501,124 @@ namespace BusStation.Forms
             TicketSelecttableLayoutPanel46.Visible = true;
         }
 
+        private void SeatCombox_Click(object sender, EventArgs e)
+        {
+            var combo = (ComboBox)sender;
 
-        private void Buy_MouseClick(object sender, EventArgs e)
+            var panel = ((ComboBox)sender).Parent;
+
+            TripAccess tripAccess = new TripAccess();
+            var trip = tripAccess.GetOne(Convert.ToInt32(panel.Controls[0].Text));
+
+            BookAccess db = new BookAccess();
+            var seats = db.GetSeats(trip.Id);
+
+            for(int i = 0; i < trip.Bus.Seats; ++i)
+            {
+                combo.Items.Add(i + 1);
+            }
+            for(int i = 0; i < seats.Count; ++i)
+            {
+                combo.Items.Remove(seats[i]);
+            }
+
+        }
+        private void Cancell_MouseClick(object sender, EventArgs e)
         {
             TicketSelecttableLayoutPanel46.Visible = false;
             tableLayoutPanel42.Visible = true;
+        }
+        private void Buy_MouseClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var panel = ((Button)sender).Parent;
+                TripAccess tripAccess = new TripAccess();
+                var trip = tripAccess.GetOne(Convert.ToInt32(panel.Controls[0].Text));
+                var from = FromTripTextBox.Text;
+                var to = ToTripTextBox.Text;
+                
+                //seat
+                int seat;
+                if(panel.Controls[3].Text == "")
+                {
+                    throw new Exception("Seat isn't check");
+                }
+                seat = Convert.ToInt32(panel.Controls[3].Text);
+
+                //document
+                Document document = null;
+                if (panel.Controls[5].Text.Trim() != "" || panel.Controls[5].Text.Trim() != "None")
+                {
+                    if(panel.Controls[7].Text.Length < 8)
+                    {
+                        throw new Exception("Incorrect input. Series document must be more then 8 symbols");
+                    }
+                    string type = panel.Controls[5].Text.Trim();
+                    if (type == "Student")
+                    {
+                        document = new Document
+                        {
+                            Id = -1,
+                            Type = panel.Controls[5].Text,
+                            Number = panel.Controls[7].Text,
+                            Degree = panel.Controls[5].Text
+                        };
+                    }else if (type == "Invalid")
+                    {
+                        if (panel.Controls[9].Text.Trim() == "")
+                            throw new Exception("Please check disiability");
+                        document = new Document
+                        {
+                            Id = -1,
+                            Type = panel.Controls[5].Text,
+                            Number = panel.Controls[7].Text,
+                            Degree = panel.Controls[9].Text
+                        };
+                    }
+                    if(document != null)
+                    {
+                        DocumentAccess db = new DocumentAccess();
+                        try
+                        {
+                            var doc_id = db.GetOne(document.Number).Id;
+                            document.Id = doc_id;
+                        }
+                        catch (Exception ex)
+                        {
+                            db.Add(document);
+                            var doc_id = db.GetOne(document.Number).Id;
+                            document.Id = doc_id;
+                        }
+                    }
+                }
+
+                //firstname and lastname
+                var firstname = panel.Controls[11].Text;
+                var lastname = panel.Controls[13].Text;
+                if (firstname.Trim() == "" || lastname.Trim() == "")
+                    throw new Exception("Incorrect date! Firstname or lastname is empty");
+
+                //cost
+                var cost = tripAccess.SearchDistance(trip, from, to) * 2;
+
+                if (panel.Controls[6].Text == "Student" || panel.Controls[6].Text == "Invalid")
+                    cost *= 0.8;
+
+                Book book = new Book(currentUser.Id, trip.Id, seat, document.Id, from, to, Convert.ToDecimal(cost), firstname, lastname);
+
+                BookAccess dbBook = new BookAccess();
+                
+                dbBook.Add(book);
+
+                TicketSelecttableLayoutPanel46.Visible = false;
+                tableLayoutPanel42.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -461,6 +627,7 @@ namespace BusStation.Forms
             EditTabControl.Visible = true;
             Ticketpanel.Visible = false;
             ProfileAdminTabControl.Visible = false;
+            BookPanel.Visible = false;
         }
 
         private void TicketButton_Click(object sender, EventArgs e)
@@ -468,14 +635,18 @@ namespace BusStation.Forms
             Ticketpanel.Dock = DockStyle.Fill;
             Ticketpanel.Visible = true;
             EditTabControl.Visible = false;
+            BookPanel.Visible = false;
             ProfileAdminTabControl.Visible = false;
             tableLayoutPanel42.Dock = DockStyle.Fill;
+            FromTripTextBox.Text = "Kyiv";
+            ToTripTextBox.Text = "Ternopil";
         }
 
         private void ProfileButton_Click(object sender, EventArgs e)
         {
             ProfileAdminTabControl.Dock = DockStyle.Fill;
             ProfileAdminTabControl.Visible = true;
+            BookPanel.Visible = false; 
             EditTabControl.Visible = false;
             Ticketpanel.Visible = false;
 
@@ -1235,6 +1406,36 @@ namespace BusStation.Forms
             }
             currentUser.Document = document;
             DocumentComboBox_SelectedIndexChanged(null, null);
+        }
+
+        private void BookButton_Click(object sender, EventArgs e)
+        {
+            BookPanel.Dock = DockStyle.Fill;
+            BookPanel.Visible = true;
+            EditTabControl.Visible = false;
+            Ticketpanel.Visible = false;
+            ProfileAdminTabControl.Visible = false;
+
+            this.refreshBook();
+        }
+        private void refreshBook()
+        {
+            BookAccess db = new BookAccess();
+            List<Book> books = null;
+
+            if (currentUser.Id == 0)
+                books = db.GetAll();
+            else
+                books = db.GetByUserId(currentUser.Id);
+
+            DataGridView grid = BookDataGridView;
+            grid.Rows.Clear();
+            BindingSource bind = new BindingSource();
+            bind.DataSource = books;
+            grid.DataSource = bind;
+
+            EditStyleColumn(grid);
+
         }
     }
 }

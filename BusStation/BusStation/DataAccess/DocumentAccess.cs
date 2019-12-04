@@ -17,9 +17,9 @@ namespace BusStation.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
                 string query = $"insert into Document " +
-                    $"(id, type, number, degree) " +
+                    $"(type, number, degree) " +
                     $"values " +
-                    $"({document.Id}, '{document.Type}', '{document.Number}', '{document.Degree}')";
+                    $"('{document.Type}', '{document.Number}', '{document.Degree}')";
                 connection.Execute(query);
             }
         }
@@ -33,6 +33,17 @@ namespace BusStation.DataAccess
                 return doc;
             }
         }
+
+        public Document GetOne(string series)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
+            {
+                string query = $"select * from Document where number = '{series}'";
+                var doc = connection.Query<Document>(query).ToList()[0];
+                return doc;
+            }
+        }
+
         public void Update(Document document)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))

@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\DAOBook.cs" />
     <Compile Include="DAO\DAODocument.cs" />
     <Compile Include="DAO\DAOBus.cs" />
     <Compile Include="DAO\DAOProfile.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="DAO\DAOStop.cs" />
     <Compile Include="DAO\DAOTrip.cs" />
     <Compile Include="DAO\DAOUser.cs" />
+    <Compile Include="DataAccess\BookAccess.cs" />
     <Compile Include="DataAccess\BusAccess.cs" />
     <Compile Include="DataAccess\DocumentAccess.cs" />
     <Compile Include="DataAccess\StopAccess.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Bus.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Platform.cs" />

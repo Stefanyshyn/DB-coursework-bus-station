@@ -24,8 +24,13 @@ namespace BusStation.Models
             this.DateArrival = dateend;
             this.DateDeparture = datestart;
         }
-        public List<Station> getStation() {
+        public List<Station> getStation()
+        {
             return this.stations;
+        }
+        public void setStation(List<Station> stations)
+        {
+            this.stations = stations;
         }
         private List<Station> fillStation(long id)
         {
