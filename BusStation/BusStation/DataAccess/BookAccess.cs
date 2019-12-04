@@ -42,7 +42,10 @@ namespace BusStation.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.ConnValue("bus_station")))
             {
-                string query = $"select * from Book where id_user = {id_user}";
+                string query = $"select id_user, id_trip, seat, id_document, [from], " +
+                                    $" [to], convert(decimal, cost) cost, firstname, lastname " +
+                                    $" from Book" +
+                      $" where id_user = {id_user}";
                 var books = connection.Query<Book>(query).ToList();
                 return books;
             }
